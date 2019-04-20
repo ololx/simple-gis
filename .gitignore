@@ -1,0 +1,28 @@
+# Java Class Files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Circuit Diagram Files
+*.png
+*.svg
+
+#All Hidden
+.*
+
+# Virtual machine crash logs
+hs_err_pid*
+
+# Buildings
+/target/*
+/src/test/*
+
+#IntelliJ IDEA Files
+/.idea/*
+*.iml
+
+# Exclusions FIiles
+!.gitignore
