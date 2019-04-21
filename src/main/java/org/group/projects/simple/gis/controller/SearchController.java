@@ -10,12 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SearchController {
 
-    @GetMapping("/")
-    public ModelAndView main() {
-        ModelAndView mSearchPage = new ModelAndView("redirect:/search", "searchRequest", new SearchRequest());
-        return mSearchPage;
-    }
-
     @GetMapping("/search")
     public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView("search", "searchRequest", new SearchRequest());
