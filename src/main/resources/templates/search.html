@@ -7,7 +7,7 @@
 <body>
     <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
         <p><input type = "text" th:field="*{content}"/><input type="submit" value="Search" /></p>
-        <p th:text = "*{content != null ? content : ''}"/>
     </form>
+    <p th:text = "${searchResult != null ? searchResult.toString() : searchRequest.content}"/>
 </body>
 </html>

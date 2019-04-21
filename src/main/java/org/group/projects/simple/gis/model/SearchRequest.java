@@ -2,9 +2,6 @@ package org.group.projects.simple.gis.model;
 
 import jdk.internal.jline.internal.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 public class SearchRequest {
 
     @Nullable
