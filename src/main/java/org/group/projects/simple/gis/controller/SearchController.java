@@ -1,28 +1,31 @@
 package org.group.projects.simple.gis.controller;
 
+import org.group.projects.simple.gis.model.SearchRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SearchController {
 
     @GetMapping("/")
-    public String index() {
-        return "redirect:/search";
+    public ModelAndView main() {
+        ModelAndView mSearchPage = new ModelAndView("redirect:/search", "searchRequest", new SearchRequest());
+        return mSearchPage;
     }
 
     @GetMapping("/search")
-    public String greetingForm(Model model) {
-        model.addAttribute("search", new SearchResult());
-        return "search";
+    public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
+        ModelAndView model = new ModelAndView("search", "searchRequest", new SearchRequest());
+        return model;
     }
 
     @PostMapping("/search")
-    public String greetingSubmit(@ModelAttribute SearchResult search) {
-        return "result";
+    public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
+        ModelAndView model = new ModelAndView("search", "searchRequest", searchRequest);
+        return model;
     }
 
 }
