@@ -11,10 +11,22 @@ public class AddressObject
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aoid")
-    private Integer mId;
+    private Integer mAoid;
 
     @Column(name = "formalname")
     private String mFormalName;
+
+    /*@Column(name = "regioncode")
+    private String mRegionCode;
+
+    @Column(name = "autocode")
+    private String mAutoCode;
+
+    @Column(name = "areacode")
+    private String mAreaCode;
+
+    @Column(name = "citycode")
+    private String mCityCode;*/
 
     public AddressObject() {}
 
@@ -25,18 +37,18 @@ public class AddressObject
 
     @Override
     public String toString() {
-        return String.format("{\"id\" = \"%s\", \"content\" = \"%s\"}",
-                this.getId(),
+        return String.format("{\"aoid\" = \"%s\", \"formalname\" = \"%s\"}",
+                this.setAoid(),
                 this.getFormalName()
         );
     }
 
-    public Integer getId() {
-        return this.mId;
+    public Integer getAoid() {
+        return this.mAoid;
     }
 
-    public void setId(Integer aoid) {
-        this.mId = aoid;
+    public void setAoid(Integer aoid) {
+        this.mAoid = aoid;
     }
 
     public String getFormalName() {
