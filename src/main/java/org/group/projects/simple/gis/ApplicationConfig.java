@@ -28,7 +28,7 @@ public class ApplicationConfig {
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.controller"))
+                .select().apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.controller.rest"))
                 .paths(regex("/.*"))
                 .build()
                 .apiInfo(metaData());

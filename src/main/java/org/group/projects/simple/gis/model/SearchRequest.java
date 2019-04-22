@@ -1,10 +1,7 @@
 package org.group.projects.simple.gis.model;
 
-import jdk.internal.jline.internal.Nullable;
-
 public class SearchRequest {
 
-    @Nullable
     private String content;
 
     public SearchRequest() {}

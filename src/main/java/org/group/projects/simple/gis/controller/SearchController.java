@@ -36,7 +36,7 @@ public class SearchController {
         if(mAddressObjects.size() > 0) {
             mAddress = mAddressObjects.get(0);
         } else {
-            mAddress = new AddressObject(1, "np");
+            mAddress = new AddressObject("2", "np");
         }
 
         model.addObject("searchResult", mAddress);
