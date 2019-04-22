@@ -11,7 +11,7 @@ public class AddressObject
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aoid")
-    private Integer mAoid;
+    private String mAoid;
 
     @Column(name = "formalname")
     private String mFormalName;
@@ -30,24 +30,24 @@ public class AddressObject
 
     public AddressObject() {}
 
-    public AddressObject(Integer aoid, String formalname) {
-        this.setId(aoid);
+    public AddressObject(String aoid, String formalname) {
+        this.setAoid(aoid);
         this.setFormalName(formalname);
     }
 
     @Override
     public String toString() {
         return String.format("{\"aoid\" = \"%s\", \"formalname\" = \"%s\"}",
-                this.setAoid(),
+                this.getAoid(),
                 this.getFormalName()
         );
     }
 
-    public Integer getAoid() {
+    public String getAoid() {
         return this.mAoid;
     }
 
-    public void setAoid(Integer aoid) {
+    public void setAoid(String aoid) {
         this.mAoid = aoid;
     }
 
