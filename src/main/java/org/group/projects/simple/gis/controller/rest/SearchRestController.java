@@ -27,9 +27,10 @@ public class SearchRestController {
     public ResponseEntity<String> addQuestion(@RequestParam("content") String content) {
         AddressObjectManager mDao = new AddressObjectManager();
         List<AddressObject> mAddressObjects = mDao.selectByFormalName(content);
-        return new ResponseEntity<>(mAddressObjects.stream()
+        String mResult = String.format("{\"data\": %s}", mAddressObjects.stream()
                 .map(ea -> ea.toString())
-                .collect(Collectors.joining(", ")), HttpStatus.OK);
+                .collect(Collectors.joining(", ")));
+        return new ResponseEntity<>(mResult, HttpStatus.OK);
     }
 }
 
