@@ -31,15 +31,15 @@ public class SearchController {
         model.setViewName("search");
         model.addObject("searchRequest", searchRequest);
 
-        mAddressObjects.stream().forEach(ea -> System.out.println(ea.toString()));
+        /*mAddressObjects.stream().forEach(ea -> System.out.println(ea.toString()));
 
         if(mAddressObjects.size() > 0) {
             mAddress = mAddressObjects.get(0);
         } else {
             mAddress = new AddressObject("2", "np");
-        }
+        }*/
 
-        model.addObject("searchResult", mAddress);
+        model.addObject("searchResult", mAddressObjects);
 
         return model;
     }

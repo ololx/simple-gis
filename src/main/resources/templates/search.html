@@ -3,11 +3,27 @@
 <head>
     <title>Search</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="/resources/styles/search.css" th:href="@{/resources/styles/search.css}"/>
 </head>
 <body>
-    <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
-        <p><input type = "text" th:field="*{content}"/><input type="submit" value="Search" /></p>
-    </form>
-    <p th:text = "${searchResult != null ? searchResult.toString() : searchRequest.content}"/>
+    <div id = "search">
+        <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
+            <p><input type = "text" th:field="*{content}"/><input type="submit" value="Search" /></p>
+        </form>
+    </div>
+    <!--<p th:text = "${searchResult != null ? searchResult.toString() : searchRequest.content}"/>-->
+    <div id = "result" th:if="${not #lists.isEmpty(searchResult)}">
+        <h2>Search Result</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>aoid</th>
+                <th>formal name</th>
+            </tr>
+            <tr th:each="address : ${searchResult}">
+                <td th:text="${address.aoid}"></td>
+                <td th:text="${address.formalName}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

@@ -1,8 +1,10 @@
 package org.group.projects.simple.gis;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -17,23 +19,6 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 public class ApplicationConfig {
 
-    @Bean
-    MultipartConfigElement multipartConfigElement() {
-       MultipartConfigFactory factory = new MultipartConfigFactory();
-       factory.setMaxFileSize("256MB");
-       factory.setMaxRequestSize("256MB");
-       return factory.createMultipartConfig();
-   }
-
-    @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.controller.rest"))
-                .paths(regex("/.*"))
-                .build()
-                .apiInfo(metaData());
-    }
-
     private ApiInfo metaData() {
         ApiInfo apiInfo = new ApiInfo(
                 "simple-gis",
@@ -44,5 +29,32 @@ public class ApplicationConfig {
                 " ",
                 " ");
         return apiInfo;
+    }
+
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("UTF-8");
+        registrationBean.setFilter(characterEncodingFilter);
+        return registrationBean;
+    }
+
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+       MultipartConfigFactory factory = new MultipartConfigFactory();
+       factory.setMaxFileSize("256MB");
+       factory.setMaxRequestSize("256MB");
+       return factory.createMultipartConfig();
+    }
+
+    @Bean
+    public Docket productApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select().apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.controller.rest"))
+                .paths(regex("/.*"))
+                .build()
+                .apiInfo(metaData());
     }
 }
