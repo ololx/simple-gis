@@ -29,8 +29,10 @@ public class SearchController {
         ModelAndView model = new ModelAndView();
         model.setViewName("search");
         model.addObject("searchRequest", searchRequest);
-        mAddressObjects.stream().limit(5).collect(Collectors.toList());
-        model.addObject("searchResult", mAddressObjects);
+        model.addObject("searchResult", mAddressObjects.stream()
+                .distinct()
+                .limit(7).
+                collect(Collectors.toList()));
         return model;
     }
 
@@ -40,7 +42,10 @@ public class SearchController {
         List<AddressObject> mAddressObjects = mDao.selectByFormalName(tagName);
         AddressObject mAddress;
         System.out.println(new String(tagName.getBytes(),"UTF-8"));
-        return mAddressObjects.stream().limit(5).collect(Collectors.toList());
+        return mAddressObjects.stream()
+                .distinct()
+                .limit(5)
+                .collect(Collectors.toList());
 
 
     }

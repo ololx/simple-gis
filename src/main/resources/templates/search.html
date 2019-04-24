@@ -13,7 +13,7 @@
                 <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search"></button>
             </form>
-            <table th:if="${not #lists.isEmpty(searchResult)}">
+            <table id = "result" th:if="${not #lists.isEmpty(searchResult)}">
                 <tr>
                     <th>Идентификатор</th>
                     <th>Адрес</th>
