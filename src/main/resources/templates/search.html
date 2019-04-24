@@ -9,7 +9,7 @@
     <body>
         <div id = "top" class = "frame" th:insert="~{top :: top}"></div>
         <div id = "main" class = "frame">
-            <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
+            <form class = "search" action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
                 <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search"></button>
             </form>

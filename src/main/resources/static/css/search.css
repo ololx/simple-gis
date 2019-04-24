@@ -15,7 +15,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    font-family:Cambria, "Times New Roman", serif;
+    font-family: "Times New Roman", serif;
 }
 
 .frame {
@@ -72,8 +72,20 @@ input {
     color: #F0FFF0;
 }
 
-input:focus, input:hover, form:focus {
+.search:hover input {
     border-color: #98FB98;
+}
+
+.search:hover button {
+    color: #98FB98;
+}
+
+#search:focus {
+    border-color: #98FB98;
+}
+
+#search:focus + button {
+    color: #98FB98;
 }
 
 button {
@@ -91,8 +103,4 @@ button:before {
     content: "\2192";
     font-family: FontAwesome;
     font-size: 28px;
-}
-
-button:hover {
-    color: #98FB98;
 }
