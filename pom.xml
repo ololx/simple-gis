@@ -122,6 +122,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
+                    <uriEncoding>utf-8</uriEncoding>
                     <port>8888</port>
                     <path>/${project.name}</path>
                 </configuration>
@@ -164,6 +165,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <jvmArguments>-Xmx256m</jvmArguments>
+                    <jvmArguments>-Dfile.encoding=UTF8</jvmArguments>
                 </configuration>
             </plugin>
         </plugins>

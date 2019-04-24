@@ -4,12 +4,12 @@ import org.group.projects.simple.gis.dao.AddressObjectManager;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.entity.AddressObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class SearchController {
@@ -26,22 +26,23 @@ public class SearchController {
         AddressObjectManager mDao = new AddressObjectManager();
         List<AddressObject> mAddressObjects = mDao.selectByFormalName(searchRequest.getContent());
         AddressObject mAddress;
-
         ModelAndView model = new ModelAndView();
         model.setViewName("search");
         model.addObject("searchRequest", searchRequest);
-
-        /*mAddressObjects.stream().forEach(ea -> System.out.println(ea.toString()));
-
-        if(mAddressObjects.size() > 0) {
-            mAddress = mAddressObjects.get(0);
-        } else {
-            mAddress = new AddressObject("2", "np");
-        }*/
-
+        mAddressObjects.stream().limit(5).collect(Collectors.toList());
         model.addObject("searchResult", mAddressObjects);
-
         return model;
+    }
+
+    @GetMapping("/getTags")
+    public @ResponseBody List<AddressObject> getTags(@RequestParam String tagName) throws UnsupportedEncodingException {
+        AddressObjectManager mDao = new AddressObjectManager();
+        List<AddressObject> mAddressObjects = mDao.selectByFormalName(tagName);
+        AddressObject mAddress;
+        System.out.println(new String(tagName.getBytes(),"UTF-8"));
+        return mAddressObjects.stream().limit(5).collect(Collectors.toList());
+
+
     }
 
 }

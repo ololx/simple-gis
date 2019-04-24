@@ -1,10 +1,19 @@
 package org.group.projects.simple.gis;
 
+import org.codehaus.groovy.runtime.ArrayUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
+import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.ViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -19,6 +28,9 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 public class ApplicationConfig {
 
+    @Autowired
+    private HttpEncodingProperties httpEncodingProperties;
+
     private ApiInfo metaData() {
         ApiInfo apiInfo = new ApiInfo(
                 "simple-gis",
@@ -29,6 +41,15 @@ public class ApplicationConfig {
                 " ",
                 " ");
         return apiInfo;
+    }
+
+    @Bean
+    public OrderedCharacterEncodingFilter characterEncodingFilter() {
+        OrderedCharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+        filter.setEncoding(this.httpEncodingProperties.getCharset().name());
+        filter.setForceEncoding(this.httpEncodingProperties.isForce());
+        filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return filter;
     }
 
     @Bean
@@ -56,5 +77,31 @@ public class ApplicationConfig {
                 .paths(regex("/.*"))
                 .build()
                 .apiInfo(metaData());
+    }
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        final SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setCacheable(false);
+        templateResolver.setPrefix("classpath:/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        return templateResolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine springTemplateEngine() {
+        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+        springTemplateEngine.setTemplateResolver(templateResolver());
+
+        return springTemplateEngine;
+    }
+
+    @Bean
+    public ThymeleafViewResolver viewResolver() {
+        ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
+        thymeleafViewResolver.setTemplateEngine(springTemplateEngine());
+        thymeleafViewResolver.setCharacterEncoding("UTF-8");
+        return thymeleafViewResolver;
     }
 }

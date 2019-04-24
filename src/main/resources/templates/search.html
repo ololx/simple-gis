@@ -1,30 +1,44 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Search</title>
+        <title>Simple Geo Information System</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" media="all" href="../static/css/search.css" th:href="@{/css/search.css}"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../static/css/seform.css" th:href="@{/css/seform.css}"/>
     </head>
     <body>
-        <div id = "search">
+        <div id = "top" class = "frame" th:insert="~{top :: top}"></div>
+        <div id = "main" class = "frame">
             <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
-                <input type = "text" placeholder="search..." th:field="*{content}"/>
+                <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search"></button>
             </form>
-            <div id = "result" th:if="${not #lists.isEmpty(searchResult)}">
-                <h2>Search Result</h2>
-                <table class="table table-striped">
-                    <tr>
-                        <th>aoid</th>
-                        <th>formal name</th>
-                    </tr>
-                    <tr th:each="address : ${searchResult}">
-                        <td th:text="${address.aoid}"></td>
-                        <td th:text="${address.formalName}"></td>
-                    </tr>
-                </table>
-            </div>
+            <table th:if="${not #lists.isEmpty(searchResult)}">
+                <tr>
+                    <th>Идентификатор</th>
+                    <th>Адрес</th>
+                </tr>
+                <tr th:each="address : ${searchResult}">
+                    <td th:text="${address.aoid}"></td>
+                    <td th:text="${address.formalName}"></td>
+                </tr>
+            </table>
         </div>
-        <div th:insert="~{footer :: bottom}"></div>
+        <div id = "bottom" class = "frame" th:insert="~{footer :: bottom}"></div>
+        <script type="text/javascript" src="../static/js/jquery.1.10.2.min.js" th:src="@{/js/jquery.1.10.2.min.js}"></script>
+        <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
+        <script>
+            $(document).ready(function() {
+                $('#search').autocomplete({
+                    serviceUrl: './getTags',
+                    paramName: "tagName",
+                    delimiter: ",",
+                    transformResult: function(response) {
+                        return {suggestions: $.map($.parseJSON(response), function(item) {
+                                return { value: item.formalName, data: item.aoid};})};
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
