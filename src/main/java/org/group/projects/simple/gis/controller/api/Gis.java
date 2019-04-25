@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.controller.rest;
+package org.group.projects.simple.gis.controller.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -7,18 +7,17 @@ import org.group.projects.simple.gis.model.entity.AddressObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.spring.web.json.Json;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@Api(value = "SearchRestController", description = "Search address objects by params")
-@RequestMapping(value = "rest/search-rest-controller")
-public class SearchRestController {
+@Api(value = "gis", description = "Simple Gis API")
+@RequestMapping(value = "api/gis")
+public class Gis {
 
-    public SearchRestController() {
+    public Gis() {
     }
     
     @CrossOrigin()
@@ -31,6 +30,19 @@ public class SearchRestController {
                 .map(ea -> ea.toString())
                 .collect(Collectors.joining(", ")));
         return new ResponseEntity<>(mResult, HttpStatus.OK);
+    }
+
+    @CrossOrigin()
+    @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
+    @ApiOperation(value = "getAddressObjects")
+    public @ResponseBody List<AddressObject> getTags(@RequestParam String tagName) {
+        AddressObjectManager mDao = new AddressObjectManager();
+        List<AddressObject> mAddressObjects = mDao.selectByFormalName(tagName);
+        AddressObject mAddress;
+        return mAddressObjects.stream()
+                .distinct()
+                .limit(5)
+                .collect(Collectors.toList());
     }
 }
 

@@ -17,9 +17,10 @@ public class AddressObjectManager extends AbstractFiasEntityDataAccessManager<Ad
         Session mSession = HibernateUtil.getSessionFactory().openSession();
         mSession.beginTransaction();
         ArrayList<AddressObject> mResult = (ArrayList<AddressObject>) mSession.createQuery(
-                String.format("from %s where %s like '%s'", mTypeParameterClass.getCanonicalName(),
+                String.format("from %s where %s like '%s' and %s = 1", mTypeParameterClass.getCanonicalName(),
                         "formalname",
-                        formalName + "%")
+                        formalName + "%",
+                        "actstatus")
         ).list();
         mSession.getTransaction().commit();
 

@@ -7,7 +7,9 @@ CREATE TABLE `d_fias_house` (
   `okato` varchar(11) NOT NULL COMMENT 'ОКАТО',
   `oktmo` varchar(8) NOT NULL COMMENT 'ОКTMO',
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Дата время внесения записи',
+
   `housenum` varchar(20) NOT NULL COMMENT 'Номер дома',
+
   `eststatus` int(10) unsigned NOT NULL COMMENT 'Признак владения',
   `buildnum` varchar(10) NOT NULL COMMENT 'Номер корпуса',
   `strucnum` varchar(10) NOT NULL COMMENT 'Номер строения',

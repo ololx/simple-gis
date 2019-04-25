@@ -12,11 +12,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class SearchController {
+public class Search {
 
     @GetMapping("/search")
     public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
-        ModelAndView model = new ModelAndView("search", "searchRequest", new SearchRequest());
+        ModelAndView model = new ModelAndView();
+        model.setViewName("search");
+        model.addObject("searchRequest", new SearchRequest());
+
+        if(searchRequest != null) {
+            AddressObjectManager mDao = new AddressObjectManager();
+            List<AddressObject> mAddressObjects = mDao.selectByFormalName(searchRequest.getContent());
+            AddressObject mAddress;
+            model.addObject("searchResult", mAddressObjects.stream()
+                    .distinct()
+                    .limit(5)
+                    .collect(Collectors.toList()));
+        }
 
         return model;
     }
@@ -34,20 +46,6 @@ public class SearchController {
                 .limit(7).
                 collect(Collectors.toList()));
         return model;
-    }
-
-    @GetMapping("/getTags")
-    public @ResponseBody List<AddressObject> getTags(@RequestParam String tagName) throws UnsupportedEncodingException {
-        AddressObjectManager mDao = new AddressObjectManager();
-        List<AddressObject> mAddressObjects = mDao.selectByFormalName(tagName);
-        AddressObject mAddress;
-        System.out.println(new String(tagName.getBytes(),"UTF-8"));
-        return mAddressObjects.stream()
-                .distinct()
-                .limit(5)
-                .collect(Collectors.toList());
-
-
     }
 
 }

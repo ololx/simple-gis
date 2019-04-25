@@ -10,17 +10,57 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "d_fias_addrobj")
+@Table(name = "d_fias_house")
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressObject implements FiasEntity, Serializable {
+public class HouseObject implements FiasEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "aoid")
+    @Column(name = "houseid")
     @Getter
     @Setter
-    private String aoId;
+    private String houseId;
+
+    @Column(name = "postalcode")
+    @Getter
+    @Setter
+    private String postalCode;
+
+    @Column(name = "ifnsfl")
+    @Getter
+    @Setter
+    private String ifnsflCode;
+
+    @Column(name = "terrifnsfl")
+    @Getter
+    @Setter
+    private String terrifnsflCode;
+
+    @Column(name = "ifnsul")
+    @Getter
+    @Setter
+    private String ifnsulCode;
+
+    @Column(name = "terrifnsul")
+    @Getter
+    @Setter
+    private String terrifnsulCode;
+
+    @Column(name = "okato")
+    @Getter
+    @Setter
+    private String okato;
+
+    @Column(name = "oktmo")
+    @Getter
+    @Setter
+    private String oktmo;
+
+    @Column(name = "updatedate")
+    @Getter
+    @Setter
+    private Date updateDate;
 
     @Column(name = "formalname")
     @Getter
@@ -76,46 +116,10 @@ public class AddressObject implements FiasEntity, Serializable {
     @Getter
     @Setter
     private String offName;
-  
-    @Column(name = "postalcode")
-    @Getter
-    @Setter
-    private String postalCode;
 
-    @Column(name = "ifnsfl")
-    @Getter
-    @Setter
-    private String ifnsflCode;
 
-    @Column(name = "terrifnsfl")
-    @Getter
-    @Setter
-    private String terrifnsflCode;
-  
-    @Column(name = "ifnsul")
-    @Getter
-    @Setter
-    private String ifnsulCode;
 
-    @Column(name = "terrifnsul")
-    @Getter
-    @Setter
-    private String terrifnsulCode;
 
-    @Column(name = "okato")
-    @Getter
-    @Setter
-    private String okato;
-
-    @Column(name = "oktmo")
-    @Getter
-    @Setter
-    private String oktmo;
-  
-    @Column(name = "updatedate")
-    @Getter
-    @Setter
-    private Date updateDate;
   
     @Column(name = "shortname")
     @Getter
@@ -195,7 +199,7 @@ public class AddressObject implements FiasEntity, Serializable {
     @Override
     public String toString() {
         return String.format("{\"aoid\" = \"%s\", \"name\" = \"%s\"}",
-                this.getAoId(),
+                this.getAoid(),
                 this.getFormalName()
         );
     }
