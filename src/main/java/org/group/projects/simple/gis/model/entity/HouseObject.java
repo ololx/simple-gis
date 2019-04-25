@@ -62,119 +62,40 @@ public class HouseObject implements FiasEntity, Serializable {
     @Setter
     private Date updateDate;
 
-    @Column(name = "formalname")
+    @Column(name = "housenum")
     @Getter
     @Setter
-    private String formalName;
+    private String houseNum;
 
-    @Column(name = "regioncode")
+    @Column(name = "eststatus")
     @Getter
     @Setter
-    private String regionCode;
+    private Integer estStatus;
 
-    @Column(name = "autocode")
+    @Column(name = "buildnum")
     @Getter
     @Setter
-    private String autoCode;
+    private String buildNum;
 
-    @Column(name = "areacode")
+    @Column(name = "strucnum")
     @Getter
     @Setter
-    private String areaCode;
+    private Integer strucNum;
 
-    @Column(name = "citycode")
+    @Column(name = "strstatus")
     @Getter
     @Setter
-    private String cityCode;
-
-    @Column(name = "ctarcode")
-    @Getter
-    @Setter
-    private String ctarCode;
-
-    @Column(name = "placecode")
-    @Getter
-    @Setter
-    private String placeCode;
-
-    @Column(name = "streetcode")
-    @Getter
-    @Setter
-    private String streetCode;
-
-    @Column(name = "extrcode")
-    @Getter
-    @Setter
-    private String extrCode;
-
-    @Column(name = "sextcode")
-    @Getter
-    @Setter
-    private String sextCode;
-
-    @Column(name = "offname")
-    @Getter
-    @Setter
-    private String offName;
-
-
-
-
+    private Integer strStatus;
   
-    @Column(name = "shortname")
+    @Column(name = "houseguid")
     @Getter
     @Setter
-    private String shortName;
-  
-    @Column(name = "aolevel")
-    @Getter
-    @Setter
-    private Integer aoLevel;
-  
-    @Column(name = "parentguid")
-    @Getter
-    @Setter
-    private String parentGuid;
+    private String houseGuid;
 
-    @Column(name = "aoguid")
+    /*@Column(name = "aoguid")
     @Getter
     @Setter
-    private String aoGuid;
-
-    @Column(name = "previd")
-    @Getter
-    @Setter
-    private String prevId;
-
-    @Column(name = "nextid")
-    @Getter
-    @Setter
-    private String nextId;
-
-    @Column(name = "code")
-    @Getter
-    @Setter
-    private String code;
-
-    @Column(name = "plaincode")
-    @Getter
-    @Setter
-    private String plainCode;
-
-    @Column(name = "actstatus")
-    @Getter
-    @Setter
-    private Byte actStatus;
-
-    @Column(name = "centstatus")
-    @Getter
-    @Setter
-    private Integer centStatus;
-
-    @Column(name = "operstatus")
-    @Getter
-    @Setter
-    private Integer operStatus;
+    private String aoGuid;*/
 
     @Column(name = "currstatus")
     @Getter
@@ -196,11 +117,26 @@ public class HouseObject implements FiasEntity, Serializable {
     @Setter
     private String normDoc;
 
+    @Column(name = "counter")
+    @Getter
+    @Setter
+    private String counter;
+
+    @ManyToOne (fetch=FetchType.EAGER,
+            cascade=CascadeType.ALL,
+            optional = false)
+    @JoinColumn (nullable = false,
+            name = "aoguid",
+            referencedColumnName = "aoguid")
+    @Getter
+    @Setter
+    private AddressObject addressObject;
+
     @Override
     public String toString() {
-        return String.format("{\"aoid\" = \"%s\", \"name\" = \"%s\"}",
-                this.getAoid(),
-                this.getFormalName()
+        return String.format("{\"houseid\" = \"%s\", \"name\" = \"%s\"}",
+                this.getHouseId(),
+                this.getHouseNum()
         );
     }
 }

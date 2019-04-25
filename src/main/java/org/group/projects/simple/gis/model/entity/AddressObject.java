@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "d_fias_addrobj")
@@ -191,6 +193,17 @@ public class AddressObject implements FiasEntity, Serializable {
     @Getter
     @Setter
     private String normDoc;
+
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "addressObject")
+    @Getter
+    @Setter
+    private List<HouseObject> houseObjects;
+
+    {
+        this.houseObjects = new ArrayList<>();
+    }
 
     @Override
     public String toString() {

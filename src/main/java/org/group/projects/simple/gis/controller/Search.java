@@ -19,17 +19,6 @@ public class Search {
         ModelAndView model = new ModelAndView();
         model.setViewName("search");
         model.addObject("searchRequest", new SearchRequest());
-
-        if(searchRequest != null) {
-            AddressObjectManager mDao = new AddressObjectManager();
-            List<AddressObject> mAddressObjects = mDao.selectByFormalName(searchRequest.getContent());
-            AddressObject mAddress;
-            model.addObject("searchResult", mAddressObjects.stream()
-                    .distinct()
-                    .limit(5)
-                    .collect(Collectors.toList()));
-        }
-
         return model;
     }
 
