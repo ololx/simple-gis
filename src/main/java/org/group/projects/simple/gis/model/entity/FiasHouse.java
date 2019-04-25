@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "d_fias_house")
 @NoArgsConstructor
 @AllArgsConstructor
-public class HouseObject implements FiasEntity, Serializable {
+public class FiasHouse implements FiasEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,15 +92,10 @@ public class HouseObject implements FiasEntity, Serializable {
     @Setter
     private String houseGuid;
 
-    /*@Column(name = "aoguid")
+    @Column(name = "aoguid")
     @Getter
     @Setter
-    private String aoGuid;*/
-
-    @Column(name = "currstatus")
-    @Getter
-    @Setter
-    private Integer currStatus;
+    private String aoGuid;
 
     @Column(name = "startdate")
     @Getter
@@ -112,6 +107,11 @@ public class HouseObject implements FiasEntity, Serializable {
     @Setter
     private Date endDate;
 
+    @Column(name = "statstatus")
+    @Getter
+    @Setter
+    private Integer statStatus;
+
     @Column(name = "normdoc")
     @Getter
     @Setter
@@ -121,16 +121,6 @@ public class HouseObject implements FiasEntity, Serializable {
     @Getter
     @Setter
     private String counter;
-
-    @ManyToOne (fetch=FetchType.EAGER,
-            cascade=CascadeType.ALL,
-            optional = false)
-    @JoinColumn (nullable = false,
-            name = "aoguid",
-            referencedColumnName = "aoguid")
-    @Getter
-    @Setter
-    private AddressObject addressObject;
 
     @Override
     public String toString() {

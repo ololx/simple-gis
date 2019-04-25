@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "d_fias_addrobj")
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressObject implements FiasEntity, Serializable {
+public class FiasAddress implements FiasEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -128,11 +128,6 @@ public class AddressObject implements FiasEntity, Serializable {
     @Getter
     @Setter
     private Integer aoLevel;
-  
-    @Column(name = "parentguid")
-    @Getter
-    @Setter
-    private String parentGuid;
 
     @Column(name = "aoguid")
     @Getter
@@ -194,15 +189,25 @@ public class AddressObject implements FiasEntity, Serializable {
     @Setter
     private String normDoc;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "addressObject")
+    @ManyToOne (fetch=FetchType.EAGER,
+            cascade=CascadeType.ALL,
+            optional = false)
+    @JoinColumn (nullable = false,
+            name = "parentguid",
+            referencedColumnName = "aoguid")
     @Getter
     @Setter
-    private List<HouseObject> houseObjects;
+    private FiasAddress parent;
+
+    @OneToMany(fetch = FetchType.EAGER,
+              cascade = CascadeType.ALL,
+              mappedBy = "parent")
+    @Getter
+    @Setter
+    private List<FiasAddress> child;
 
     {
-        this.houseObjects = new ArrayList<>();
+        this.child = new ArrayList<>();
     }
 
     @Override

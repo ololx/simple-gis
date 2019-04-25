@@ -3,11 +3,10 @@ package org.group.projects.simple.gis.controller.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.group.projects.simple.gis.dao.AddressObjectManager;
-import org.group.projects.simple.gis.model.entity.AddressObject;
+import org.group.projects.simple.gis.model.entity.FiasAddress;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class Gis {
     @ApiOperation(value = "getAddressByName")
     public ResponseEntity<String> addQuestion(@RequestParam("content") String content) {
         AddressObjectManager mDao = new AddressObjectManager();
-        List<AddressObject> mAddressObjects = mDao.selectByFormalName(content);
+        List<FiasAddress> mAddressObjects = mDao.selectByFormalName(content);
         String mResult = String.format("{\"data\": %s}", mAddressObjects.stream()
                 .map(ea -> ea.toString())
                 .collect(Collectors.joining(", ")));
@@ -35,10 +34,9 @@ public class Gis {
     @CrossOrigin()
     @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
     @ApiOperation(value = "getAddressObjects")
-    public @ResponseBody List<AddressObject> getTags(@RequestParam String tagName) {
+    public @ResponseBody List<FiasAddress> getTags(@RequestParam String tagName) {
         AddressObjectManager mDao = new AddressObjectManager();
-        List<AddressObject> mAddressObjects = mDao.selectByFormalName(tagName);
-        AddressObject mAddress;
+        List<FiasAddress> mAddressObjects = mDao.selectByFormalName(tagName);
         return mAddressObjects.stream()
                 .distinct()
                 .limit(5)

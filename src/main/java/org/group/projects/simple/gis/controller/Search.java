@@ -2,7 +2,7 @@ package org.group.projects.simple.gis.controller;
 
 import org.group.projects.simple.gis.dao.AddressObjectManager;
 import org.group.projects.simple.gis.model.SearchRequest;
-import org.group.projects.simple.gis.model.entity.AddressObject;
+import org.group.projects.simple.gis.model.entity.FiasAddress;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,8 +25,8 @@ public class Search {
     @PostMapping("/search")
     public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
         AddressObjectManager mDao = new AddressObjectManager();
-        List<AddressObject> mAddressObjects = mDao.selectByFormalName(searchRequest.getContent());
-        AddressObject mAddress;
+        List<FiasAddress> mAddressObjects = mDao.selectByFormalName(searchRequest.getContent());
+        FiasAddress mAddress;
         ModelAndView model = new ModelAndView();
         model.setViewName("search");
         model.addObject("searchRequest", searchRequest);
