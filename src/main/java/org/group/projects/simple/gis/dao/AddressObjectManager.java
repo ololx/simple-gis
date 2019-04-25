@@ -1,25 +1,26 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.AddressObject;
+import org.group.projects.simple.gis.model.entity.FiasAddress;
 import org.group.projects.simple.gis.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressObjectManager extends AbstractFiasEntityDataAccessManager<AddressObject> {
+public class AddressObjectManager extends AbstractFiasEntityDataAccessManager<FiasAddress> {
 
     public AddressObjectManager() {
-        super(AddressObject.class);
+        super(FiasAddress.class);
     }
 
-    public List<AddressObject> selectByFormalName(String formalName) {
+    public List<FiasAddress> selectByFormalName(String formalName) {
         Session mSession = HibernateUtil.getSessionFactory().openSession();
         mSession.beginTransaction();
-        ArrayList<AddressObject> mResult = (ArrayList<AddressObject>) mSession.createQuery(
-                String.format("from %s where %s like '%s'", mTypeParameterClass.getCanonicalName(),
+        ArrayList<FiasAddress> mResult = (ArrayList<FiasAddress>) mSession.createQuery(
+                String.format("from %s where %s like '%s' and %s = 1", mTypeParameterClass.getCanonicalName(),
                         "formalname",
-                        formalName + "%")
+                        formalName + "%",
+                        "actstatus")
         ).list();
         mSession.getTransaction().commit();
 

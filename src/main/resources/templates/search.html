@@ -24,21 +24,24 @@
                 </tr>
             </table>
         </div>
-        <div id = "bottom" class = "frame" th:insert="~{footer :: bottom}"></div>
+        <div id = "bottom" class = "frame" th:insert="bottom :: bottom"></div>
         <script type="text/javascript" src="../static/js/jquery.1.10.2.min.js" th:src="@{/js/jquery.1.10.2.min.js}"></script>
         <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
-        <script>
-            $(document).ready(function() {
-                $('#search').autocomplete({
-                    serviceUrl: './getTags',
-                    paramName: "tagName",
-                    delimiter: ",",
-                    transformResult: function(response) {
-                        return {suggestions: $.map($.parseJSON(response), function(item) {
-                                return { value: item.formalName, data: item.aoid};})};
-                    }
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                $(document).ready(function() {
+                    $('#search').autocomplete({
+                        serviceUrl: './api/gis/getAddressObjects',
+                        paramName: "tagName",
+                        delimiter: ",",
+                        transformResult: function(response) {
+                            return {suggestions: $.map($.parseJSON(response), function(item) {
+                                    console.log(item);
+                                    return { value: item.formalName, data: item.aoid};})};
+                        }
+                    });
                 });
-            });
+            /*]]>*/
         </script>
     </body>
 </html>
