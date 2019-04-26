@@ -1,10 +1,10 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.fias.FiasEntity;
+import org.group.projects.simple.gis.model.entity.EntityData;
 
 import java.util.List;
 
-public interface EntityDataAccessManager<ENTITY extends FiasEntity> {
+public interface EntityDataAccessManager<ENTITY extends EntityData> {
 
     void create(ENTITY entity);
 

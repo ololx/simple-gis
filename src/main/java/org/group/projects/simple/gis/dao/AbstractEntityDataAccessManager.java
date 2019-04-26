@@ -1,18 +1,18 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.fias.FiasEntity;
+import org.group.projects.simple.gis.model.entity.EntityData;
 import org.hibernate.Session;
 import org.group.projects.simple.gis.util.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractFiasEntityDataAccessManager<ENTITY extends FiasEntity>
+public abstract class AbstractEntityDataAccessManager<ENTITY extends EntityData>
         implements EntityDataAccessManager<ENTITY> {
 
     protected final Class<ENTITY> mTypeParameterClass;
 
-    protected AbstractFiasEntityDataAccessManager(Class<ENTITY> typeParameterClass) {
+    protected AbstractEntityDataAccessManager(Class<ENTITY> typeParameterClass) {
         this.mTypeParameterClass = typeParameterClass;
     }
 
