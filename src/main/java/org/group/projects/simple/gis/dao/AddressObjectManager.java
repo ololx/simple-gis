@@ -1,6 +1,6 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.FiasAddress;
+import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
 import org.group.projects.simple.gis.util.HibernateUtil;
 import org.hibernate.Session;
 

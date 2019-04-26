@@ -3,7 +3,7 @@ package org.group.projects.simple.gis.controller.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.group.projects.simple.gis.dao.AddressObjectManager;
-import org.group.projects.simple.gis.model.entity.FiasAddress;
+import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

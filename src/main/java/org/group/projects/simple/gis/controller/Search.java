@@ -2,12 +2,11 @@ package org.group.projects.simple.gis.controller;
 
 import org.group.projects.simple.gis.dao.AddressObjectManager;
 import org.group.projects.simple.gis.model.SearchRequest;
-import org.group.projects.simple.gis.model.entity.FiasAddress;
+import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 

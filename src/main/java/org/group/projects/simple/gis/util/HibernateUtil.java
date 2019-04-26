@@ -1,7 +1,7 @@
 package org.group.projects.simple.gis.util;
 
-import org.group.projects.simple.gis.model.entity.FiasAddress;
-import org.group.projects.simple.gis.model.entity.FiasHouse;
+import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
+import org.group.projects.simple.gis.model.entity.fias.FiasHouse;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
