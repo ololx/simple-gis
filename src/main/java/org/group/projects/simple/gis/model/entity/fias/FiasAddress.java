@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.model.entity;
+package org.group.projects.simple.gis.model.entity.fias;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

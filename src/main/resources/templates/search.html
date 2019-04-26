@@ -19,8 +19,8 @@
                     <th>Адрес</th>
                 </tr>
                 <tr th:each="address : ${searchResult}">
-                    <td th:text="${address.aoid}"></td>
-                    <td th:text="${address.formalName}"></td>
+                    <td th:text="${address.id}"></td>
+                    <td th:text="${address.street}"></td>
                 </tr>
             </table>
         </div>
@@ -32,12 +32,12 @@
                 $(document).ready(function() {
                     $('#search').autocomplete({
                         serviceUrl: './api/gis/getAddressObjects',
-                        paramName: "tagName",
+                        paramName: "street",
                         delimiter: ",",
                         transformResult: function(response) {
                             return {suggestions: $.map($.parseJSON(response), function(item) {
                                     console.log(item);
-                                    return { value: item.formalName, data: item.aoid};})};
+                                    return { value: item.street, data: item.id};})};
                         }
                     });
                 });

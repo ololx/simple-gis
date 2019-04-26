@@ -1,7 +1,7 @@
 package org.group.projects.simple.gis.util;
 
-import org.group.projects.simple.gis.model.entity.FiasAddress;
-import org.group.projects.simple.gis.model.entity.FiasHouse;
+import org.group.projects.simple.gis.model.entity.gis2.Building;
+import org.group.projects.simple.gis.model.entity.gis2.Firm;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -40,10 +40,10 @@ public class HibernateUtil {
 
         try {
             mConfiguration = new Configuration()
-                    .addProperties(getSessionFactoryConfigurationPropertis("fias-mysql"))
+                    .addProperties(getSessionFactoryConfigurationPropertis("gis2-mysql"))
                     .addPackage( "simple.testing.system")
-                    .addAnnotatedClass(FiasAddress.class)
-                    .addAnnotatedClass(FiasHouse.class);
+                    .addAnnotatedClass(Building.class)
+                    .addAnnotatedClass(Firm.class);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
