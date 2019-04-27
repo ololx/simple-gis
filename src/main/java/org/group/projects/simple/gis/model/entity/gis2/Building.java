@@ -111,8 +111,7 @@ public class Building implements GeoEntity, Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "firm_to_building",
+    @JoinTable(name = "firm_to_building",
             joinColumns = {
                     @JoinColumn(nullable = false,
                     name = "building_id")
