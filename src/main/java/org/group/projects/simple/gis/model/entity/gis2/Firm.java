@@ -1,9 +1,6 @@
 package org.group.projects.simple.gis.model.entity.gis2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.group.projects.simple.gis.model.entity.EntityData;
 
 import javax.persistence.*;
@@ -15,6 +12,7 @@ import java.util.List;
 @Table(name = "firm")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(includeFieldNames=true)
 public class Firm implements EntityData, Serializable {
 
     @Id
@@ -86,14 +84,5 @@ public class Firm implements EntityData, Serializable {
 
     {
         this.buildings = new ArrayList<>();
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("{\"aoid\" = \"%s\", \"name\" = \"%s\"}",
-                this.getId(),
-                this.getAlias()
-        );
     }
 }

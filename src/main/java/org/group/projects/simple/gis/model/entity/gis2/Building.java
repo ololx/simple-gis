@@ -1,9 +1,6 @@
 package org.group.projects.simple.gis.model.entity.gis2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.group.projects.simple.gis.model.entity.EntityData;
 import org.group.projects.simple.gis.model.entity.fias.FiasEntity;
 
@@ -17,6 +14,7 @@ import java.util.List;
 @Table(name = "building")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(includeFieldNames=true)
 public class Building implements EntityData, Serializable {
 
     @Id
@@ -115,9 +113,13 @@ public class Building implements EntityData, Serializable {
             cascade = CascadeType.ALL)
     @JoinTable(
             name = "firm_to_building",
-            joinColumns = {@JoinColumn(nullable = false,
-                    name = "building_id") },
-            inverseJoinColumns = {@JoinColumn(name = "firm_id") }
+            joinColumns = {
+                    @JoinColumn(nullable = false,
+                    name = "building_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "firm_id")
+            }
     )
     @Getter
     @Setter
@@ -125,13 +127,5 @@ public class Building implements EntityData, Serializable {
 
     {
         this.firms = new ArrayList<>();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{\"aoid\" = \"%s\", \"street\" = \"%s\"}",
-                this.getId(),
-                this.getStreet()
-        );
     }
 }
