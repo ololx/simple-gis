@@ -5,9 +5,11 @@ import org.group.projects.simple.gis.model.entity.gis2.Building;
 import org.group.projects.simple.gis.util.HibernateUtil;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.loader.custom.sql.SQLCustomQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
@@ -35,7 +37,11 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     public List<Building> selectByFullAddress(String request) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('*" + request + "*' IN BOOLEAN MODE)")
+        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
+                Stream.of(request.split(" "))
+                        .map(eachKeyWord -> "*" + eachKeyWord + "*")
+                        .reduce(" ", String::concat)
+                + "' IN BOOLEAN MODE)")
                 .addEntity(Building.class);
         List<Building> result = query.list();
 
