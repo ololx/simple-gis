@@ -25,9 +25,11 @@ public class Gis {
     @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
     @ApiOperation(value = "getAddressObjects")
     public @ResponseBody List<Building> getTags(@RequestParam String street) {
-        BuildingManager mDao = new BuildingManager();
-        List<Building> mAddressObjects = mDao.selectByFormalName(street);
-        return mAddressObjects.stream()
+        BuildingManager dao = new BuildingManager();
+        List<Building> buildings = dao.selectByFormalName(street);
+        List<Building> buildings2 = dao.selectByFullAddress(street);
+        buildings2.stream().forEach(sb -> System.out.println(sb));
+        return buildings.stream()
                 .distinct()
                 .limit(5)
                 .collect(Collectors.toList());

@@ -37,7 +37,7 @@
                         transformResult: function(response) {
                             return {suggestions: $.map($.parseJSON(response), function(item) {
                                     console.log(item);
-                                    return { value: item.street, data: item.id};})};
+                                    return {value: item.street, data: item.id};})};
                         }
                     });
                 });

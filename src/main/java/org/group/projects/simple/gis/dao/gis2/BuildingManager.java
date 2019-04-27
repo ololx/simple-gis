@@ -1,9 +1,9 @@
 package org.group.projects.simple.gis.dao.gis2;
 
 import org.group.projects.simple.gis.dao.AbstractEntityDataAccessManager;
-import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
 import org.group.projects.simple.gis.model.entity.gis2.Building;
 import org.group.projects.simple.gis.util.HibernateUtil;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -30,5 +30,21 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
         }
 
         return mResult;
+    }
+
+    public List<Building> selectByFullAddress(String request) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street2, number, number2, postcode) against('*" + request + "*' IN BOOLEAN MODE)")
+                .addEntity(Building.class);
+        List<Building> result = query.list();
+
+        session.getTransaction().commit();
+
+        if (session.isOpen()) {
+            session.close();
+        }
+
+        return result;
     }
 }

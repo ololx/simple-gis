@@ -2,7 +2,6 @@ package org.group.projects.simple.gis.model.entity.gis2;
 
 import lombok.*;
 import org.group.projects.simple.gis.model.entity.GeoEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
