@@ -2,10 +2,16 @@
   width: 300px;
   outline: none;
   overflow: auto;
+  margin-top: -3px;
   background: transparent;
   border: 3px solid #98FB98;
   color: #F0FFF0;
   cursor: pointer;
+}
+
+.autocomplete-suggestions:focus + #search + button {
+    border-color: #98FB98;
+    color: #98FB98;
 }
 
 .autocomplete-suggestion {

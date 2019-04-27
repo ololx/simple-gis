@@ -20,7 +20,7 @@
                 </tr>
                 <tr th:each="address : ${searchResult}">
                     <td th:text="${address.id}"></td>
-                    <td th:text="${address.street}"></td>
+                    <td th:text="${address.toString()}"></td>
                 </tr>
             </table>
         </div>
@@ -37,7 +37,9 @@
                         transformResult: function(response) {
                             return {suggestions: $.map($.parseJSON(response), function(item) {
                                     console.log(item);
-                                    return {value: item.street, data: item.id};})};
+                                    return {value: item.city
+                                        + "," + item.street
+                                        + "-" + item.number, data: item.id};})};
                         }
                     });
                 });

@@ -35,7 +35,7 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     public List<Building> selectByFullAddress(String request) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street2, number, number2, postcode) against('*" + request + "*' IN BOOLEAN MODE)")
+        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('*" + request + "*' IN BOOLEAN MODE)")
                 .addEntity(Building.class);
         List<Building> result = query.list();
 
