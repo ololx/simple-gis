@@ -1,13 +1,13 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.EntityData;
+import org.group.projects.simple.gis.model.entity.GeoEntity;
 import org.hibernate.Session;
 import org.group.projects.simple.gis.util.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractEntityDataAccessManager<ENTITY extends EntityData>
+public abstract class AbstractEntityDataAccessManager<ENTITY extends GeoEntity>
         implements EntityDataAccessManager<ENTITY> {
 
     protected final Class<ENTITY> mTypeParameterClass;

@@ -1,13 +1,11 @@
 package org.group.projects.simple.gis.model.entity.gis2;
 
 import lombok.*;
-import org.group.projects.simple.gis.model.entity.EntityData;
-import org.group.projects.simple.gis.model.entity.fias.FiasEntity;
+import org.group.projects.simple.gis.model.entity.GeoEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames=true)
-public class Building implements EntityData, Serializable {
+@EqualsAndHashCode(exclude={
+        "id1", "id2"
+})
+public class Building implements GeoEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,10 +1,10 @@
 package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.model.entity.EntityData;
+import org.group.projects.simple.gis.model.entity.GeoEntity;
 
 import java.util.List;
 
-public interface EntityDataAccessManager<ENTITY extends EntityData> {
+public interface EntityDataAccessManager<ENTITY extends GeoEntity> {
 
     void create(ENTITY entity);
 
