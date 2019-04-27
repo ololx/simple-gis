@@ -5,7 +5,9 @@ import org.group.projects.simple.gis.model.entity.gis2.Building;
 import org.group.projects.simple.gis.util.HibernateUtil;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.loader.custom.sql.SQLCustomQuery;
+import org.hibernate.SessionBuilder;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +15,15 @@ import java.util.stream.Stream;
 
 public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     public BuildingManager() {
         super(Building.class);
     }
+
+    /*@Autowired
+    SessionFactory sessionFactory;*/
 
     public List<Building> selectByFormalName(String formalName) {
         Session mSession = HibernateUtil.getSessionFactory().openSession();
@@ -35,6 +43,8 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     }
 
     public List<Building> selectByFullAddress(String request) {
+
+        //Session session = sessionFactory.openSession();
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
