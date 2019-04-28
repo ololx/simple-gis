@@ -28,14 +28,14 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     }
 
     public List<Building> selectByFormalName(String formalName) {
-        Session session = this.sessionFactory.getCurrentSession();
-        //session.beginTransaction();
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
         ArrayList<Building> mResult = (ArrayList<Building>) session.createQuery(
                 String.format("from %s where %s like '%s'", mTypeParameterClass.getCanonicalName(),
                         "street",
                         "%" + formalName + "%")
         ).list();
-        //session.getTransaction().commit();
+        session.getTransaction().commit();
 
         if (session.isOpen()) {
             session.close();
@@ -46,9 +46,9 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
     public List<Building> selectByFullAddress(String request) {
 
-        Session session = this.sessionFactory.getCurrentSession();
-        //Session session = HibernateUtil.getSessionFactory().openSession();
-        //session.beginTransaction();
+        //Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
         SQLQuery<Building> query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
                 Stream.of(request.split(" "))
                         .map(eachKeyWord -> "*" + eachKeyWord + "*")
@@ -57,11 +57,11 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
                 .addEntity(Building.class);
         List<Building> result = query.list();
 
-        //session.getTransaction().commit();
+        session.getTransaction().commit();
 
-        /*if (session.isOpen()) {
+        if (session.isOpen()) {
             session.close();
-        }*/
+        }
 
         return result;
     }

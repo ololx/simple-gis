@@ -56,7 +56,12 @@ public class HibernateConfig {
         properties.put("current_session_context_class",
                 env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
         properties.put("hibernate.connection.pool_size", 100);
-        //properties.put("pring.jpa.hibernate.ddl-auto", "update");
+
+        properties.put("hibernate.connection.autocommit", false);
+        properties.put("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
+        properties.put("hibernate.cache.use_second_level_cache", false);
+        properties.put("hibernate.cache.use_query_cache", false);
+        properties.put("spring.jpa.hibernate.ddl-auto", "update");
         //properties.put("hibernate.hbm2ddl.auto", "create");
 
 
