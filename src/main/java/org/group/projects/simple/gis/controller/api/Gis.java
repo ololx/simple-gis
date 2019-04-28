@@ -2,8 +2,9 @@ package org.group.projects.simple.gis.controller.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.group.projects.simple.gis.dao.BuildingManager;
+import org.group.projects.simple.gis.repository.BuildingManager;
 import org.group.projects.simple.gis.model.entity.Building;
+import org.group.projects.simple.gis.service.GeoInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +26,16 @@ public class Gis {
     @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
     @ApiOperation(value = "getAddressObjects")
     public @ResponseBody List<Building> getTags(@RequestParam String street) {
-        List<Building> buildings = manager.selectByFullAddress(street);
 
-        return buildings.stream()
+        List<Building> result =  manager.selectByFullAddress(GeoInformationService.getBiGramms(street)).stream()
                 .distinct()
-                .limit(5)
+                .sorted((currentBuilding, nextBuilding) -> Integer.compare(
+                    GeoInformationService.getLevenstainDistance(street, currentBuilding.getStreet()),
+                            GeoInformationService.getLevenstainDistance(street, nextBuilding.getStreet())
+                )).limit(5)
                 .collect(Collectors.toList());
+
+        return result;
     }
 }
 

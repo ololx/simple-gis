@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.dao;
+package org.group.projects.simple.gis.repository;
 
 import org.group.projects.simple.gis.model.entity.GeoEntity;
 

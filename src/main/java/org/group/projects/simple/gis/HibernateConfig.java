@@ -22,8 +22,8 @@ import java.util.Properties;
 })
 @ComponentScan({
         "org.group.projects.simple.gis.controller",
-        "org.group.projects.simple.gis.dao",
-        "org.group.projects.simple.gis.model.entity"
+        "org.group.projects.simple.gis.service",
+        "org.group.projects.simple.gis.repository"
 })
 public class HibernateConfig {
 
@@ -46,14 +46,14 @@ public class HibernateConfig {
     public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
         Properties hibernateProperties = getHibernateProperties();
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-        /*factoryBean.setPackagesToScan(new String[] {
+        factoryBean.setPackagesToScan(new String[] {
                 "org.group.projects.simple.gis.model.entity"
-        });*/
+        });
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(hibernateProperties);
         factoryBean.afterPropertiesSet();
-
         SessionFactory sessionFactory = factoryBean.getObject();
+
         return sessionFactory;
     }
 

@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.dao;
+package org.group.projects.simple.gis.repository;
 
 import org.group.projects.simple.gis.model.entity.GeoEntity;
 import org.hibernate.Session;
@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 

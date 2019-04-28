@@ -1,6 +1,6 @@
 package org.group.projects.simple.gis.controller;
 
-import org.group.projects.simple.gis.dao.BuildingManager;
+import org.group.projects.simple.gis.repository.BuildingManager;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.springframework.beans.factory.annotation.Autowired;

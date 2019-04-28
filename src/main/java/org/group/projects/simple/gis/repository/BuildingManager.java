@@ -1,6 +1,7 @@
-package org.group.projects.simple.gis.dao;
+package org.group.projects.simple.gis.repository;
 
 import org.group.projects.simple.gis.model.entity.Building;
+import org.group.projects.simple.gis.service.GeoInformationService;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,7 @@ public class BuildingManager extends AbstractGeoEntityManager<Building> {
     public List<Building> selectByFormalName(String formalName) {
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
-        ArrayList<Building> mResult = (ArrayList<Building>) session.createQuery(
+        ArrayList<Building> result = (ArrayList<Building>) session.createQuery(
                 String.format("from %s where %s like '%s'", this.typeParameterClass.getCanonicalName(),
                         "street",
                         "%" + formalName + "%")
@@ -33,21 +34,20 @@ public class BuildingManager extends AbstractGeoEntityManager<Building> {
             session.close();
         }
 
-        return mResult;
+        return result;
     }
 
     public List<Building> selectByFullAddress(String request) {
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
-        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
-                Stream.of(request.split(" "))
-                        .map(eachKeyWord -> Stream.of(eachKeyWord.toLowerCase()
-                                .split("(?<=\\G.{2})"))
-                                .map(eachKeyCharacter -> String.format("*%s*", eachKeyCharacter))
-                        .collect(Collectors.joining(" ")))
-                        .collect(Collectors.joining(" "))
-                + "' IN BOOLEAN MODE)")
-                .addEntity(Building.class);
+        String[] fields = {"city", "district", "street", "street2", "number", "number2", "postcode"};
+        SQLQuery query = session.createNativeQuery(
+                String.format("select * from %s where match(%s) against('%s' IN BOOLEAN MODE)",
+                        "building",
+                        Stream.of(fields).collect(Collectors.joining(", ")),
+                        request
+                )
+        ).addEntity(Building.class);
         List<Building> result = query.list();
 
         session.getTransaction().commit();
