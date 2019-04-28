@@ -1,18 +1,23 @@
-package org.group.projects.simple.gis.dao.gis2;
+package org.group.projects.simple.gis.dao;
 
-import org.group.projects.simple.gis.dao.AbstractEntityDataAccessManager;
-import org.group.projects.simple.gis.model.entity.gis2.Building;
-import org.group.projects.simple.gis.util.HibernateUtil;
+import org.group.projects.simple.gis.model.entity.Building;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Repository
+@Transactional
 public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
     @Autowired
@@ -22,21 +27,18 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
         super(Building.class);
     }
 
-    /*@Autowired
-    SessionFactory sessionFactory;*/
-
     public List<Building> selectByFormalName(String formalName) {
-        Session mSession = HibernateUtil.getSessionFactory().openSession();
-        mSession.beginTransaction();
-        ArrayList<Building> mResult = (ArrayList<Building>) mSession.createQuery(
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
+        ArrayList<Building> mResult = (ArrayList<Building>) session.createQuery(
                 String.format("from %s where %s like '%s'", mTypeParameterClass.getCanonicalName(),
                         "street",
                         "%" + formalName + "%")
         ).list();
-        mSession.getTransaction().commit();
+        session.getTransaction().commit();
 
-        if (mSession.isOpen()) {
-            mSession.close();
+        if (session.isOpen()) {
+            session.close();
         }
 
         return mResult;
@@ -44,10 +46,10 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
     public List<Building> selectByFullAddress(String request) {
 
-        //Session session = sessionFactory.openSession();
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        //Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
-        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
+        SQLQuery<Building> query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
                 Stream.of(request.split(" "))
                         .map(eachKeyWord -> "*" + eachKeyWord + "*")
                         .reduce(" ", String::concat)

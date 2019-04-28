@@ -1,9 +1,9 @@
 package org.group.projects.simple.gis;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
-import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
+import org.springframework.boot.autoconfigure.http.HttpEncodingProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.filter.OrderedCharacterEncodingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;

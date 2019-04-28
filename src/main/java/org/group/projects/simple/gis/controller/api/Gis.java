@@ -2,12 +2,11 @@ package org.group.projects.simple.gis.controller.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.group.projects.simple.gis.dao.fias.AddressObjectManager;
-import org.group.projects.simple.gis.dao.gis2.BuildingManager;
-import org.group.projects.simple.gis.model.entity.fias.FiasAddress;
-import org.group.projects.simple.gis.model.entity.gis2.Building;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.group.projects.simple.gis.dao.BuildingManager;
+import org.group.projects.simple.gis.model.entity.Building;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +17,9 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "api/gis")
 public class Gis {
 
+    @Autowired
+    private BuildingManager manager;
+
     public Gis() {
     }
 
@@ -25,8 +27,7 @@ public class Gis {
     @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
     @ApiOperation(value = "getAddressObjects")
     public @ResponseBody List<Building> getTags(@RequestParam String street) {
-        BuildingManager dao = new BuildingManager();
-        List<Building> buildings = dao.selectByFullAddress(street);
+        List<Building> buildings = manager.selectByFullAddress(street);
 
         return buildings.stream()
                 .distinct()
