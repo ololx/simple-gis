@@ -3,8 +3,6 @@ package org.group.projects.simple.gis.dao;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +13,7 @@ import java.util.stream.Stream;
 
 @Repository
 @Transactional
-public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
-
-    @Autowired
-    private SessionFactory sessionFactory;
+public class BuildingManager extends AbstractGeoEntityManager<Building> {
 
     public BuildingManager() {
         super(Building.class);
@@ -28,7 +23,7 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         ArrayList<Building> mResult = (ArrayList<Building>) session.createQuery(
-                String.format("from %s where %s like '%s'", mTypeParameterClass.getCanonicalName(),
+                String.format("from %s where %s like '%s'", this.typeParameterClass.getCanonicalName(),
                         "street",
                         "%" + formalName + "%")
         ).list();
@@ -44,7 +39,7 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     public List<Building> selectByFullAddress(String request) {
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
-        SQLQuery<Building> query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
+        SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
                 Stream.of(request.split(" "))
                         .map(eachKeyWord -> Stream.of(eachKeyWord.toLowerCase()
                                 .split("(?<=\\G.{2})"))

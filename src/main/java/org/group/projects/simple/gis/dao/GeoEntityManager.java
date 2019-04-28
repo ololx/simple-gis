@@ -4,7 +4,7 @@ import org.group.projects.simple.gis.model.entity.GeoEntity;
 
 import java.util.List;
 
-public interface EntityDataAccessManager<ENTITY extends GeoEntity> {
+public interface GeoEntityManager<ENTITY extends GeoEntity> {
 
     void create(ENTITY entity);
 

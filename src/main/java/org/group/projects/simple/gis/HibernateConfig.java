@@ -44,25 +44,11 @@ public class HibernateConfig {
     @Autowired
     @Bean(name = "sessionFactory")
     public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
-        Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect",
-                environment.getProperty("spring.jpa.properties.hibernate.dialect"));
-        hibernateProperties.put("hibernate.show_sql",
-                environment.getProperty("spring.jpa.show-sql"));
-        hibernateProperties.put("current_session_context_class",
-                environment.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
-        hibernateProperties.put("hibernate.connection.pool_size", 100);
-        hibernateProperties.put("hibernate.connection.autocommit", false);
-        hibernateProperties.put("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
-        hibernateProperties.put("hibernate.cache.use_second_level_cache", false);
-        hibernateProperties.put("hibernate.cache.use_query_cache", false);
-        hibernateProperties.put("spring.jpa.hibernate.ddl-auto", "update");
-
+        Properties hibernateProperties = getHibernateProperties();
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-
-        factoryBean.setPackagesToScan(new String[] {
-                "org.group.projects.simple.gis"
-        });
+        /*factoryBean.setPackagesToScan(new String[] {
+                "org.group.projects.simple.gis.model.entity"
+        });*/
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(hibernateProperties);
         factoryBean.afterPropertiesSet();
@@ -82,5 +68,29 @@ public class HibernateConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    private Properties getHibernateProperties() {
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.put("hibernate.dialect",
+                environment.getProperty("spring.jpa.properties.hibernate.dialect"));
+        hibernateProperties.put("hibernate.show_sql",
+                environment.getProperty("spring.jpa.show-sql"));
+        hibernateProperties.put("current_session_context_class",
+                environment.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
+        hibernateProperties.put("hibernate.connection.pool_size",
+                environment.getProperty("spring.jpa.properties.hibernate.connection.pool_size"));
+        hibernateProperties.put("hibernate.connection.autocommit",
+                environment.getProperty("spring.jpa.properties.hibernate.connection.autocommit"));
+        hibernateProperties.put("hibernate.cache.provider_class",
+                environment.getProperty("spring.jpa.properties.hibernate.cache.provider_class"));
+        hibernateProperties.put("hibernate.cache.use_second_level_cache",
+                environment.getProperty("spring.jpa.properties.hibernate.cache.use_second_level_cache"));
+        hibernateProperties.put("hibernate.cache.use_query_cache",
+                environment.getProperty("spring.jpa.properties.hibernate.cache.use_query_cache"));
+        hibernateProperties.put("spring.jpa.hibernate.ddl-auto",
+                environment.getProperty("spring.jpa.hibernate.ddl-auto"));
+
+        return hibernateProperties;
     }
 }
