@@ -5,15 +5,12 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository
@@ -45,14 +42,15 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
     }
 
     public List<Building> selectByFullAddress(String request) {
-
-        //Session session = this.sessionFactory.getCurrentSession();
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         SQLQuery<Building> query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
                 Stream.of(request.split(" "))
-                        .map(eachKeyWord -> "*" + eachKeyWord + "*")
-                        .reduce(" ", String::concat)
+                        .map(eachKeyWord -> Stream.of(eachKeyWord.toLowerCase()
+                                .split("(?<=\\G.{2})"))
+                                .map(eachKeyCharacter -> String.format("*%s*", eachKeyCharacter))
+                        .collect(Collectors.joining(" ")))
+                        .collect(Collectors.joining(" "))
                 + "' IN BOOLEAN MODE)")
                 .addEntity(Building.class);
         List<Building> result = query.list();

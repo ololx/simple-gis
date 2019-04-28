@@ -2,8 +2,6 @@ package org.group.projects.simple.gis.dao;
 
 import org.group.projects.simple.gis.model.entity.GeoEntity;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractEntityDataAccessManager<ENTITY extends GeoEntity>
