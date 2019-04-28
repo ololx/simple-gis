@@ -1,12 +1,13 @@
 package org.group.projects.simple.gis;
 
-import org.group.projects.simple.gis.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -18,7 +19,12 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({ "classpath:application.properties" })
+@PropertySource({
+        "classpath:application.properties"
+})
+@ComponentScan({
+        "org.group.projects.simple.gis"
+})
 public class HibernateConfig {
 
     @Autowired
@@ -47,9 +53,11 @@ public class HibernateConfig {
         // See: application.properties
         properties.put("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
-        properties.put("current_session_context_class", //
+        properties.put("current_session_context_class",
                 env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
         properties.put("hibernate.connection.pool_size", 100);
+        //properties.put("pring.jpa.hibernate.ddl-auto", "update");
+        //properties.put("hibernate.hbm2ddl.auto", "create");
 
 
         // Fix Postgres JPA Error:
@@ -59,7 +67,7 @@ public class HibernateConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
         // Package contain entity classes
-        factoryBean.setPackagesToScan(new String[] { "" });
+        factoryBean.setPackagesToScan(new String[] { "org.group.projects.simple.gis" });
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(properties);
         factoryBean.afterPropertiesSet();
@@ -75,6 +83,11 @@ public class HibernateConfig {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 
         return transactionManager;
+    }
+
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+        return new PersistenceExceptionTranslationPostProcessor();
     }
 
     /*@Autowired
