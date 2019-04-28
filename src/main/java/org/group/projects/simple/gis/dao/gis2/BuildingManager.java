@@ -22,9 +22,6 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
         super(Building.class);
     }
 
-    /*@Autowired
-    SessionFactory sessionFactory;*/
-
     public List<Building> selectByFormalName(String formalName) {
         Session mSession = HibernateUtil.getSessionFactory().openSession();
         mSession.beginTransaction();
@@ -44,8 +41,8 @@ public class BuildingManager extends AbstractEntityDataAccessManager<Building> {
 
     public List<Building> selectByFullAddress(String request) {
 
-        //Session session = sessionFactory.openSession();
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = this.sessionFactory.getCurrentSession();
+        //Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         SQLQuery query = session.createNativeQuery("select * from building where match(city, district, street, street2, number, number2, postcode) against('" +
                 Stream.of(request.split(" "))
