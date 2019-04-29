@@ -65,9 +65,17 @@ body {
     background-color: #98FB98;
 }
 
+#search-map {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    height: 50%;
+}
 form {
     position: absolute;
-    top: 50%;
+    top: 80%;
     left: 50%;
     margin-top: -42px;
     margin-left: -150px;
