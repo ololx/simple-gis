@@ -18,7 +18,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({
-        "classpath:application.properties"
+        "classpath:application.properties",
+        "classpath:hibernate-mysql.properties",
+        "classpath:gis2.properties"
 })
 @ComponentScan({
         "org.group.projects.simple.gis.controller",
