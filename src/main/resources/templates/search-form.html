@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+    <body>
+        <div th:fragment = "search-form" >
+            <link rel="stylesheet" type="text/css" media="all" href="../static/css/search-form.css" th:href="@{/css/search-form.css}"/>
+            <input id = "search-input" class = "search-element" />
+            <span id = "search-icon" class = "search-element"></span>
+            <div class="icon-holder">
+                <div class="icon" id="map">
+                    <div class="tooltip">Parking</div>
+                </div>
+                <div class="icon" id="gas">
+                    <div class="base"></div>
+                    <div class="tooltip">Gas</div>
+                </div>
+                <div class="icon" id="eat">
+                    <div class="fork"></div>
+                    <div class="knife"></div>
+                    <div class="tooltip">Food</div>
+                </div>
+                <div class="icon" id="coffee">
+                    <div class="cup"></div>
+                    <div class="tooltip">Coffee</div>
+                </div>
+                <div class="icon" id="misc">
+                    <div class="dots"></div>
+                    <div class="tooltip">Misc</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
