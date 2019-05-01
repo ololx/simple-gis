@@ -3,30 +3,40 @@
     <body>
         <div th:fragment = "search-form" >
             <link rel="stylesheet" type="text/css" media="all" href="../static/css/search-form.css" th:href="@{/css/search-form.css}"/>
-            <input id = "search-input" class = "search-element" />
-            <span id = "search-icon" class = "search-element"></span>
-            <div class="icon-holder">
-                <div class="icon" id="map">
-                    <div class="tooltip">Parking</div>
-                </div>
-                <div class="icon" id="gas">
-                    <div class="base"></div>
-                    <div class="tooltip">Gas</div>
-                </div>
-                <div class="icon" id="eat">
-                    <div class="fork"></div>
-                    <div class="knife"></div>
-                    <div class="tooltip">Food</div>
-                </div>
-                <div class="icon" id="coffee">
-                    <div class="cup"></div>
-                    <div class="tooltip">Coffee</div>
-                </div>
-                <div class="icon" id="misc">
-                    <div class="dots"></div>
-                    <div class="tooltip">Misc</div>
-                </div>
-            </div>
+            <form class = "search" action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
+                <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
+                <button type="submit" value="Search"></button>
+            </form>
+            <script type="text/javascript" src="../static/js/jquery.1.10.2.min.js" th:src="@{/js/jquery.1.10.2.min.js}"></script>
+            <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                    $(document).ready(function() {
+                        let markers = {};
+                        $('#search').autocomplete({
+                            serviceUrl: './api/gis/getAddressObjects',
+                            paramName: "street",
+                            delimiter: ",",
+                            transformResult: function(response) {
+                                for (var key in markers) {
+                                    mymap.removeLayer(markers[key]);
+                                }
+
+                                return {suggestions: $.map($.parseJSON(response), function(item) {
+                                        markers[item.id] = new L.marker([item.lat, item.lon]);
+
+                                        mymap.addLayer(markers[item.id]);
+
+                                        //marker = L.marker([item.lat, item.lon]).addTo(mymap);
+
+                                        return {value: item.city
+                                            + "," + item.street
+                                            + "-" + item.number, data: item.id};})};
+                            }
+                        });
+                    });
+                /*]]>*/
+            </script>
         </div>
     </body>
 </html>

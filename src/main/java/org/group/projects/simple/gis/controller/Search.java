@@ -22,7 +22,7 @@ public class Search {
     @GetMapping("/search")
     public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView();
-        model.setViewName("search");
+        model.setViewName("main");
         model.addObject("searchRequest", new SearchRequest());
         return model;
     }
@@ -31,7 +31,7 @@ public class Search {
     public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
         List<Building> mAddressObjects = manager.selectByFormalName(searchRequest.getContent());
         ModelAndView model = new ModelAndView();
-        model.setViewName("search");
+        model.setViewName("main");
         model.addObject("searchRequest", searchRequest);
         model.addObject("searchResult", mAddressObjects.stream()
                 .distinct()

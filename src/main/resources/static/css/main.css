@@ -21,43 +21,42 @@ body {
 
 .frame {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
+    align-content: space-between;
     align-items: stretch;
-    background-color: #696969;
+    background-color: #404040;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 #main {
-    height: 88%;
+    flex:1 1 100%;
 }
 
 #top, #bottom {
-    min-height: 20px;
-    max-height: 46px;
-    height: 6%;
+    flex:1 1 46px;
 }
 
 #top {
-    border-bottom: 2px solid #98FB98;
+    border-bottom: 3px solid #98FB98;
 }
 
-#top > h1:hover {
+#top > p {
+    position: relative;
+    top: 50%;
+    min-left: 5px;
+    max-left: 10px;
+    left: 1%;
+    margin-top: -0.5em;
     text-shadow: -1px -1px #000,
-               0 1px 0 #444;
-    color: #222;
-    transition: all 1s;
-}
-
-#top  {
-    text-shadow: -1px -1px #000,
-               0 1px 0 #696969;
+               0 1px 0 #98FB98;
     color: #F0FFF0;
 }
 

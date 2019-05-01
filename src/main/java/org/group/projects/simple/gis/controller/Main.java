@@ -10,12 +10,7 @@ public class Main {
 
     @GetMapping("/")
     public ModelAndView main() {
-        ModelAndView mainModel = new ModelAndView();
-        mainModel.setViewName("main");
-        mainModel.addObject("searchRequest", new SearchRequest());
-
-        return mainModel;
-        //ModelAndView mSearchPage = new ModelAndView("redirect:/search");
-        //return mSearchPage;
+        ModelAndView mSearchPage = new ModelAndView("redirect:/search");
+        return mSearchPage;
     }
 }
