@@ -15,18 +15,18 @@ input, button {
 }
 
 input {
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0px;
-    width: 358px;
+    width: 385px;
     height: 42px;
     padding-left: 15px;
-    border: 3px solid  #F0FFF0;
+    border: 3px solid  #98FB98;
     color: #F0FFF0;
 }
 
 .search:hover input {
-    border-color: #98FB98;
+    border-color: #F0FFF0;
 }
 
 .search:hover button {
@@ -42,7 +42,7 @@ input {
 }
 
 button {
-    position: relative;
+    position: absolute;
     width: 42px;
     height: 42px;
     top: 0px;
