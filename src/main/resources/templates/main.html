@@ -9,7 +9,7 @@
         <div id = "top" class = "frame" th:include = "top :: top"></div>
         <div id = "main" class = "frame">
             <div id = "search-form" class = "container" th:include = "search-form :: search-form"></div>
-            <div id = "search-map" class = "container" th:include = "__${template}__ :: search-map"></div>
+            <div id = "search-map" class = "container" th:include = "${template} :: ${template}"></div>
         </div>
         <div id = "bottom" class = "frame" th:include = "bottom :: bottom"></div>
     </body>

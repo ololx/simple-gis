@@ -24,6 +24,7 @@ public class Search {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("searchRequest", new SearchRequest());
+        model.addObject("template", "search-map");
         return model;
     }
 
