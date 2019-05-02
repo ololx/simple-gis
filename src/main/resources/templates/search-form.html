@@ -3,7 +3,7 @@
     <body>
         <div th:fragment = "search-form" >
             <link rel="stylesheet" type="text/css" media="all" href="../static/css/search-form.css" th:href="@{/css/search-form.css}"/>
-            <form class = "search" action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
+            <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
                 <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search"></button>
             </form>

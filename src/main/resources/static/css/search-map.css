@@ -1,14 +1,12 @@
 #search-map {
     align-self: center;
-    bottom: 46px;
+    flex: 0 0 75%;
     width: 80%;
-    flex: 1 1 60%;
+    border: 3px solid  #98FB98;
 }
 
 #map {
-    position: relative;
     width: 100%;
     height: 100%;
-    border: 3px solid  #98FB98;
 }
 
