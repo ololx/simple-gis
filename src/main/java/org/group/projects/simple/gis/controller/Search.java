@@ -3,6 +3,7 @@ package org.group.projects.simple.gis.controller;
 import org.group.projects.simple.gis.repository.BuildingManager;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.entity.Building;
+import org.group.projects.simple.gis.service.GeoInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,19 +25,16 @@ public class Search {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("searchRequest", new SearchRequest());
+        model.addObject("fragmentMap", "search-map :: search-map");
         return model;
     }
 
     @PostMapping("/search")
     public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
-        List<Building> mAddressObjects = manager.selectByFormalName(searchRequest.getContent());
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("searchRequest", searchRequest);
-        model.addObject("searchResult", mAddressObjects.stream()
-                .distinct()
-                .limit(7).
-                collect(Collectors.toList()));
+        model.addObject("fragmentMap", "search-map :: search-map");
         return model;
     }
 

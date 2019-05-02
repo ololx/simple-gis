@@ -10,7 +10,7 @@ public class Main {
 
     @GetMapping("/")
     public ModelAndView main() {
-        ModelAndView mSearchPage = new ModelAndView("redirect:/search");
-        return mSearchPage;
+        ModelAndView model = new ModelAndView("redirect:/search");
+        return model;
     }
 }
