@@ -33,10 +33,7 @@ public class Search {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("searchRequest", searchRequest);
-        model.addObject("searchResult", mAddressObjects.stream()
-                .distinct()
-                .limit(7).
-                collect(Collectors.toList()));
+        model.addObject("template", "search-map");
         return model;
     }
 

@@ -27,6 +27,8 @@ body {
     align-content: space-between;
     align-items: stretch;
     background-color: #404040;
+    /**/
+    border: 2px solid yellow;
 }
 
 .container {
@@ -34,6 +36,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    /**/
+        border: 2px solid red;
 }
 
 #main {
