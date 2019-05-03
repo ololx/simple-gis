@@ -1,0 +1,69 @@
+#search-form {
+    flex: 0 0 45px;
+    align-self: center;
+    width: 400px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    align-items: stretch;
+}
+
+input, button {
+    outline: none;
+    background: transparent;
+    height: 42px;
+}
+
+input {
+    flex: 0 0 358px;
+    padding-left: 15px;
+    border-bottom: 2px solid #98FB98;
+    color: #F0FFF0;
+}
+
+button {
+    flex: 0 0 42px;
+    cursor: pointer;
+    color: #98FB98;
+}
+
+button:before {
+    content: "\2192";
+    font-family: FontAwesome;
+    font-size: 28px;
+}
+
+.autocomplete-suggestions {
+  width: 343px;
+  outline: none;
+  overflow: auto;
+  margin-top: -4px;
+  background-color: #404040;
+  border-bottom: 2px solid #98FB98;
+  color: #F0FFF0;
+  cursor: pointer;
+}
+
+.autocomplete-suggestion {
+    padding-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:12px;
+}
+
+.autocomplete-selected {
+    background: #98FB98;
+    color: #F0FFF0;
+}
+.autocomplete-suggestions strong {
+    color: #98FB98;
+}
+
+.autocomplete-selected strong {
+    color: #F0FFF0;
+}

@@ -1,10 +1,6 @@
-package org.group.projects.simple.gis.model.entity.gis2;
+package org.group.projects.simple.gis.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.group.projects.simple.gis.model.entity.EntityData;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +11,11 @@ import java.util.List;
 @Table(name = "firm")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Firm implements EntityData, Serializable {
+@ToString(includeFieldNames=true)
+@EqualsAndHashCode(exclude={
+        "id1", "id2"
+})
+public class Firm implements GeoEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,18 +82,9 @@ public class Firm implements EntityData, Serializable {
     @ManyToMany(mappedBy = "firms")
     @Getter
     @Setter
-    List<Building> buildings;
+    protected List<Building> buildings;
 
     {
         this.buildings = new ArrayList<>();
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("{\"aoid\" = \"%s\", \"name\" = \"%s\"}",
-                this.getId(),
-                this.getAlias()
-        );
     }
 }

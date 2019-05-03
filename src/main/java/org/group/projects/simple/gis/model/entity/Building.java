@@ -1,23 +1,21 @@
-package org.group.projects.simple.gis.model.entity.gis2;
+package org.group.projects.simple.gis.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.group.projects.simple.gis.model.entity.EntityData;
-import org.group.projects.simple.gis.model.entity.fias.FiasEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "building")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Building implements EntityData, Serializable {
+@ToString(includeFieldNames=true)
+@EqualsAndHashCode(exclude={
+        "id1", "id2"
+})
+public class Building implements GeoEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,27 +109,22 @@ public class Building implements EntityData, Serializable {
     @Setter
     private Long externalId;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(/*fetch = FetchType.EAGER,*/
             cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "firm_to_building",
-            joinColumns = {@JoinColumn(nullable = false,
-                    name = "building_id") },
-            inverseJoinColumns = {@JoinColumn(name = "firm_id") }
+    @JoinTable(name = "firm_to_building",
+            joinColumns = {
+                    @JoinColumn(nullable = false,
+                    name = "building_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "firm_id")
+            }
     )
     @Getter
     @Setter
-    List<Building> firms;
+    protected List<Firm> firms;
 
     {
         this.firms = new ArrayList<>();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{\"aoid\" = \"%s\", \"street\" = \"%s\"}",
-                this.getId(),
-                this.getStreet()
-        );
     }
 }
