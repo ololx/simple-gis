@@ -4,6 +4,7 @@ import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.service.GeoInformationService;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +43,7 @@ public class BuildingManager extends AbstractGeoEntityManager<Building> {
         session.beginTransaction();
         String[] fields = {"city", "district", "street", "street2", "number", "number2", "postcode"};
         SQLQuery query = session.createNativeQuery(
-                String.format("select * from %s where match(%s) against('%s' IN BOOLEAN MODE)",
+                String.format("select * from %s where match(%s) against('%s' IN BOOLEAN MODE) LIMIT 30",
                         "building",
                         Stream.of(fields).collect(Collectors.joining(", ")),
                         request

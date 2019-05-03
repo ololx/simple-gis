@@ -3,6 +3,11 @@ package org.group.projects.simple.gis.service;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,5 +50,38 @@ public interface GeoInformationService {
 
     static int compareStrings(Building word, Building wordOther) {
         return 1;
+    }
+
+    static List<String> parseWord(String string) {
+        Pattern pattern = Pattern.compile("[a-zа-яA-ZА-Я\\d]+");
+        Matcher matcher = pattern.matcher(string.trim());
+
+        return new ArrayList<String>(){{
+            while(matcher.find()) {
+                add(matcher.group());
+            }
+        }};
+    }
+
+    static List<String> parseNGrams(String string) {
+        Pattern pattern = Pattern.compile("(?<=\\G.{2})");
+
+        return Stream.of(string.split(pattern.toString()))
+                .parallel()
+                .collect(Collectors.toList());
+    }
+
+    static String getKeywords(String request) {
+        return parseWord(request)
+                .stream()
+                .parallel()
+                .map(eachWord -> parseNGrams(eachWord)
+                        .stream()
+                        .parallel()
+                        .map(eachBi -> String.format("%s %s",
+                                eachWord,
+                                String.format("*%s*", eachBi)))
+                        .collect(Collectors.joining(" ")))
+                .collect(Collectors.joining(" "));
     }
 }

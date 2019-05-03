@@ -109,7 +109,7 @@ public class Building implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(/*fetch = FetchType.EAGER,*/
             cascade = CascadeType.ALL)
     @JoinTable(name = "firm_to_building",
             joinColumns = {
@@ -122,7 +122,7 @@ public class Building implements GeoEntity, Serializable {
     )
     @Getter
     @Setter
-    List<Firm> firms;
+    protected List<Firm> firms;
 
     {
         this.firms = new ArrayList<>();

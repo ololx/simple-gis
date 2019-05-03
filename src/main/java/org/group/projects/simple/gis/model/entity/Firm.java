@@ -82,7 +82,7 @@ public class Firm implements GeoEntity, Serializable {
     @ManyToMany(mappedBy = "firms")
     @Getter
     @Setter
-    List<Building> buildings;
+    protected List<Building> buildings;
 
     {
         this.buildings = new ArrayList<>();

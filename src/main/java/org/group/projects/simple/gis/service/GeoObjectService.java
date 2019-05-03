@@ -18,7 +18,8 @@ public class GeoObjectService {
 
     public List<Building> getBuildings(String street, int limit) {
 
-        List<Building> result =  manager.selectByFullAddress(GeoInformationService.getBiGramms(street)).stream()
+        List<Building> result =  manager.selectByFullAddress(GeoInformationService.getKeywords(street))
+                .stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
                         GeoInformationService.getLevenstainDistance(street, currentBuilding.getStreet()),
