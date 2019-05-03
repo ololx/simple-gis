@@ -11,6 +11,8 @@
             <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
             <script th:inline="javascript">
                 /*<![CDATA[*/
+                    var mapEnambled = false;
+
                     $(document).ready(function() {
                         let markers = {};
                         $('#search').autocomplete({
@@ -23,11 +25,12 @@
                                 }
 
                                 return {suggestions: $.map($.parseJSON(response), function(item) {
-                                        markers[item.id] = new L.marker([item.lat, item.lon]);
 
-                                        mymap.addLayer(markers[item.id]);
+                                        if(mapEnambled) {
+                                            markers[item.id] = new L.marker([item.lat, item.lon]);
 
-                                        //marker = L.marker([item.lat, item.lon]).addTo(mymap);
+                                            mymap.addLayer(markers[item.id]);
+                                        }
 
                                         return {value: item.city
                                             + "," + item.street

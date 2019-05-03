@@ -122,7 +122,7 @@ public class Building implements GeoEntity, Serializable {
     )
     @Getter
     @Setter
-    List<Building> firms;
+    List<Firm> firms;
 
     {
         this.firms = new ArrayList<>();

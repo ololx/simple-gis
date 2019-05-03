@@ -4,28 +4,31 @@ import org.group.projects.simple.gis.repository.BuildingManager;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.service.GeoInformationService;
+import org.group.projects.simple.gis.service.GeoObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+/*@SessionAttributes({"address"})*/
 public class Search {
 
     @Autowired
-    private BuildingManager manager;
+    private GeoObjectService service;
 
     @GetMapping("/search")
     public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
+        model.addObject("middle", "search");
         model.addObject("searchRequest", new SearchRequest());
-        model.addObject("fragmentMap", "search-map :: search-map");
         return model;
     }
 
@@ -33,8 +36,21 @@ public class Search {
     public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
+        model.addObject("middle", "search");
+
+        Building building = service.getBuildings(searchRequest.getContent(), 1).get(0);
+
+        searchRequest.setContent(String.format("%s,%s-%s",
+                building.getCity(),
+                building.getStreet(),
+                building.getNumber()));
+
         model.addObject("searchRequest", searchRequest);
-        model.addObject("fragmentMap", "search-map :: search-map");
+        model.addObject("lon", building.getLon());
+        model.addObject("lat", building.getLat());
+        model.addObject("address", searchRequest.getContent());
+        model.addObject("map", "true");
+
         return model;
     }
 

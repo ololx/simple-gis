@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
-        <div id = "search" class = "frame" th:include = "search :: search">
+        <div id = "search" class = "frame" th:fragment = "middle">
             <div id = "search-form" class = "container" th:include = "search-form :: search-form"></div>
-            <div id = "search-map" class = "container" th:include = "__${template}__ :: search-map"></div>
+            <div id = "search-map" class = "container" th:include = "search-map :: search-map" th:if="${map}"></div>
         </div>
     </body>
 </html>

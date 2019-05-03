@@ -8,7 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Main {
 
-    @GetMapping("/")
+    @GetMapping({
+            "/",
+            "/index"
+    })
     public ModelAndView main() {
         ModelAndView model = new ModelAndView("redirect:/search");
         return model;
