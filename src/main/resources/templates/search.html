@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
-        <div id = "search" class = "frame" th:fragment = "middle">
+        <div id = "middle" class = "frame" th:fragment = "middle">
             <div id = "search-form" class = "container" th:include = "search-form :: search-form"></div>
             <div id = "search-map" class = "container" th:include = "search-map :: search-map" th:if="${map}"></div>
         </div>

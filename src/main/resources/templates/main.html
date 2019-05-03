@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id = "top" class = "frame" th:include = "top :: top"></div>
-        <div id = "main" class = "frame" th:include = "__${middle}__ :: middle">
+        <div th:replace = "__${middle}__ :: middle">
         </div>
         <div id = "bottom" class = "frame" th:include = "bottom :: bottom"></div>
     </body>
