@@ -17,7 +17,6 @@ import java.util.List;
                 "where match(city, district, street, street2, number, number2, postcode) " +
                 "against(:value IN BOOLEAN MODE) limit 20",
         resultClass=Building.class
-
 )
 @NoArgsConstructor
 @AllArgsConstructor
