@@ -8,8 +8,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name="Building")
 @Table(name = "building")
+@NamedNativeQuery(
+        name = "Building.findBuildingViaIndex",
+        query = "select * " +
+                "from Building " +
+                "where match(city, district, street, street2, number, number2, postcode) " +
+                "against(:value IN BOOLEAN MODE) limit 20",
+        resultClass=Building.class
+
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames=true)
@@ -124,7 +133,7 @@ public class Building implements GeoEntity, Serializable {
     @JsonIgnore
     @Getter
     @Setter
-    List<Firm> firms;
+    private List<Firm> firms;
 
     {
         this.firms = new ArrayList<>();

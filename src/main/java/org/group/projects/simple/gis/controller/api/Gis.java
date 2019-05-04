@@ -15,7 +15,6 @@ import java.util.List;
 public class Gis {
 
     @Autowired
-    //private BuildingManager manager;
     private GeoObjectService service;
 
     public Gis() {
