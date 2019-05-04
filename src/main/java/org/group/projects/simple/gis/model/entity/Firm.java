@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name="Firm")
 @Table(name = "firm")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -82,7 +82,7 @@ public class Firm implements GeoEntity, Serializable {
     @ManyToMany(mappedBy = "firms")
     @Getter
     @Setter
-    protected List<Building> buildings;
+    private List<Building> buildings;
 
     {
         this.buildings = new ArrayList<>();

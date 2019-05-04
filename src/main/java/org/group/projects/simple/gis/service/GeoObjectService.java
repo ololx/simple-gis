@@ -1,11 +1,9 @@
 package org.group.projects.simple.gis.service;
 
 import org.group.projects.simple.gis.model.entity.Building;
-import org.group.projects.simple.gis.repository.BuildingManager;
+import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,12 +12,11 @@ import java.util.stream.Collectors;
 public class GeoObjectService {
 
     @Autowired
-    private BuildingManager manager;
+    private BuildingRepository buildingRepository;
 
     public List<Building> getBuildings(String street, int limit) {
 
-        List<Building> result =  manager.selectByFullAddress(GeoInformationService.getKeywords(street))
-                .stream()
+        List<Building> result =  buildingRepository.findBuildingViaIndex/*manager.selectByFullAddress*/(GeoInformationService.getBiGramms(street)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
                         GeoInformationService.getLevenstainDistance(street, currentBuilding.getStreet()),
@@ -29,4 +26,5 @@ public class GeoObjectService {
 
         return result;
     }
+
 }

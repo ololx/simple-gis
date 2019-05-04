@@ -1,5 +1,6 @@
 package org.group.projects.simple.gis.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,8 +8,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name="Building")
 @Table(name = "building")
+@NamedNativeQuery(
+        name = "Building.findBuildingViaIndex",
+        query = "select * " +
+                "from Building " +
+                "where match(city, district, street, street2, number, number2, postcode) " +
+                "against(:value IN BOOLEAN MODE) limit 20",
+        resultClass=Building.class
+
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames=true)
@@ -109,7 +119,7 @@ public class Building implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    @ManyToMany(/*fetch = FetchType.EAGER,*/
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinTable(name = "firm_to_building",
             joinColumns = {
@@ -120,9 +130,10 @@ public class Building implements GeoEntity, Serializable {
                     @JoinColumn(name = "firm_id")
             }
     )
+    @JsonIgnore
     @Getter
     @Setter
-    protected List<Firm> firms;
+    private List<Firm> firms;
 
     {
         this.firms = new ArrayList<>();

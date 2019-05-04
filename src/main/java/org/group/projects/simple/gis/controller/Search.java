@@ -1,20 +1,15 @@
 package org.group.projects.simple.gis.controller;
 
-import org.group.projects.simple.gis.repository.BuildingManager;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.entity.Building;
-import org.group.projects.simple.gis.service.GeoInformationService;
+import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.group.projects.simple.gis.service.GeoObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 /*@SessionAttributes({"address"})*/
