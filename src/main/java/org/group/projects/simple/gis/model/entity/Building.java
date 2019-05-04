@@ -1,5 +1,6 @@
 package org.group.projects.simple.gis.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -109,7 +110,7 @@ public class Building implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinTable(name = "firm_to_building",
             joinColumns = {
@@ -120,6 +121,7 @@ public class Building implements GeoEntity, Serializable {
                     @JoinColumn(name = "firm_id")
             }
     )
+    @JsonIgnore
     @Getter
     @Setter
     List<Firm> firms;
