@@ -1,14 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>sGIS</title>
+        <title>SG</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" media="all" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+        <script type="text/javascript" src="../static/js/jquery.1.10.2.min.js" th:src="@{/js/jquery.1.10.2.min.js}"></script>
     </head>
     <body>
         <div id = "top" class = "frame" th:include = "top :: top"></div>
         <div th:replace = "__${middle}__ :: middle">
         </div>
         <div id = "bottom" class = "frame" th:include = "bottom :: bottom"></div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                function getSearch(url = null) {
+                    $('#middle').load(url);
+                }
+             /*]]>*/
+        </script>
     </body>
 </html>

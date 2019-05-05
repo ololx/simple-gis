@@ -6,9 +6,7 @@ import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.group.projects.simple.gis.service.GeoObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -23,11 +21,28 @@ public class Search {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("middle", "search");
-        model.addObject("searchRequest", new SearchRequest());
+
+        if(searchRequest.getContent() != null && !searchRequest.getContent().isEmpty()) {
+            Building building = service.getBuildings(searchRequest.getContent(), 1).get(0);
+
+            searchRequest.setContent(String.format("%s,%s-%s",
+                    building.getCity(),
+                    building.getStreet(),
+                    building.getNumber()));
+
+            model.addObject("lon", building.getLon());
+            model.addObject("lat", building.getLat());
+            model.addObject("address", searchRequest.getContent());
+            model.addObject("map", "true");
+        }
+
+        model.addObject("searchRequest", searchRequest);
+
         return model;
     }
 
     @PostMapping("/search")
+    @ResponseBody
     public ModelAndView searchSubmit(@ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
@@ -48,5 +63,4 @@ public class Search {
 
         return model;
     }
-
 }
