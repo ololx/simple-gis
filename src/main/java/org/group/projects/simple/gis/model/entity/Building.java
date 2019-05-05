@@ -15,7 +15,7 @@ import java.util.List;
         query = "select * " +
                 "from Building " +
                 "where match(city, district, street, street2, number, number2, postcode) " +
-                "against(:value IN BOOLEAN MODE) limit 20",
+                "against(:value IN BOOLEAN MODE)",
         resultClass=Building.class
 )
 @NoArgsConstructor
