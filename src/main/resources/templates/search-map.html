@@ -9,8 +9,11 @@
             <script th:inline="javascript">
                 /*<![CDATA[*/
 
-                function addMarkger(lon, lat, map, zoom, tag = null) {
-                    let marker = new L.marker([lat, lon]);
+                function addMarker(lon, lat, map, zoom, tag = null, marker = null) {
+                    if(marker === null) {
+                        marker = new L.marker([lat, lon]);
+                    }
+
                     if(tag !== null) {
                         marker.bindPopup(tag).openPopup();
                     }
@@ -36,7 +39,7 @@
                     let sr = [[${searchResult}]];
                     console.log(sr.content);
 
-                    addMarker([[${lon}]], [[${lat}]], mymap, 15, sr.content);
+                    addMarker([[${lon}]], [[${lat}]], mymap, 15, sr.content, null);
 
                 });
 
