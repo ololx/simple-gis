@@ -9,7 +9,7 @@
             <script th:inline="javascript">
                 /*<![CDATA[*/
 
-                function addMarker(lon, lat, map, zoom, tag = null) {
+                function addMarkger(lon, lat, map, zoom, tag = null) {
                     let marker = new L.marker([lat, lon]);
                     if(tag !== null) {
                         marker.bindPopup(tag).openPopup();
