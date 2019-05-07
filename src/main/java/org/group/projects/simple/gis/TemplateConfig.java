@@ -45,7 +45,7 @@ public class TemplateConfig {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(springTemplateEngine());
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
-        thymeleafViewResolver.setOrder(1);
+
         return thymeleafViewResolver;
     }
 

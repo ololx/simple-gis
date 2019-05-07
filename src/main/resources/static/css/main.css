@@ -52,7 +52,7 @@ body {
 
 #top {
     border-bottom: 3px solid #98FB98;
-    color: #F0FFF0;
+    color: #98FB98;
 }
 
 #top > p {
@@ -61,7 +61,7 @@ body {
     max-left: 10px;
     left: 1%;
     text-shadow: -1px -1px #000,
-               0 1px 0 #98FB98;
+               0 1px 0 #404040;
     font-size: 20px;
 }
 

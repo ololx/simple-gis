@@ -30,7 +30,12 @@
 
                                         if(mapEnambled) {
                                             markers[item.id] = new L.marker([item.lat, item.lon]);
-                                            mymap.addLayer(markers[item.id]);
+
+                                            addMarker(item.lon, item.lat, mymap, 10, item.city
+                                            + "," + item.street
+                                            + "-" + item.number);
+
+                                            //mymap.addLayer(markers[item.id]);
                                         }
 
                                         return {

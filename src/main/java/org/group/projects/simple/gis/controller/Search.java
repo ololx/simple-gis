@@ -7,6 +7,7 @@ import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.group.projects.simple.gis.service.GeoObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-/*@SessionAttributes({"searchResult"})*/
 public class Search {
 
     @Autowired
@@ -29,11 +29,12 @@ public class Search {
         if(searchRequest.getContent() != null && !searchRequest.getContent().isEmpty()) {
             Building building = service.getBuildings(searchRequest.getContent(), 10).get(0);
 
-            SearchResult result = new SearchResult();
-            result.setContent(building.getAddress());
+            SearchResult searchResult = new SearchResult();
+            searchResult.setContent(building.getAddress());
 
             model.addObject("lon", building.getLon());
             model.addObject("lat", building.getLat());
+            model.addObject("searchResult", searchResult);
             model.addObject("address", searchRequest.getContent());
             model.addObject("map", "true");
         }
