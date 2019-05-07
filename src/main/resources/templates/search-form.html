@@ -12,75 +12,35 @@
                 /*<![CDATA[*/
                     var mapEnambled = false;
 
-                    /*$(document).ready(function () {
-
-                        $("#search-form").submit(function (event) {
-
-                            event.preventDefault();
-
-                            search_ajax_submit();
-
-                        });
-
-                    });*/
-
-                    function search_ajax_submit() {
-
-                        var searchRequest = {}
-
-                        searchRequest["content"] = $("#search").val();
-
-                        console.log(searchRequest);
-
-                        $("#btn-search").prop("disabled", true);
-
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json",
-                            url: "./search",
-                            data: JSON.stringify(searchRequest),
-                            dataType: 'json',
-                            cache: false,
-                            timeout: 600000,
-                            success: function (data) {
-                                $('#middle').load(data);
-
-                                console.log("SUCCESS : ", data);
-                                $("#btn-search").prop("disabled", false);
-
-                            },
-                            error: function (e) {
-
-                                console.log("ERROR : ", e);
-                                $("#btn-search").prop("disabled", false);
-
-                            }
-                        });
-
-                    }
-
                     $(document).ready(function() {
                         let markers = {};
-                        $('#search').autocomplete({
-                            serviceUrl: './api/gis/getAddressObjects',
+
+                        $( "#search" ).autocomplete({
+                            serviceUrl: './getAddressObjects',
                             paramName: "street",
                             delimiter: ",",
                             transformResult: function(response) {
+
                                 for (var key in markers) {
                                     mymap.removeLayer(markers[key]);
                                 }
 
-                                return {suggestions: $.map($.parseJSON(response), function(item) {
+                                return {
+                                    suggestions: $.map($.parseJSON(response), function(item) {
 
                                         if(mapEnambled) {
                                             markers[item.id] = new L.marker([item.lat, item.lon]);
-
                                             mymap.addLayer(markers[item.id]);
                                         }
 
-                                        return {value: item.city
+                                        return {
+                                            value: item.city
                                             + "," + item.street
-                                            + "-" + item.number, data: item.id};})};
+                                            + "-" + item.number,
+                                            data: item.id
+                                        };
+                                    })
+                                };
                             }
                         });
                     });

@@ -4,9 +4,9 @@ import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +18,15 @@ public class GeoObjectService {
 
     public List<Building> getBuildings(String street, int limit) {
 
-        List<Building> result =  buildingRepository.findBuildingViaIndex(GeoInformationService.getBiGramms(street)).stream()
+        System.out.println(GeoInformationService.getKeywords(street));
+
+        List<Building> result =  buildingRepository.findBuildingViaIndex(
+                GeoInformationService.getKeywords(street),
+                new PageRequest(0, limit)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
-                        GeoInformationService.getLevenstainDistance(street, currentBuilding.getStreet()),
-                        GeoInformationService.getLevenstainDistance(street, nextBuilding.getStreet())
+                        GeoInformationService.keyWordsComare(street, currentBuilding.getAddress()),
+                        GeoInformationService.keyWordsComare(street, nextBuilding.getAddress())
                 )).limit(limit)
                 .collect(Collectors.toList());
 

@@ -42,7 +42,7 @@ button:before {
   width: 343px;
   outline: none;
   overflow: auto;
-  margin-top: -4px;
+  margin-top: 2px;
   background-color: #404040;
   border-bottom: 2px solid #98FB98;
   color: #F0FFF0;

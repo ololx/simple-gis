@@ -5,6 +5,6 @@ import lombok.*;
 @NoArgsConstructor
 /*@AllArgsConstructor*/
 @ToString(includeFieldNames=true)
-public class SearchRequest extends AbstractSearchEntity {
+public class SearchResult extends AbstractSearchEntity {
 
 }
