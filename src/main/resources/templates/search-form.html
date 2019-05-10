@@ -8,48 +8,32 @@
             </form>
             <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
             <script th:inline="javascript">
-                /*<![CDATA[*/
-                    console.log("2: " + map.getMap());
-
                     $(document).ready(function() {
-
-                        console.log("3: " + map.getMap());
-
                         $( "#search" ).autocomplete({
                             serviceUrl: './getAddressObjects',
                             paramName: "street",
                             delimiter: ",",
                             transformResult: function(response) {
-
                                 if(map.isExist() && response !== null) {
                                     map.clear();
                                 }
 
                                 return {
-                                    suggestions: $.map($.parseJSON(response), function(item) {
-
+                                    suggestions: $.map(JSON.parse(response).results, function(item) {
                                         if(map.isExist()) {
-                                            map.addMarker(
-                                                item.lon,
-                                                item.lat,
-                                                item.city
-                                                    + "," + item.street
-                                                    + "-" + item.number,
-                                                    8);
+                                            map.addMarker(item.lon, item.lat,
+                                                item.address, 8);
                                         }
 
                                         return {
-                                            value: item.city
-                                            + "," + item.street
-                                            + "-" + item.number,
-                                            data: item.id
+                                            value: item.address,
+                                            data: item.address
                                         };
                                     })
                                 };
                             }
                         });
                     });
-                /*]]>*/
             </script>
         </div>
     </body>

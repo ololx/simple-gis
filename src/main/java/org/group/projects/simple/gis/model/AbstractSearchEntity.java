@@ -4,7 +4,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 abstract class AbstractSearchEntity implements SearchEntity {
 
     @Getter
