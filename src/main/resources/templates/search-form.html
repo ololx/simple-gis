@@ -13,7 +13,7 @@
                     var mapEnambled = false;
 
                     $(document).ready(function() {
-                        let markers = {};
+
 
                         $( "#search" ).autocomplete({
                             serviceUrl: './getAddressObjects',
@@ -21,9 +21,7 @@
                             delimiter: ",",
                             transformResult: function(response) {
 
-                                for (var key in markers) {
-                                    mymap.removeLayer(markers[key]);
-                                }
+
 
                                 return {
                                     suggestions: $.map($.parseJSON(response), function(item) {
