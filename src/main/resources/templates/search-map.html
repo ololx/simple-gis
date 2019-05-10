@@ -8,9 +8,11 @@
             <div id = "map" ></div>
             <script th:inline="javascript">
 
-                let x = new Map('map', 55.04, 82.90, 2);
+                console.log("4: " + map.getMap());
 
-                console.log(x.getMap());
+                map = new Map('map', 55.04, 82.90, 2);
+
+                console.log(map.getMap());
 
 
                 /*<![CDATA[*/
@@ -23,7 +25,7 @@
                     let sr = [[${searchResult}]];
                     console.log(sr.content);
 
-                    x.addMarker([[${lon}]], [[${lat}]], sr.content, 15);
+                    map.addMarker([[${lon}]], [[${lat}]], sr.content, 15);
 
                 });
 

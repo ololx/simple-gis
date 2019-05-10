@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class Search {
@@ -20,11 +21,19 @@ public class Search {
     @Autowired
     private GeoObjectService service;
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ModelAndView searchForm(@ModelAttribute SearchRequest searchRequest) {
+    @RequestMapping(value = {
+            "/search",
+            "/{type}/search"
+    }, method = RequestMethod.GET)
+    public ModelAndView searchForm(@PathVariable("type") Optional<String> searchType,
+            @ModelAttribute SearchRequest searchRequest) {
         ModelAndView model = new ModelAndView();
         model.setViewName("main");
         model.addObject("middle", "search");
+
+        if(searchType.isPresent()) {
+            model.addObject("map", "true");
+        }
 
         if(searchRequest.getContent() != null && !searchRequest.getContent().isEmpty()) {
             Building building = service.getBuildings(searchRequest.getContent(), 10).get(0);
@@ -36,7 +45,6 @@ public class Search {
             model.addObject("lat", building.getLat());
             model.addObject("searchResult", searchResult);
             model.addObject("address", searchRequest.getContent());
-            model.addObject("map", "true");
         }
 
         model.addObject("searchRequest", searchRequest);
@@ -44,10 +52,14 @@ public class Search {
         return model;
     }
 
-    @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
+    @RequestMapping(value = {
+            "/getAddressObjects",
+            "/{type}/getAddressObjects"
+    }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Building> getTags(@RequestParam String street) {
-        List<Building> result = service.getBuildings(street, 5);
+    public List<Building> getTags(@PathVariable("type") Optional<String> searchType,
+                                  @RequestParam String street) {
+        List<Building> result = service.getBuildings(street, 7);
         return result;
     }
 }

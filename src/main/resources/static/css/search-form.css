@@ -28,8 +28,11 @@ input {
 
 button {
     flex: 0 0 42px;
+    height: 44px;
     cursor: pointer;
-    color: #98FB98;
+    color: #F0FFF0;
+    background-color: #98FB98;
+    border-bottom: 2px solid #98FB98;
 }
 
 button:before {
@@ -42,7 +45,7 @@ button:before {
   width: 343px;
   outline: none;
   overflow: auto;
-  margin-top: 4px;
+  margin-top: 3px;
   background-color: #404040;
   border-bottom: 2px solid #98FB98;
   color: #F0FFF0;

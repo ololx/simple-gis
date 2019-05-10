@@ -22,7 +22,7 @@ public class GeoObjectService {
 
         List<Building> result =  buildingRepository.findBuildingViaIndex(
                 GeoInformationService.getKeywords(street),
-                new PageRequest(0, limit)).stream()
+                new PageRequest(0, limit < 10 ? 10 : limit * 2)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
                         GeoInformationService.keyWordsComare(street, currentBuilding.getAddress()),

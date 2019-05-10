@@ -100,10 +100,10 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
     }
 
     this.clear = () => {
-        /*markers.forEach((eachMarker) => {
+        markers.forEach((eachMarker, i) => {
             map.removeLayer(eachMarker.getMarker());
-            markers.splice(0, 1);
-        }*/
+            markers.splice(i, 1);
+        });
     }
 
     this.getMap = () => {
@@ -127,7 +127,9 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
     }
 
     init = (mapContainer, lat, lon, zoom) => {
-        this.setMap(mapContainer);
+        if(mapContainer !== null) {
+            this.setMap(mapContainer);
+        }
 
         if(this.isExist()) {
             this.setView(lat, lon, zoom);
@@ -146,3 +148,7 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
 
     init(mapContainer, lat, lon, zoom);
 }
+
+let map = new Map();
+
+console.log("1: " + map.getMap());

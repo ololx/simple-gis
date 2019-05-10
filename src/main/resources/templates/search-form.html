@@ -3,17 +3,18 @@
     <body>
         <div th:fragment = "search-form" >
             <link rel="stylesheet" type="text/css" media="all" href="../static/css/search-form.css" th:href="@{/css/search-form.css}"/>
-            <form id = "search-from" action="#" th:action="@{/search}" th:object="${searchRequest}" method = "get">
+            <form id = "search-from" action="#" th:action="@{/all/search}" th:object="${searchRequest}" method = "get">
                 <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search" id="bth-search"></button>
             </form>
             <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
             <script th:inline="javascript">
                 /*<![CDATA[*/
-                    var mapEnambled = false;
+                    console.log("2: " + map.getMap());
 
                     $(document).ready(function() {
 
+                        console.log("3: " + map.getMap());
 
                         $( "#search" ).autocomplete({
                             serviceUrl: './getAddressObjects',
@@ -21,19 +22,21 @@
                             delimiter: ",",
                             transformResult: function(response) {
 
-
+                                if(map.isExist() && response !== null) {
+                                    map.clear();
+                                }
 
                                 return {
                                     suggestions: $.map($.parseJSON(response), function(item) {
 
-                                        if(mapEnambled) {
-                                            markers[item.id] = new L.marker([item.lat, item.lon]);
-
-                                            addMarker(item.lon, item.lat, mymap, 10, item.city
-                                            + "," + item.street
-                                            + "-" + item.number, markers[item.id]);
-
-                                            //mymap.addLayer(markers[item.id]);
+                                        if(map.isExist()) {
+                                            map.addMarker(
+                                                item.lon,
+                                                item.lat,
+                                                item.city
+                                                    + "," + item.street
+                                                    + "-" + item.number,
+                                                    8);
                                         }
 
                                         return {
