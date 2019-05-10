@@ -2,7 +2,6 @@
 <html xmlns:th = "http://www.thymeleaf.org">
     <body>
         <div th:fragment = "search-form" >
-            <link rel="stylesheet" type="text/css" media="all" href="../static/css/search-form.css" th:href="@{/css/search-form.css}"/>
             <form id = "search-from" action="#" th:action="@{/all/search}" th:object="${searchRequest}" method = "get">
                 <input id = "search" type = "text" placeholder="search..." th:field="*{content}"/>
                 <button type="submit" value="Search" id="bth-search"></button>

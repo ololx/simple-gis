@@ -36,7 +36,7 @@ public class Search {
         }
 
         if(searchRequest.getContent() != null && !searchRequest.getContent().isEmpty()) {
-            Building building = service.getBuildings(searchRequest.getContent(), 10).get(0);
+            Building building = service.getBuildings(searchRequest.getContent(), 1).get(0);
 
             SearchResult searchResult = new SearchResult();
             searchResult.setContent(building.getAddress());
