@@ -17,7 +17,7 @@ public class SearchController {
 
     @RequestMapping(value = {
             "/search",
-            "/{type:[a-z]+status}/search"
+            "/{type:[a-z]+}/search"
     }, method = RequestMethod.GET)
     public ModelAndView searchForm(@PathVariable("type") Optional<String> searchType,
                                    @ModelAttribute SearchRequest searchRequest) {

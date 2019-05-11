@@ -16,8 +16,7 @@ public class SearchService {
     private GeoObjectService geoObjectService;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        List<Building> buildings = geoObjectService.getBuildings(request.getContent(),
-                limit < 5 ? 5 : limit * 2);
+        List<Building> buildings = geoObjectService.getBuildings(request.getContent(), limit);
         SearchResult result = new SearchResult();
         result.setResults(buildings.stream()
                 .map(eachBuilding -> {
