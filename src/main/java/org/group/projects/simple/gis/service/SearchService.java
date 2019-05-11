@@ -1,5 +1,6 @@
 package org.group.projects.simple.gis.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.SearchResult;
 import org.group.projects.simple.gis.model.entity.Building;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class SearchService {
 
     @Autowired

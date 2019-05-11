@@ -1,5 +1,6 @@
 package org.group.projects.simple.gis.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class GeoObjectService {
 
     @Autowired
