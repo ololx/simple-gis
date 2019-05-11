@@ -150,5 +150,3 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
 }
 
 let map = new Map();
-
-console.log("1: " + map.getMap());

@@ -55,10 +55,10 @@ public class Search {
     @RequestMapping(value = {
             "/getAddressObjects",
             "/{type}/getAddressObjects"
-    }, method = RequestMethod.GET)
+    }, method = RequestMethod.POST)
     @ResponseBody
-    public SearchResult getTags(@PathVariable("type") Optional<String> searchType, @RequestParam String street) {
-        List<Building> buildings = service.getBuildings(street, 7);
+    public SearchResult getTags(@PathVariable("type") Optional<String> searchType, @RequestParam String searchRequest) {
+        List<Building> buildings = service.getBuildings(searchRequest, 7);
         SearchResult result = new SearchResult();
 
         result.setResults(buildings.stream()
@@ -67,7 +67,7 @@ public class Search {
                             eachBuilding.getLat(), eachBuilding.getAddress());
                 })
                 .collect(Collectors.toList()));
-        result.setContent(street);
+        result.setContent(searchRequest);
 
         return result;
     }
