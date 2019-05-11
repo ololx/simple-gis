@@ -2,8 +2,10 @@ package org.group.projects.simple.gis.controller;
 
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.SearchResult;
+import org.group.projects.simple.gis.service.SearchModelAndViewBuilder;
 import org.group.projects.simple.gis.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,27 +17,25 @@ public class SearchController {
     @Autowired
     private SearchService service;
 
+    @Autowired
+    private SearchModelAndViewBuilder builder;
+
     @RequestMapping(value = {
             "/search",
             "/{type:[a-z]+}/search"
     }, method = RequestMethod.GET)
-    public ModelAndView searchForm(@PathVariable("type") Optional<String> searchType,
+    public ModelAndView searchsGeneral(@PathVariable("type") Optional<String> searchType,
                                    @ModelAttribute SearchRequest searchRequest) {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("main");
-        model.addObject("middle", "search");
-
-        if(searchType.isPresent()) {
-            model.addObject("map", "true");
-        }
-
-        if(searchRequest.getContent() != null && !searchRequest.getContent().isEmpty()) {
-            model.addObject("searchResult", service.getResult(searchRequest, 1));
-        }
-
-        model.addObject("searchRequest", searchRequest);
-
-        return model;
+        return builder.setView("main")
+                .addModelAttibute("middle", "search")
+                .addModelAttibute("map", searchType.isPresent() ? "true" : "false")
+                .addModelAttibute("searchRequest", searchRequest.getContent() != null
+                        ? searchRequest
+                        : new SearchRequest())
+                .addModelAttibute("searchResult", searchRequest.getContent() != null
+                        ? service.getResult(searchRequest, 1)
+                        : new SearchResult())
+                .getData();
     }
 
     @RequestMapping(value = {

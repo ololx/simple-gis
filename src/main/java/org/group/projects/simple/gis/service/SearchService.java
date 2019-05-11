@@ -5,7 +5,6 @@ import org.group.projects.simple.gis.model.SearchResult;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,5 +27,4 @@ public class SearchService {
 
         return result;
     }
-
 }

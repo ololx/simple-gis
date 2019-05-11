@@ -170,10 +170,10 @@ let autocompleteOptions = {
             })
         };
     },
-    onSelect: map.isExist === true
-        ? function(suggestion) {
+    onSelect: function(suggestion) {
+        if(map.isExist) {
             map.clear();
             map.addMarker(suggestion.data[0], suggestion.data[1], suggestion.value);
         }
-        : null
+    }
 };
