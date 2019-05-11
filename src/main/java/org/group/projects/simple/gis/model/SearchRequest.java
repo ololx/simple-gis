@@ -3,8 +3,12 @@ package org.group.projects.simple.gis.model;
 import lombok.*;
 
 @NoArgsConstructor
-/*@AllArgsConstructor*/
+@AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class SearchRequest extends AbstractSearchEntity {
+public class SearchRequest implements SearchEntity {
+
+    @Getter
+    @Setter
+    protected String content;
 
 }

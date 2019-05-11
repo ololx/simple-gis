@@ -1,8 +1,6 @@
 package org.group.projects.simple.gis.model;
 
 import lombok.*;
-import org.group.projects.simple.gis.model.entity.Building;
-import org.group.projects.simple.gis.model.entity.GeoEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class SearchResult extends AbstractSearchEntity {
+public class SearchResult extends SearchRequest {
 
     @NoArgsConstructor
     @AllArgsConstructor

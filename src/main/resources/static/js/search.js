@@ -88,7 +88,7 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
     let map = null;
     let markers = [];
 
-    this.addMarker = (lon, lat, tag = null, zoom = 10) => {
+    this.addMarker = (lon, lat, tag = null, zoom = 15) => {
         markers.push(new Marker(new Coordinates(lat, lon)));
 
         if(tag !== null) {
@@ -150,3 +150,30 @@ let Map = function(mapContainer = null, lat = 84, lon = 55, zoom = 4) {
 }
 
 let map = new Map();
+
+let autocompleteOptions = {
+    minChars: 2,
+    delimiter: `,|-`,
+    serviceUrl: `./getAddressObjects`,
+    type: `POST`,
+    dataType: `json`,
+    params: {searchRequest: function() {
+        return $(`#search`).val();
+    }},
+    transformResult: function(response) {
+        return {
+            suggestions: $.map(response.results, function(item) {
+                return {
+                    value: item.address,
+                    data: [item.lon, item.lat]
+                };
+            })
+        };
+    },
+    onSelect: map.isExist === true
+        ? function(suggestion) {
+            map.clear();
+            map.addMarker(suggestion.data[0], suggestion.data[1], suggestion.value);
+        }
+        : null
+};

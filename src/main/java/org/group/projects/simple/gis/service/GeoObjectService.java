@@ -4,7 +4,6 @@ import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,17 +15,14 @@ public class GeoObjectService {
     @Autowired
     private BuildingRepository buildingRepository;
 
-    public List<Building> getBuildings(String street, int limit) {
-
-        System.out.println(GeoInformationService.getKeywords(street));
-
+    public List<Building> getBuildings(String address, int limit) {
         List<Building> result =  buildingRepository.findBuildingViaIndex(
-                GeoInformationService.getKeywords(street),
-                new PageRequest(0, limit < 5 ? 5 : limit * 2)).stream()
+                GeoInformationService.getKeywords(address),
+                new PageRequest(0, limit)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
-                        GeoInformationService.keyWordsComare(street, currentBuilding.getAddress()),
-                        GeoInformationService.keyWordsComare(street, nextBuilding.getAddress())
+                        GeoInformationService.keyWordsComare(address, currentBuilding.getAddress()),
+                        GeoInformationService.keyWordsComare(address, nextBuilding.getAddress())
                 )).limit(limit)
                 .collect(Collectors.toList());
 

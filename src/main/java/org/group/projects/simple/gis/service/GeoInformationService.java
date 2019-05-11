@@ -1,8 +1,5 @@
 package org.group.projects.simple.gis.service;
 
-import org.group.projects.simple.gis.model.entity.Building;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -42,18 +39,12 @@ public interface GeoInformationService {
         for(int i = 0; i < requestWords.size(); i++){
             int lCount = lCount = request.length();
 
-            System.out.println(requestWords.get(i) + "=======>");
-
             for(int j = 0; j < responseWords.size(); j++) {
                 lCount = Math.min(getLevenstainDistance(requestWords.get(i), responseWords.get(j)),
                         lCount);
-                System.out.println(responseWords.get(j) + " = " + lCount);
             }
 
             levensteinDistance += lCount;
-
-            System.out.println("levensteinDistance = " + levensteinDistance);
-            System.out.println("<=======");
         }
 
         return levensteinDistance;

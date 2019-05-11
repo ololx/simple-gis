@@ -10,32 +10,7 @@
             <script type="text/javascript" src="../static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}" ></script>
             <script th:inline="javascript">
                 $(document).ready(function() {
-                        $( "#search" ).autocomplete({
-                            serviceUrl: './getAddressObjects',
-                            type: "POST",
-                            paramName: "searchRequest",
-                            dataType: "json",
-                            delimiter: ",|-",
-                            transformResult: function(response) {
-                                console.log(response);
-                                return {
-                                    suggestions: $.map(response.results, function(item) {
-                                        return {
-                                            value: item.address,
-                                            data: [item.lon, item.lat]
-                                        };
-                                    })
-                                };
-                            },
-                            onSelect: function (suggestion) {
-                                if(map.isExist() && suggestion) {
-                                    map.clear();
-                                    map.addMarker(suggestion.data[0], suggestion.data[1],
-                                        suggestion.value, 15);
-                                }
-                            },
-                            minChars: 3
-                        });
+                    $(`#search`).autocomplete(autocompleteOptions);
                 });
             </script>
         </div>
