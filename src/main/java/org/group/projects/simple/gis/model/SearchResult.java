@@ -8,7 +8,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class SearchResult extends SearchRequest {
+public class SearchResult extends AbstractSearchEntity {
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -35,6 +35,11 @@ public class SearchResult extends SearchRequest {
 
     {
         this.results = new ArrayList<>();
+    }
+
+    public SearchResult(List<Result> results, String content) {
+        super(content);
+        this.results = results;
     }
 
     public void addResult(Result result) {

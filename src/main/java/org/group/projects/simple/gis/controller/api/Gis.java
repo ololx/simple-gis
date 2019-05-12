@@ -23,10 +23,9 @@ public class Gis {
     @CrossOrigin()
     @RequestMapping(value = "/getAddressObjects", method = RequestMethod.GET)
     @ApiOperation(value = "getAddressObjects")
-    public @ResponseBody List<Building> getTags(@RequestParam String street) {
-        List<Building> result = service.getBuildings(street, 5);
+    public @ResponseBody List<Building> getAddressObjects(@RequestParam String street) {
 
-        return result;
+        return service.getBuildings(street, 5);
     }
 }
 

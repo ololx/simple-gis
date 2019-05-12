@@ -94,11 +94,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.6.Final</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>9.0.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threetenbp</artifactId>
@@ -148,7 +148,7 @@
                 <version>2.2</version>
                 <configuration>
                     <uriEncoding>utf-8</uriEncoding>
-                    <port>8888</port>
+                    <port>8080</port>
                     <path>/${project.name}</path>
                 </configuration>
             </plugin>
@@ -185,14 +185,14 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <jvmArguments>-Xmx256m</jvmArguments>
                     <jvmArguments>-Dfile.encoding=UTF8</jvmArguments>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 

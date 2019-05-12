@@ -2,10 +2,9 @@ package org.group.projects.simple.gis.controller;
 
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.SearchResult;
-import org.group.projects.simple.gis.service.SearchModelAndViewBuilder;
+import org.group.projects.simple.gis.service.view.SearchViewBuilder;
 import org.group.projects.simple.gis.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,16 +17,15 @@ public class SearchController {
     private SearchService service;
 
     @Autowired
-    private SearchModelAndViewBuilder builder;
+    private SearchViewBuilder builder;
 
     @RequestMapping(value = {
             "/search",
             "/{type:[a-z]+}/search"
     }, method = RequestMethod.GET)
-    public ModelAndView searchsGeneral(@PathVariable("type") Optional<String> searchType,
+    public ModelAndView searchGeneral(@PathVariable("type") Optional<String> searchType,
                                    @ModelAttribute SearchRequest searchRequest) {
-        return builder.setView("main")
-                .addModelAttibute("middle", "search")
+        return builder.getView()
                 .addModelAttibute("map", searchType.isPresent() ? "true" : "false")
                 .addModelAttibute("searchRequest", searchRequest.getContent() != null
                         ? searchRequest

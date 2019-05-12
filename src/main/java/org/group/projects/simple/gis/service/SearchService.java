@@ -17,16 +17,12 @@ public class SearchService {
     private GeoObjectService geoObjectService;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        List<Building> buildings = geoObjectService.getBuildings(request.getContent(), limit);
-        SearchResult result = new SearchResult();
-        result.setResults(buildings.stream()
-                .map(eachBuilding -> {
-                    return new SearchResult.Result(eachBuilding.getLon(),
-                            eachBuilding.getLat(), eachBuilding.getAddress());
-                })
-                .collect(Collectors.toList()));
-        result.setContent(request.getContent());
-
-        return result;
+        return new SearchResult(geoObjectService.getBuildings(request.getContent(), limit)
+                .stream()
+                .map(eachBuilding ->  new SearchResult.Result(eachBuilding.getLon(),
+                        eachBuilding.getLat(),
+                        eachBuilding.getAddress()))
+                .collect(Collectors.toList()),
+                request.getContent());
     }
 }
