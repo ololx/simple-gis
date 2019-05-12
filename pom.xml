@@ -58,20 +58,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf</artifactId>
-            <version>3.0.9.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring5</artifactId>
-            <version>3.0.9.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.net.ultraq.thymeleaf</groupId>
-            <artifactId>thymeleaf-layout-dialect</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
@@ -80,12 +66,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>4.3.12.RELEASE</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.tika</groupId>
@@ -114,11 +94,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.6.Final</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>9.0.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threetenbp</artifactId>
@@ -130,15 +110,10 @@
             <version>2.3.0</version>
         </dependency>
         <dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>6.0.2</version>
-		</dependency>
-        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
         <!-- горячая подмена, выключенный кеш для шаблонов, включенный live reload -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -173,7 +148,7 @@
                 <version>2.2</version>
                 <configuration>
                     <uriEncoding>utf-8</uriEncoding>
-                    <port>8888</port>
+                    <port>8080</port>
                     <path>/${project.name}</path>
                 </configuration>
             </plugin>
@@ -210,14 +185,14 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <jvmArguments>-Xmx256m</jvmArguments>
                     <jvmArguments>-Dfile.encoding=UTF8</jvmArguments>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 

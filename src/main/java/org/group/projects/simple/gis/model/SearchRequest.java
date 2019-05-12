@@ -1,28 +1,12 @@
 package org.group.projects.simple.gis.model;
 
-public class SearchRequest {
+import lombok.*;
 
-    private String content;
-
-    public SearchRequest() {}
+@NoArgsConstructor
+@ToString(includeFieldNames = true)
+public class SearchRequest extends AbstractSearchEntity {
 
     public SearchRequest(String content) {
-       this.setContent(content);
+        super(content);
     }
-
-    @Override
-    public String toString() {
-        return String.format("{\"content\" = \"%s\"}",
-                this.getContent()
-        );
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
 }

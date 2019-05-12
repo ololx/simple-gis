@@ -16,35 +16,47 @@ form {
 input, button {
     outline: none;
     background: transparent;
-    height: 42px;
+    height: 30px;
 }
 
 input {
     flex: 0 0 358px;
     padding-left: 15px;
-    border-bottom: 2px solid #98FB98;
     color: #F0FFF0;
+    box-shadow: inset 0 -3px 0px 0px #98FB98;
 }
 
 button {
-    flex: 0 0 42px;
+    flex: 0 0 40px;
     cursor: pointer;
-    color: #98FB98;
+    color: #404040;
+    background-color: #98FB98;
+    box-shadow: inset 0 0px 0px 3px #98FB98;
+}
+
+input:hover, input:focus {
+    background-color: #F0FFF0;
+    color: #404040;
+    box-shadow: inset 0 0px 0px 3px #98FB98;
+}
+
+input:hover + button,  input:focus + button, button:hover {
+    color: #F0FFF0;
 }
 
 button:before {
     content: "\2192";
     font-family: FontAwesome;
-    font-size: 28px;
+    font-size: 23px;
 }
 
 .autocomplete-suggestions {
-  width: 343px;
+  width: 356px;
   outline: none;
   overflow: auto;
-  margin-top: -4px;
+  margin-top: 3px;
   background-color: #404040;
-  border-bottom: 2px solid #98FB98;
+  box-shadow: inset 0 0px 0px 3px #98FB98;
   color: #F0FFF0;
   cursor: pointer;
 }
@@ -66,4 +78,16 @@ button:before {
 
 .autocomplete-selected strong {
     color: #F0FFF0;
+}
+
+#search-map {
+    align-self: center;
+    flex: 0 0 75%;
+    width: 60%;
+    box-shadow: 0 0px 0px 3px #98FB98;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
 }

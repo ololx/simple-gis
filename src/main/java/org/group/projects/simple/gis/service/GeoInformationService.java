@@ -1,31 +1,13 @@
 package org.group.projects.simple.gis.service;
 
-import org.group.projects.simple.gis.model.entity.Building;
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public interface GeoInformationService {
-
-    static String getBiGramms(String keyString) {
-
-        return Stream.of(keyString.toLowerCase().split(" "))
-                .parallel()
-                .distinct()
-                .map(eachKeyWord -> Stream.of(eachKeyWord.toLowerCase()
-                        .split("(?<=\\G.{2})"))
-                        .parallel()
-                        .distinct()
-                        .map(eachKeyCharacter -> String.format("*%s*", eachKeyCharacter))
-                        .collect(Collectors.joining(" ")))
-                .collect(Collectors.joining(" "));
-    }
 
     static int getLevenstainDistance(final String word, final String wordOther) {
         int[] Di_1 = new int[wordOther.length() + 1];
@@ -48,8 +30,24 @@ public interface GeoInformationService {
         return Di[Di.length - 1];
     }
 
-    static int compareStrings(Building word, Building wordOther) {
-        return 1;
+    static int keyWordsComare(String request, String response) {
+        List<String> requestWords = parseWord(request);
+        List<String> responseWords = parseWord(response);
+
+        int levensteinDistance = 0;
+
+        for(int i = 0; i < requestWords.size(); i++){
+            int lCount = lCount = request.length();
+
+            for(int j = 0; j < responseWords.size(); j++) {
+                lCount = Math.min(getLevenstainDistance(requestWords.get(i), responseWords.get(j)),
+                        lCount);
+            }
+
+            levensteinDistance += lCount;
+        }
+
+        return levensteinDistance;
     }
 
     static List<String> parseWord(String string) {
@@ -63,25 +61,25 @@ public interface GeoInformationService {
         }};
     }
 
-    static List<String> parseNGrams(String string) {
-        Pattern pattern = Pattern.compile("(?<=\\G.{2})");
+    static List<String> parseNGrams(String string, int n) {
+        Pattern pattern = Pattern.compile(String.format("(?<=\\G.{%s})", n));
 
-        return Stream.of(string.split(pattern.toString()))
+        return Stream.of(string.trim().split(pattern.toString()))
                 .parallel()
                 .collect(Collectors.toList());
     }
 
     static String getKeywords(String request) {
-        return parseWord(request)
-                .stream()
+
+        String result = parseWord(request).stream()
                 .parallel()
-                .map(eachWord -> parseNGrams(eachWord)
-                        .stream()
-                        .parallel()
-                        .map(eachBi -> String.format("%s %s",
-                                eachWord,
-                                String.format("*%s*", eachBi)))
-                        .collect(Collectors.joining(" ")))
+                .map(keyWord -> String.format(">%s <(%s)", keyWord,
+                        parseNGrams(keyWord, 2).stream()
+                                .parallel()
+                                .map(biGramm -> String.format("*%s*", biGramm))
+                                .collect(Collectors.joining(" "))))
                 .collect(Collectors.joining(" "));
+
+        return result;
     }
 }

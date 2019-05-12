@@ -12,10 +12,12 @@ import java.util.List;
 @Table(name = "building")
 @NamedNativeQuery(
         name = "Building.findBuildingViaIndex",
-        query = "select * " +
+        query = "select *, match(city, district, street, street2, number, number2, postcode) " +
+                "against(:value IN BOOLEAN MODE) as relevance " +
                 "from Building " +
                 "where match(city, district, street, street2, number, number2, postcode) " +
-                "against(:value IN BOOLEAN MODE) limit 20",
+                "against(:value IN BOOLEAN MODE) " +
+                "order by relevance desc",
         resultClass=Building.class
 )
 @NoArgsConstructor
@@ -136,5 +138,12 @@ public class Building implements GeoEntity, Serializable {
 
     {
         this.firms = new ArrayList<>();
+    }
+
+    public String getAddress() {
+        return String.format("%s, %s-%s",
+                this.getCity(),
+                this.getStreet(),
+                this.getNumber());
     }
 }
