@@ -18,4 +18,6 @@ services:
     volumes:
       - ./target/org.group.projects.simple.gis-0.0.0-SNAPSHOT.war:/usr/local/tomcat/webapps/simple-gis.war
     ports:
-      - "80:8080"      
+      - "80:8080"
+    #links:
+      #- mysql:geo_entities
