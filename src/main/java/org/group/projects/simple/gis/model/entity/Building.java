@@ -14,7 +14,7 @@ import java.util.List;
         name = "Building.findBuildingViaIndex",
         query = "select *, match(city, district, street, street2, number, number2, postcode) " +
                 "against(:value IN BOOLEAN MODE) as relevance " +
-                "from Building " +
+                "from building " +
                 "where match(city, district, street, street2, number, number2, postcode) " +
                 "against(:value IN BOOLEAN MODE) " +
                 "order by relevance desc",
