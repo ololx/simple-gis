@@ -10,8 +10,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./doc/gis2_novosib:/docker-entrypoint-initdb.d
-#    ports:
-#      - "3307:3306"
+    ports:
+      - "3307:3306"
 #    networks:
 #      - simple-gis
     healthcheck:
