@@ -15,11 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableAsync
 @ComponentScan
-@EnableAutoConfiguration/*(exclude = {
-        DataSourceAutoConfiguration.class,
-        DataSourceTransactionManagerAutoConfiguration.class,
-        HibernateJpaAutoConfiguration.class
-})*/
+@EnableAutoConfiguration
 @SpringBootApplication
 public class Application {
 
