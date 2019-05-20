@@ -11,12 +11,4 @@ import javax.servlet.MultipartConfigElement;
 @ComponentScan(basePackages = {"org.group.projects.simple.gis"})
 public class ApplicationConfigTest {
 
-    @Bean
-    MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("1024MB");
-        factory.setMaxRequestSize("1024MB");
-
-        return factory.createMultipartConfig();
-    }
 }
