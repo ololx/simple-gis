@@ -32,7 +32,7 @@ public class GeoObjectService {
     }
 
     public Building getBuilding(int id) {
-        Building result = buildingRepository.findBuildingById(id);
+        Building result = buildingRepository.findBuildingById(String.valueOf(id));
 
         return result;
     }

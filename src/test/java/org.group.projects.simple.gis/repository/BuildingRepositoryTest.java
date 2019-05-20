@@ -1,38 +1,33 @@
 package org.group.projects.simple.gis.repository;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.Application;
 import org.group.projects.simple.gis.model.entity.Building;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DirtiesContext
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
 @Slf4j
+@RequiredArgsConstructor
 public class BuildingRepositoryTest  {
 
-    @Autowired
+    @Autowired(required = true)
     private BuildingRepository buildingRepository;
 
-    @DisplayName("Repository findBuildingViaIndex test")
     @Test
-    public void findBuildingViaIndex() {
-        log.info("[BuildingRepository]: stast search buildings against - '*ново*'");
-        List<Building> result = buildingRepository.findBuildingViaIndex("*ново*");
-        log.info(String.format("[BuildingRepository]: search result = %s",
-                result.stream()
-                        .map(eachBulding -> eachBulding.toString())
-                        .collect(Collectors.joining(", "))));
+    public void findBuildingById() {
+        log.info("[BuildingRepository]: stast search building by id = '12'");
+        Building result = buildingRepository.findBuildingById(String.valueOf(12));
+        log.info(String.format("[BuildingRepository]: search result = %s", result));
     }
 }

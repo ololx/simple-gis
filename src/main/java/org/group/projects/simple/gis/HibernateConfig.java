@@ -99,6 +99,8 @@ public class HibernateConfig {
                 environment.getProperty("spring.jpa.properties.hibernate.dialect"));
         hibernateProperties.put("hibernate.show_sql",
                 environment.getProperty("spring.jpa.show-sql"));
+        hibernateProperties.put("hibernate.enable_lazy_load_no_trans",
+                environment.getProperty("spring.jpa.properties.hibernate.enable_lazy_load_no_trans"));
         /*hibernateProperties.put("current_session_context_class",
                 environment.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
         hibernateProperties.put("hibernate.connection.pool_size",
