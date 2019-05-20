@@ -8,13 +8,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RunWith(SpringRunner.class)
+@DirtiesContext
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
 @Slf4j
@@ -25,9 +29,13 @@ public class BuildingRepositoryTest  {
     private BuildingRepository buildingRepository;
 
     @Test
-    public void findBuildingById() {
-        log.info("[BuildingRepository]: stast search building by id = '12'");
-        Building result = buildingRepository.findBuildingById(String.valueOf(12));
-        log.info(String.format("[BuildingRepository]: search result = %s", result));
+    public void findBuildingViaIndex() {
+        log.info("[BuildingRepository]: start search building against - '*ново*'");
+        List<Building> result = buildingRepository.findBuildingViaIndex("*ново*",
+                new PageRequest(0, 3));
+        log.info(String.format("[BuildingRepository]: search result = %s",
+                (result.parallelStream()
+                        .map(eachBuilding -> eachBuilding.toString())
+                        .collect(Collectors.joining(", ")))));
     }
 }

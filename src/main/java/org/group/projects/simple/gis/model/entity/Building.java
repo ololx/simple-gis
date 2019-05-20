@@ -120,11 +120,16 @@ public class Building implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            }
+            )
     @JoinTable(name = "firm_to_building",
             joinColumns = {
-                    @JoinColumn(nullable = false,
+                    @JoinColumn(nullable = true,
                     name = "building_id")
             },
             inverseJoinColumns = {

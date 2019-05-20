@@ -1,11 +1,14 @@
 package org.group.projects.simple.gis.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name="Firm")
 @Table(name = "firm")
@@ -80,6 +83,7 @@ public class Firm implements GeoEntity, Serializable {
     private Long externalId;
 
     @ManyToMany(mappedBy = "firms")
+    @JsonIgnore
     @Getter
     @Setter
     private List<Building> buildings;
