@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ public class BuildingRepositoryTest  {
     @Autowired(required = true)
     private BuildingRepository buildingRepository;
 
+    @Transactional
     @Test
     public void findBuildingViaIndex() {
         log.info("[BuildingRepository]: start search building against - '*ново*'");

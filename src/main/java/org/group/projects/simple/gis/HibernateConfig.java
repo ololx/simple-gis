@@ -18,8 +18,8 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({
-        "classpath:application.properties",
-        "classpath:gis2.properties"
+        "classpath:application.yml",
+        /*"classpath:gis2.properties"*/
 })
 @ComponentScan({
         "org.group.projects.simple.gis.controller",
@@ -99,22 +99,12 @@ public class HibernateConfig {
                 environment.getProperty("spring.jpa.properties.hibernate.dialect"));
         hibernateProperties.put("hibernate.show_sql",
                 environment.getProperty("spring.jpa.show-sql"));
-        hibernateProperties.put("hibernate.enable_lazy_load_no_trans",
-                environment.getProperty("spring.jpa.properties.hibernate.enable_lazy_load_no_trans"));
-        /*hibernateProperties.put("current_session_context_class",
-                environment.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
-        hibernateProperties.put("hibernate.connection.pool_size",
-                environment.getProperty("spring.jpa.properties.hibernate.connection.pool_size"));
-        hibernateProperties.put("hibernate.connection.autocommit",
-                environment.getProperty("spring.jpa.properties.hibernate.connection.autocommit"));
-        hibernateProperties.put("hibernate.cache.provider_class",
-                environment.getProperty("spring.jpa.properties.hibernate.cache.provider_class"));
-        hibernateProperties.put("hibernate.cache.use_second_level_cache",
-                environment.getProperty("spring.jpa.properties.hibernate.cache.use_second_level_cache"));
-        hibernateProperties.put("hibernate.cache.use_query_cache",
-                environment.getProperty("spring.jpa.properties.hibernate.cache.use_query_cache"));*/
+        /*hibernateProperties.put("hibernate.enable_lazy_load_no_trans",
+                environment.getProperty("spring.jpa.properties.hibernate.enable_lazy_load_no_trans"));*/
         hibernateProperties.put("spring.jpa.hibernate.ddl-auto",
                 environment.getProperty("spring.jpa.hibernate.ddl-auto"));
+        hibernateProperties.put("spring.jpa.properties.hibernate.current_session_context_class",
+                environment.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
 
         return hibernateProperties;
     }
