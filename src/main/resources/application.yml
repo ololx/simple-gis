@@ -35,8 +35,10 @@ spring:
 #        temp:
 #          use_jdbc_metadata_defaults: false
     hibernate:
-      ddl-auto: false
+      ddl-auto: none
     open-in-view: false
     show-sql: true
+
   liquibase:
     change-log: classpath:db/db.changelog.xml
+    drop-first: true
