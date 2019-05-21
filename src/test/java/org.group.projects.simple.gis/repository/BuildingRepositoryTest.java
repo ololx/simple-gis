@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.model.entity.Building;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,16 @@ public class BuildingRepositoryTest  {
 
     @Autowired(required = true)
     private BuildingRepository buildingRepository;
+
+    @Before
+    public void beforeEachTest() {
+
+    }
+
+    @After
+    public void afterEachTest() {
+
+    }
 
     @Transactional
     @Test
