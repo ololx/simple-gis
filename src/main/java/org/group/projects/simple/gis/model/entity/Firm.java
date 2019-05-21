@@ -10,14 +10,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity(name="Firm")
+@Entity(name = "Firm")
 @Table(name = "firm")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames=true)
-@EqualsAndHashCode(exclude={
+@ToString(
+        includeFieldNames = true,
+        exclude = {
+                "buildings"
+    }
+)
+@EqualsAndHashCode(exclude = {
         "id1", "id2"
-})
+    }
+)
 public class Firm implements GeoEntity, Serializable {
 
     @Id

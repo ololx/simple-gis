@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name="Building")
+@Entity(name = "Building")
 @Table(name = "building")
 @NamedNativeQuery(
         name = "Building.findBuildingViaIndex",
@@ -22,10 +22,16 @@ import java.util.List;
 )
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames=true)
-@EqualsAndHashCode(exclude={
+@ToString(
+        includeFieldNames = true,
+        exclude = {
+                "firms"
+        }
+)
+@EqualsAndHashCode(exclude = {
         "id1", "id2"
-})
+    }
+)
 public class Building implements GeoEntity, Serializable {
 
     @Id
