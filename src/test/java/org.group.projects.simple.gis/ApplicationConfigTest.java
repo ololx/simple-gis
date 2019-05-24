@@ -5,11 +5,13 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.servlet.MultipartConfigElement;
 
 @Configuration
-@ComponentScan(basePackages = {"org.group.projects.simple.gis"})
+//@ComponentScan(basePackages = {"org.group.projects.simple.gis"})
+@ActiveProfiles("test")
 public class ApplicationConfigTest {
 
 }

@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
 @SpringBootTest
-@ActiveProfiles("test")
 @ContextConfiguration(classes = {ApplicationConfigTest.class})
+@ActiveProfiles("test")
 public class ApplicationTest {
 
     @Test
