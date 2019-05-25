@@ -2,6 +2,7 @@ package org.group.projects.simple.gis.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.group.projects.simple.gis.Application;
 import org.group.projects.simple.gis.Utils;
 import org.group.projects.simple.gis.categories.OnRealUnitTest;
 import org.group.projects.simple.gis.model.entity.Building;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -21,44 +23,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @Category(OnRealUnitTest.class)
 @SpringBootTest
-@DirtiesContext
 @ActiveProfiles("test-on-real")
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class BuildingRepositoryTest  {
+public class BuildingRepositoryOnRealTest {
 
     @Autowired(required = true)
     private static BuildingRepository buildingRepository;
-
-    @Autowired(required = true)
-    private static Utils utils;
-
-    @BeforeClass
-    public static void beforeAllTest() {
-    }
-
-    @Before
-    public void beforeEachTest() {
-        log.info(buildingRepository.toString());
-        Assume.assumeTrue(buildingRepository != null);
-        log.info(String.valueOf(utils.isConnectionToBatabaseExist()));
-    }
-
-    @After
-    public void afterEachTest() {
-
-    }
 
     @Test
     public void findAllTest() {
 
         log.info("[BuildingRepository]: start search building against - '*ново*'");
 
-        List<Building> result = new ArrayList<Building>() {
+        long cnt = buildingRepository.count();
+
+        /*List<Building> result = new ArrayList<Building>() {
             {
                 Iterator<Building> buildingIterator = buildingRepository.findAll().iterator();
                 while(buildingIterator.hasNext()) {
@@ -81,6 +65,6 @@ public class BuildingRepositoryTest  {
         log.info(String.format("[BuildingRepository]: search result = %s",
                 (result.parallelStream()
                         .map(eachBuilding -> eachBuilding.toString())
-                        .collect(Collectors.joining(", ")))));
+                        .collect(Collectors.joining(", ")))));*/
     }
 }

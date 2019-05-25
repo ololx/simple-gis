@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.categories.IntegrationTest;
 import org.group.projects.simple.gis.categories.OnRealUnitTest;
 import org.group.projects.simple.gis.categories.UnitTest;
+import org.group.projects.simple.gis.repository.BuildingRepositoryEmbededlTest;
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.experimental.categories.Categories.IncludeCategory;
@@ -17,7 +18,8 @@ import org.junit.runners.Suite.SuiteClasses;
         OnRealUnitTest.class
 })
 @SuiteClasses({
-        ApplicationTest.class
+        ApplicationTest.class,
+        BuildingRepositoryEmbededlTest.class
 })
 @Slf4j
 public class ApplicationTestSuite {
