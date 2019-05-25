@@ -1,11 +1,12 @@
 package org.group.projects.simple.gis.repository;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.Utils;
+import org.group.projects.simple.gis.categories.OnRealUnitTest;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,12 +22,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext
+@Category(OnRealUnitTest.class)
 @SpringBootTest
-@Slf4j
-//@RequiredArgsConstructor
-@ActiveProfiles("test")
+@DirtiesContext
+@ActiveProfiles("test-on-real")
 @Transactional
+@Slf4j
+@RequiredArgsConstructor
 public class BuildingRepositoryTest  {
 
     @Autowired(required = true)
@@ -34,10 +36,6 @@ public class BuildingRepositoryTest  {
 
     @Autowired(required = true)
     private static Utils utils;
-
-    @Autowired
-    public BuildingRepositoryTest() {
-    }
 
     @BeforeClass
     public static void beforeAllTest() {
@@ -60,7 +58,7 @@ public class BuildingRepositoryTest  {
 
         log.info("[BuildingRepository]: start search building against - '*ново*'");
 
-        /*List<Building> result = new ArrayList<Building>() {
+        List<Building> result = new ArrayList<Building>() {
             {
                 Iterator<Building> buildingIterator = buildingRepository.findAll().iterator();
                 while(buildingIterator.hasNext()) {
@@ -83,6 +81,6 @@ public class BuildingRepositoryTest  {
         log.info(String.format("[BuildingRepository]: search result = %s",
                 (result.parallelStream()
                         .map(eachBuilding -> eachBuilding.toString())
-                        .collect(Collectors.joining(", ")))));*/
+                        .collect(Collectors.joining(", ")))));
     }
 }
