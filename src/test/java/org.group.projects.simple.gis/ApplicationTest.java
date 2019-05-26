@@ -2,8 +2,6 @@ package org.group.projects.simple.gis;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.categories.OnRealUnitTest;
-import org.group.projects.simple.gis.categories.UnitTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -12,17 +10,16 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@Category(UnitTest.class)
 @SpringBootTest
 @DirtiesContext
-@ContextConfiguration(classes = {
+/*@ContextConfiguration(classes = {
         ApplicationConfigTest.class
-})
+})*/
 @ActiveProfiles("test")
-@Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class ApplicationTest {

@@ -6,7 +6,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 @Configuration
 @ComponentScan(basePackages = {"org.group.projects.simple.gis"})
-@ActiveProfiles("test")
 public class ApplicationConfigTest {
 
 }

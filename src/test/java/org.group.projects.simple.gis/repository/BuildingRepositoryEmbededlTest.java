@@ -2,7 +2,7 @@ package org.group.projects.simple.gis.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.Utils;
+import org.group.projects.simple.gis.categories.OnRealUnitTest;
 import org.group.projects.simple.gis.categories.UnitTest;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.junit.*;
@@ -10,6 +10,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +28,9 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @Category(UnitTest.class)
 @SpringBootTest
-//@DirtiesContext
+@DirtiesContext
+@AutoConfigureTestDatabase
+@AutoConfigureDataJpa
 @ActiveProfiles("test")
 @Transactional
 @Slf4j
@@ -35,11 +38,10 @@ import java.util.stream.Collectors;
 public class BuildingRepositoryEmbededlTest {
 
     @Autowired(required = true)
-    private static BuildingRepository buildingRepository;
+    private BuildingRepository buildingRepository;
 
     @Test
     public void findAllTest() {
-
         log.info("[BuildingRepository]: start search building against - '*ново*'");
 
         List<Building> result = new ArrayList<Building>() {

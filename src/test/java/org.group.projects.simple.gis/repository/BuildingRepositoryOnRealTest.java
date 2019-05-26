@@ -10,6 +10,8 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -33,16 +35,13 @@ import java.util.stream.Collectors;
 public class BuildingRepositoryOnRealTest {
 
     @Autowired(required = true)
-    private static BuildingRepository buildingRepository;
+    private BuildingRepository buildingRepository;
 
     @Test
     public void findAllTest() {
-
         log.info("[BuildingRepository]: start search building against - '*ново*'");
 
-        long cnt = buildingRepository.count();
-
-        /*List<Building> result = new ArrayList<Building>() {
+        List<Building> result = new ArrayList<Building>() {
             {
                 Iterator<Building> buildingIterator = buildingRepository.findAll().iterator();
                 while(buildingIterator.hasNext()) {
@@ -65,6 +64,6 @@ public class BuildingRepositoryOnRealTest {
         log.info(String.format("[BuildingRepository]: search result = %s",
                 (result.parallelStream()
                         .map(eachBuilding -> eachBuilding.toString())
-                        .collect(Collectors.joining(", ")))));*/
+                        .collect(Collectors.joining(", ")))));
     }
 }

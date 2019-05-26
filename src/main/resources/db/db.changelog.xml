@@ -8,7 +8,7 @@
         logicalFilePath="">
 
     <include file="db/changelog/2019-05-24-init.xml"/>
-    <include file="db/changelog/2019-05-24-index.xml"/>
-    <include file="db/changelog/2019-05-24-constraint.xml"/>
+    <!--<include file="db/changelog/2019-05-24-index.xml"/>
+    <include file="db/changelog/2019-05-24-constraint.xml"/>-->
 
 </databaseChangeLog>
