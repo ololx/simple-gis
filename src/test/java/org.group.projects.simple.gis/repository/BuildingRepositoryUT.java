@@ -1,22 +1,21 @@
 package org.group.projects.simple.gis.repository;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.categories.OnRealUnitTest;
+import org.group.projects.simple.gis.categories.IntegrationTest;
 import org.group.projects.simple.gis.categories.UnitTest;
 import org.group.projects.simple.gis.model.entity.Building;
-import org.junit.*;
+import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,19 +25,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
-@Category(UnitTest.class)
 @SpringBootTest
 @DirtiesContext
-@AutoConfigureTestDatabase
-@AutoConfigureDataJpa
-@ActiveProfiles("test")
 @Transactional
 @Slf4j
-@RequiredArgsConstructor
-public class BuildingRepositoryEmbededlTest {
+@NoArgsConstructor
+public abstract class BuildingRepositoryUT {
 
     @Autowired(required = true)
-    private BuildingRepository buildingRepository;
+    protected BuildingRepository buildingRepository;
 
     @Test
     public void findAllTest() {

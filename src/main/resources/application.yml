@@ -8,7 +8,7 @@ logging:
     file:    "%clr(%date) [%level] %clr(%logger :) %message%n"
 
   level:
-    root: ERROR
+    root: debug
     org.springframework.web: DEBUG
     org.group.projects.simple.gis: INFO
 
@@ -41,3 +41,13 @@ spring:
   liquibase:
     change-log: classpath:db/db.changelog.xml
     enabled: false
+
+liquibase:
+  outputChangeLogFile: src/main/resources/db/changelog/generate/changelog.xml
+  outputDiffChangeLogFile: src/main/resources/db/changelog/generate/changelog.xml
+  changeLogFile: src/main/resources/db/db.changelog.xml
+  diffChangeLogFile: src/main/resources/db/db.changelog.xml
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/gis2_novosib?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf-8&useSSL=false
+  username: root
+  password: root

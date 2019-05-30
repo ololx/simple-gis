@@ -1,6 +1,7 @@
 package org.group.projects.simple.gis.model;
 
-import lombok.*;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @ToString(includeFieldNames = true)
