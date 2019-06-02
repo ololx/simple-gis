@@ -22,10 +22,10 @@ import org.junit.runners.Suite.SuiteClasses;
         BuildingRepositoryEmbededUT.class
 })
 @Slf4j
-public class ApplicationSuiteUT {
+public class ApplicationUTSuite {
 
     public void main() {
-        log.info("Starting application tests on emulated service: db, ...");
+        log.info("Started application tests on emulated service: db, ...");
     }
 
 }

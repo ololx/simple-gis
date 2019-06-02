@@ -2,6 +2,7 @@ package org.group.projects.simple.gis.repository;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.group.projects.simple.gis.Application;
 import org.group.projects.simple.gis.Utils;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.junit.*;
@@ -15,9 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
 @DirtiesContext
-@Transactional
 @Slf4j
 @NoArgsConstructor
 public abstract class BuildingRepositoryUT {
@@ -30,57 +30,47 @@ public abstract class BuildingRepositoryUT {
 
     @BeforeClass
     public static void beforeAllTest() {
-        log.info("Starting test BuildingRepository methods");
+        log.info("Started test of the BuildingRepository methods");
     }
 
     @AfterClass
     public static void afterAllTest() {
-        log.info("Test BuildingRepository methods has been completed");
+        log.info("Completed test of the BuildingRepository methods");
     }
-
-    private int id;
 
     @Before
     public void beforeEachTest() {
-        log.info(String.format("Completing BuildingRepository method test with data count = %s",
-                clear()));
-
+        clear();
+        log.info("Success! - a test starts");
     }
 
     @After
     public void afterEachTest() {
-        log.info(String.format("Completing BuildingRepository method test with data count = %s",
-                clear()));
+        clear();
+        log.info("Success! - a test has been completed");
     }
 
     @Test
     public void findById() {
-        log.info("Starting test for BuildingRepository method - findById");
-        assertEquals(0, buildingRepository.count());
-
-        Building building = utils.getBuilding();
-        buildingRepository.save(building);
-        log.info(String.valueOf(buildingRepository.count()));
-
-        log.info("Starting test for BuildingRepository method - findById");
+        Building templateBuilding = utils.getBuildingTemplate();
+        buildingRepository.save(templateBuilding);
         assertNotEquals(0, buildingRepository.count());
+        log.info("Saved one building entity into db \n {}", templateBuilding);
 
-        log.info(String.format("Getting building by id = %s", building.getId()));
-        assertNotNull("Failure! - ", buildingRepository.findBuildingById(building.getId()));
+        Building resultBuilding = buildingRepository.findBuildingById(templateBuilding.getId());
+        assertNotNull("Failure! - data weren't found", resultBuilding);
+        assertEquals("Failure! - data are different", templateBuilding, resultBuilding);
 
-        log.info("The test for BuildingRepository method has been completed");
+        log.info("Success! - a building were found \n {} \n {}", templateBuilding, resultBuilding);
     }
 
-    protected long clear() {
-        log.info("Starting delete all data from the test database");
+    protected void clear() {
+        log.info("Started the test database preparation - the clearing of data");
 
         buildingRepository.deleteAll();
-        long buildingCount = buildingRepository.count();
-        assertEquals("Failure! - some data haven't been deleted", 0, buildingCount);
+        assertEquals("Failure! - some data haven't been deleted", 0, buildingRepository.count());
 
-        log.info("Success! - all module instances have been deleted");
-
-        return buildingCount;
+        log.info("Success! - all data have been deleted");
     }
 
 }

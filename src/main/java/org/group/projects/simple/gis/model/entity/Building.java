@@ -1,7 +1,6 @@
 package org.group.projects.simple.gis.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -56,6 +55,12 @@ public class Building implements GeoEntity, Serializable {
     private String lat;
 
     @Column(nullable = false,
+            name = "postcode")
+    @Getter
+    @Setter
+    private String postCode;
+
+    @Column(nullable = false,
             name = "city")
     @Getter
     @Setter
@@ -83,22 +88,19 @@ public class Building implements GeoEntity, Serializable {
             name = "street2")
     @Getter
     @Setter
-    @JsonProperty("street2")
-    private String streetAdditional;
+    private String streetOther;
 
     @Column(nullable = false,
             name = "number2")
     @Getter
     @Setter
-    @JsonProperty("number2")
-    private String numberAdditional;
+    private String numberOther;
 
     @Column(nullable = false,
             name = "buildingname")
     @Getter
     @Setter
-    @JsonProperty("buildingname")
-    private String buildingName;
+    private String name;
 
     @Column(nullable = false,
             name = "purpose")
@@ -116,21 +118,12 @@ public class Building implements GeoEntity, Serializable {
             name = "firmcount")
     @Getter
     @Setter
-    @JsonProperty("firmcount")
     private String firmCount;
-
-    @Column(nullable = false,
-            name = "postcode")
-    @Getter
-    @Setter
-    @JsonProperty("postcode")
-    private String postCode;
 
     @Column(nullable = false,
             name = "external_id")
     @Getter
     @Setter
-    @JsonProperty("external_id")
     private Long externalId;
 
     @ManyToMany(
@@ -164,4 +157,5 @@ public class Building implements GeoEntity, Serializable {
                 this.getStreet(),
                 this.getNumber());
     }
+
 }

@@ -12,9 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @DirtiesContext
-/*@ContextConfiguration(classes = {
-        ApplicationConfigTest.class
-})*/
 @ActiveProfiles("test")
 @Slf4j
 @RequiredArgsConstructor

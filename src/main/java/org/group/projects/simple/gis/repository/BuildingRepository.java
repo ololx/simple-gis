@@ -9,9 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Repository
-public interface BuildingRepository extends CrudRepository<Building, String> {
+public interface BuildingRepository extends CrudRepository<Building, Integer> {
     List<Building> findBuildingViaIndex(@Param("value") String value,  Pageable pageable);
 
     List<Building> findBuildingViaIndex(@Param("value") String value);

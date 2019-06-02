@@ -14,14 +14,15 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Categories.class)
 @IncludeCategory(UnitTest.class)
 @ExcludeCategory({
-        EmbededlTest.class,
-        IntegrationTest.class
+        IntegrationTest.class,
+        EmbededlTest.class
 })
 @SuiteClasses({
+        ApplicationUT.class,
         BuildingRepositoryOnRealUT.class
 })
 @Slf4j
-public class ApplicationSuiteOnRealUT {
+public class ApplicationOnRealUTSuite {
 
     public void main() {
         log.info("Starting application tests on real service: db, ...");

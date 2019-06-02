@@ -18,8 +18,11 @@ public class GeoObjectService {
     private BuildingRepository buildingRepository;
 
     public List<Building> getBuildings(String address, int limit) {
+        String keywords = GeoInformationService.getKeywords(address);
+        log.info(keywords);
+
         List<Building> result =  buildingRepository.findBuildingViaIndex(
-                GeoInformationService.getKeywords(address),
+                keywords,
                 new PageRequest(0, limit < 5 ? 5 : limit * 2)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(

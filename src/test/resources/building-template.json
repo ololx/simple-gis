@@ -1,0 +1,17 @@
+{
+  "id": "1",
+  "lon": "83.0959359474726",
+  "lat": "54.8119610052484",
+  "city": "Новосибирск",
+  "district": "Советский",
+  "street":  "Боровая Партия",
+  "number": "12",
+  "streetOther":  "",
+  "numberOther":  "",
+  "name":  "",
+  "purpose":  "Административное здание",
+  "elevation":  "2",
+  "firmCount": "2",
+  "postCode": "630116",
+  "externalId": "1413"
+}
