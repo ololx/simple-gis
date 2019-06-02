@@ -30,7 +30,7 @@ public class Firm implements GeoEntity, Serializable {
             name = "id")
     @Getter
     @Setter
-    private String id;
+    private int id;
 
     @Column(nullable = false,
             name = "lon")

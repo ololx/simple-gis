@@ -1,6 +1,7 @@
 package org.group.projects.simple.gis.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,8 +21,8 @@ import java.util.List;
                 "order by relevance desc",
         resultClass=Building.class
 )
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ToString(
         includeFieldNames = true,
         exclude = {
@@ -40,7 +41,7 @@ public class Building implements GeoEntity, Serializable {
             name = "id")
     @Getter
     @Setter
-    private String id;
+    private int id;
 
     @Column(nullable = false,
             name = "lon")
@@ -82,18 +83,21 @@ public class Building implements GeoEntity, Serializable {
             name = "street2")
     @Getter
     @Setter
+    @JsonProperty("street2")
     private String streetAdditional;
 
     @Column(nullable = false,
             name = "number2")
     @Getter
     @Setter
+    @JsonProperty("number2")
     private String numberAdditional;
 
     @Column(nullable = false,
             name = "buildingname")
     @Getter
     @Setter
+    @JsonProperty("buildingname")
     private String buildingName;
 
     @Column(nullable = false,
@@ -112,18 +116,21 @@ public class Building implements GeoEntity, Serializable {
             name = "firmcount")
     @Getter
     @Setter
+    @JsonProperty("firmcount")
     private String firmCount;
 
     @Column(nullable = false,
             name = "postcode")
     @Getter
     @Setter
+    @JsonProperty("postcode")
     private String postCode;
 
     @Column(nullable = false,
             name = "external_id")
     @Getter
     @Setter
+    @JsonProperty("external_id")
     private Long externalId;
 
     @ManyToMany(

@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ActiveProfiles("test")
 @Slf4j
 @RequiredArgsConstructor
-public class ApplicationTest {
+public class ApplicationUT {
 
     @Test
     public void contextLoads() {
