@@ -86,7 +86,7 @@ public class Firm implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    /*@ManyToMany(mappedBy = "firms")
+    @ManyToMany(mappedBy = "firms")
     @JsonIgnore
     @Getter
     @Setter
@@ -94,5 +94,5 @@ public class Firm implements GeoEntity, Serializable {
 
     {
         this.buildings = new ArrayList<>();
-    }*/
+    }
 }

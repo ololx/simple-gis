@@ -126,7 +126,7 @@ public class Building implements GeoEntity, Serializable {
     @Setter
     private Long externalId;
 
-    /*@ManyToMany(
+    @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
@@ -149,7 +149,7 @@ public class Building implements GeoEntity, Serializable {
 
     {
         this.firms = new ArrayList<>();
-    }*/
+    }
 
     public String getAddress() {
         return String.format("%s, %s-%s",
