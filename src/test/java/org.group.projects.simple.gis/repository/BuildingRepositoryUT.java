@@ -16,8 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest
 @DirtiesContext
+@Transactional
 @Slf4j
 @NoArgsConstructor
 public abstract class BuildingRepositoryUT {

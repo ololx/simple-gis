@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase
 @AutoConfigureDataJpa
-@Transactional
 @Slf4j
 @NoArgsConstructor
 public class BuildingRepositoryEmbededUT extends BuildingRepositoryUT {
