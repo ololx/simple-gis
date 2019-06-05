@@ -5,6 +5,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
+@EqualsAndHashCode
 public class AbstractSearchEntity implements SearchEntity {
 
     @Getter

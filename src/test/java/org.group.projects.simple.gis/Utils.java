@@ -2,6 +2,7 @@ package org.group.projects.simple.gis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.group.projects.simple.gis.model.SearchResult;
 import org.group.projects.simple.gis.model.dto.BuildingDetail;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -41,11 +44,32 @@ public class Utils {
         return templateBuilding;
     }
 
+    public List<Building> getBuildingTemplates() {
+        return new ArrayList<Building>(){{
+            add(getBuildingTemplate());
+        }};
+    }
+
     public BuildingDetail getBuildingDetailTemplate() {
         Building templateBuilding = getBuildingTemplate();
         BuildingDetail templateBuildingDetail = modelMapper.map(templateBuilding, BuildingDetail.class);
 
         return templateBuildingDetail;
+    }
+
+    public SearchResult getSearchResultTemplate() {
+        Building buildingTemplate = getBuildingTemplate();
+
+        return new SearchResult(
+                new ArrayList<SearchResult.Result>(){{
+                    add(new SearchResult.Result(
+                            buildingTemplate.getLon(),
+                            buildingTemplate.getLat(),
+                            buildingTemplate.getAddress())
+                    );
+                }},
+                ""
+        );
     }
 
 }

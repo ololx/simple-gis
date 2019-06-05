@@ -62,7 +62,7 @@ public abstract class BuildingRepositoryUT {
         assertNotNull("Failure! - data weren't found", resultBuilding);
         assertEquals("Failure! - data are different", templateBuilding, resultBuilding);
 
-        log.info("Success! - a building were found \n {} \n {}", templateBuilding, resultBuilding);
+        log.info("Success! - a building was found \n {} \n {}", templateBuilding, resultBuilding);
     }
 
     protected void clear() {

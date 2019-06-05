@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class GeoObjectService {
+public class GeoService {
 
     @Autowired
     private BuildingRepository buildingRepository;
@@ -23,7 +23,7 @@ public class GeoObjectService {
 
         List<Building> result =  buildingRepository.findBuildingViaIndex(
                 keywords,
-                new PageRequest(0, limit < 5 ? 5 : limit * 2)).stream()
+                new PageRequest(0, limit)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
                         GeoInformationService.keyWordsComare(address, currentBuilding.getAddress()),

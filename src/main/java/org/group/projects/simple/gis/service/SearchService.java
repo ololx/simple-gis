@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 public class SearchService {
 
     @Autowired
-    private GeoObjectService geoObjectService;
+    private GeoService geoService;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        return new SearchResult(geoObjectService.getBuildings(request.getContent(), limit)
+        return new SearchResult(geoService.getBuildings(request.getContent(), limit)
                 .stream()
                 .map(eachBuilding ->  new SearchResult.Result(eachBuilding.getLon(),
                         eachBuilding.getLat(),

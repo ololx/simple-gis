@@ -1,9 +1,3 @@
-#spring:
-#  liquibase:
-#    enabled: true
-#    drop-first: true
-#    change-log: classpath:db/db.h2.changelog.xml
-
 spring:
   datasource:
     driver-class-name: org.h2.Driver

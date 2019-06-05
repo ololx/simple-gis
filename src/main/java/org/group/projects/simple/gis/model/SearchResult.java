@@ -2,18 +2,19 @@ package org.group.projects.simple.gis.model;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class SearchResult extends AbstractSearchEntity {
+public class SearchResult extends AbstractSearchEntity implements Serializable {
 
     @NoArgsConstructor
     @AllArgsConstructor
     @ToString(includeFieldNames = true)
-    public static class Result {
+    public static class Result implements Serializable {
 
         @Getter
         @Setter
