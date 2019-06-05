@@ -12,15 +12,18 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class GeoObjectService {
+public class GeoService {
 
     @Autowired
     private BuildingRepository buildingRepository;
 
     public List<Building> getBuildings(String address, int limit) {
+        String keywords = GeoInformationService.getKeywords(address);
+        log.info(keywords);
+
         List<Building> result =  buildingRepository.findBuildingViaIndex(
-                GeoInformationService.getKeywords(address),
-                new PageRequest(0, limit < 5 ? 5 : limit * 2)).stream()
+                keywords,
+                new PageRequest(0, limit)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
                         GeoInformationService.keyWordsComare(address, currentBuilding.getAddress()),

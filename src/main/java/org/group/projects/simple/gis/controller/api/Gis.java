@@ -3,7 +3,7 @@ package org.group.projects.simple.gis.controller.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.group.projects.simple.gis.model.entity.Building;
-import org.group.projects.simple.gis.service.GeoObjectService;
+import org.group.projects.simple.gis.service.GeoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class Gis {
 
     @Autowired
-    private GeoObjectService service;
+    private GeoService service;
 
     public Gis() {
     }

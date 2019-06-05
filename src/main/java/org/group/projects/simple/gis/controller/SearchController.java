@@ -2,8 +2,8 @@ package org.group.projects.simple.gis.controller;
 
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.SearchResult;
-import org.group.projects.simple.gis.service.view.SearchViewBuilder;
 import org.group.projects.simple.gis.service.SearchService;
+import org.group.projects.simple.gis.service.view.SearchViewBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

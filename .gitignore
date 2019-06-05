@@ -10,15 +10,21 @@
 *.png
 *.svg
 
+#Archives
+*.tgz
+*.gz
+
+#Log Files
+*.log
+
 #All Hidden
 .*
 
 # Virtual machine crash logs
 hs_err_pid*
 
-# Buildings
+# Builds
 /target/*
-/src/test/*
 
 #IntelliJ IDEA Files
 /.idea/*
