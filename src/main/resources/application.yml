@@ -1,0 +1,43 @@
+logging:
+  file:
+    max-size: 10MB
+    path: ./log/
+
+  pattern:
+    console: "%clr(%date{HH:mm:ss.SSS}) [%level] %clr(%logger{0}) : %message%n"
+    file:    "%clr(%date) [%level] %clr(%logger :) %message%n"
+
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    org.group.projects.simple.gis: INFO
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+  mandatory-file-encoding: UTF-8
+
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/gis2_novosib?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf-8&useSSL=false
+    username: root
+    password: root
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+ #       temp:
+ #         use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:db/db.changelog.xml
+    enabled: false

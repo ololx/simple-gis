@@ -3,10 +3,9 @@ package org.group.projects.simple.gis.service;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.model.SearchRequest;
 import org.group.projects.simple.gis.model.SearchResult;
-import org.group.projects.simple.gis.model.entity.Building;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -14,10 +13,10 @@ import java.util.stream.Collectors;
 public class SearchService {
 
     @Autowired
-    private GeoObjectService geoObjectService;
+    private GeoService geoService;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        return new SearchResult(geoObjectService.getBuildings(request.getContent(), limit)
+        return new SearchResult(geoService.getBuildings(request.getContent(), limit)
                 .stream()
                 .map(eachBuilding ->  new SearchResult.Result(eachBuilding.getLon(),
                         eachBuilding.getLat(),

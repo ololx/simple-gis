@@ -1,5 +1,6 @@
 package org.group.projects.simple.gis.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,14 +8,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name="Firm")
+@Entity(name = "Firm")
 @Table(name = "firm")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames=true)
-@EqualsAndHashCode(exclude={
+@ToString(
+        includeFieldNames = true,
+        exclude = {
+                "buildings"
+    }
+)
+@EqualsAndHashCode(exclude = {
         "id1", "id2"
-})
+    }
+)
 public class Firm implements GeoEntity, Serializable {
 
     @Id
@@ -23,7 +30,7 @@ public class Firm implements GeoEntity, Serializable {
             name = "id")
     @Getter
     @Setter
-    private String id;
+    private int id;
 
     @Column(nullable = false,
             name = "lon")
@@ -80,6 +87,7 @@ public class Firm implements GeoEntity, Serializable {
     private Long externalId;
 
     @ManyToMany(mappedBy = "firms")
+    @JsonIgnore
     @Getter
     @Setter
     private List<Building> buildings;

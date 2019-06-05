@@ -8,24 +8,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name="Building")
+@Entity(name = "Building")
 @Table(name = "building")
 @NamedNativeQuery(
         name = "Building.findBuildingViaIndex",
         query = "select *, match(city, district, street, street2, number, number2, postcode) " +
                 "against(:value IN BOOLEAN MODE) as relevance " +
-                "from Building " +
+                "from building " +
                 "where match(city, district, street, street2, number, number2, postcode) " +
                 "against(:value IN BOOLEAN MODE) " +
                 "order by relevance desc",
         resultClass=Building.class
 )
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames=true)
-@EqualsAndHashCode(exclude={
+@RequiredArgsConstructor
+@ToString(
+        includeFieldNames = true,
+        exclude = {
+                "firms"
+        }
+)
+@EqualsAndHashCode(exclude = {
         "id1", "id2"
-})
+    }
+)
 public class Building implements GeoEntity, Serializable {
 
     @Id
@@ -34,7 +40,7 @@ public class Building implements GeoEntity, Serializable {
             name = "id")
     @Getter
     @Setter
-    private String id;
+    private int id;
 
     @Column(nullable = false,
             name = "lon")
@@ -47,6 +53,12 @@ public class Building implements GeoEntity, Serializable {
     @Getter
     @Setter
     private String lat;
+
+    @Column(nullable = false,
+            name = "postcode")
+    @Getter
+    @Setter
+    private String postCode;
 
     @Column(nullable = false,
             name = "city")
@@ -76,19 +88,19 @@ public class Building implements GeoEntity, Serializable {
             name = "street2")
     @Getter
     @Setter
-    private String streetAdditional;
+    private String streetOther;
 
     @Column(nullable = false,
             name = "number2")
     @Getter
     @Setter
-    private String numberAdditional;
+    private String numberOther;
 
     @Column(nullable = false,
             name = "buildingname")
     @Getter
     @Setter
-    private String buildingName;
+    private String name;
 
     @Column(nullable = false,
             name = "purpose")
@@ -109,22 +121,21 @@ public class Building implements GeoEntity, Serializable {
     private String firmCount;
 
     @Column(nullable = false,
-            name = "postcode")
-    @Getter
-    @Setter
-    private String postCode;
-
-    @Column(nullable = false,
             name = "external_id")
     @Getter
     @Setter
     private Long externalId;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            }
+            )
     @JoinTable(name = "firm_to_building",
             joinColumns = {
-                    @JoinColumn(nullable = false,
+                    @JoinColumn(nullable = true,
                     name = "building_id")
             },
             inverseJoinColumns = {
@@ -146,4 +157,5 @@ public class Building implements GeoEntity, Serializable {
                 this.getStreet(),
                 this.getNumber());
     }
+
 }

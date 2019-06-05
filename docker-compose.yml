@@ -1,0 +1,38 @@
+version: '2.1'
+services:
+  mysql:
+    container_name: geo_entities
+    image: mysql:5.7
+    command: mysqld --user=root
+    restart: always
+    environment:
+      MYSQL_DATABASE: gis2_novosib
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./doc/gis2_novosib:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+#    networks:
+#      - simple-gis
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10   
+  tomcat:
+    container_name: gis_app
+    image: tomcat:9.0
+    restart: always
+    volumes:
+      - ./target/org.group.projects.simple.gis-0.0.0-SNAPSHOT.war:/usr/local/tomcat/webapps/simple-gis.war
+    ports:
+      - "80:8080"
+#    networks:
+#      - simple-gis  
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links:
+      - mysql 
+#networks:
+#  simple-gis:      

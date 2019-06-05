@@ -2,14 +2,19 @@ package org.group.projects.simple.gis.repository;
 
 import org.group.projects.simple.gis.model.entity.Building;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-public interface BuildingRepository extends Repository<Building, Long> {
+@Transactional
+@Repository
+public interface BuildingRepository extends CrudRepository<Building, Integer> {
     List<Building> findBuildingViaIndex(@Param("value") String value,  Pageable pageable);
 
     List<Building> findBuildingViaIndex(@Param("value") String value);
 
-    Building findBuildingById(@Param("id") long id);
+    Building findBuildingById(int id);
 }
