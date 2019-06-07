@@ -59,7 +59,7 @@ public class SearchServiceUT {
 
     @After
     public void afterEachTest() {
-        log.info("Completing ModuleTemplateService method test");
+        log.info("Completing SearchService method test");
     }
 
     @Test

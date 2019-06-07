@@ -5,6 +5,7 @@ import org.group.projects.simple.gis.categories.EmbededlTest;
 import org.group.projects.simple.gis.categories.IntegrationTest;
 import org.group.projects.simple.gis.categories.UnitTest;
 import org.group.projects.simple.gis.repository.BuildingRepositoryOnRealUT;
+import org.group.projects.simple.gis.service.GeoServiceUT;
 import org.group.projects.simple.gis.service.SearchServiceUT;
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Categories.ExcludeCategory;
@@ -21,7 +22,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
         ApplicationUT.class,
         BuildingRepositoryOnRealUT.class,
-        SearchServiceUT.class
+        SearchServiceUT.class,
+        GeoServiceUT.class
 })
 @Slf4j
 public class ApplicationOnRealUTSuite {
