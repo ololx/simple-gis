@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.Utils;
 import org.group.projects.simple.gis.categories.UnitTest;
-import org.group.projects.simple.gis.model.SearchRequest;
-import org.group.projects.simple.gis.model.SearchResult;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.group.projects.simple.gis.repository.BuildingRepository;
 import org.junit.*;
@@ -15,14 +13,12 @@ import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;

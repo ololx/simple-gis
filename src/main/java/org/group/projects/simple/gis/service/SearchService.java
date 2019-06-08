@@ -1,8 +1,8 @@
 package org.group.projects.simple.gis.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.model.SearchRequest;
-import org.group.projects.simple.gis.model.SearchResult;
+import org.group.projects.simple.gis.model.transport.SearchRequest;
+import org.group.projects.simple.gis.model.transport.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
