@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.Utils;
 import org.group.projects.simple.gis.categories.UnitTest;
-import org.group.projects.simple.gis.model.SearchRequest;
-import org.group.projects.simple.gis.model.SearchResult;
+import org.group.projects.simple.gis.model.transport.SearchRequest;
+import org.group.projects.simple.gis.model.transport.SearchResult;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -59,7 +59,7 @@ public class SearchServiceUT {
 
     @After
     public void afterEachTest() {
-        log.info("Completing ModuleTemplateService method test");
+        log.info("Completing SearchService method test");
     }
 
     @Test

@@ -2,7 +2,6 @@ package org.group.projects.simple.gis.repository;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.Application;
 import org.group.projects.simple.gis.Utils;
 import org.group.projects.simple.gis.model.entity.Building;
 import org.junit.*;
