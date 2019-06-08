@@ -2,9 +2,9 @@ package org.group.projects.simple.gis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.model.SearchResult;
-import org.group.projects.simple.gis.model.dto.BuildingDetail;
 import org.group.projects.simple.gis.model.entity.Building;
+import org.group.projects.simple.gis.model.transport.BuildingDetail;
+import org.group.projects.simple.gis.model.transport.SearchResult;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

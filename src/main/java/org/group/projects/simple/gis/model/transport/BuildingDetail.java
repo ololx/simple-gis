@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.model.dto;
+package org.group.projects.simple.gis.model.transport;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -45,8 +45,6 @@ public class BuildingDetail {
 
     @JsonProperty("name")
     private String name;
-
-
 
     public String getAddress() {
         return String.format("%s, %s-%s",
