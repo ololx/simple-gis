@@ -1,5 +1,5 @@
 package org.group.projects.simple.gis.categories;
 
-public interface EmbededlTest extends UnitTest {
+public interface EmbededTest extends UnitTest {
 
 }

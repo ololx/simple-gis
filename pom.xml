@@ -26,7 +26,7 @@
     </parent>
 
     <dependencies>
-        <!--MVC & API Documentation<-->
+        <!--View & API Documentation<-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -49,7 +49,7 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
-        <!-->MVC & API Documentation-->
+        <!-->View & API Documentation-->
         <!--Model<-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,6 +107,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.7</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.7</version>
         </dependency>
         <dependency>
             <groupId>org.modelmapper</groupId>
@@ -195,10 +200,10 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <includes>
-                        <include>**/*Suite.*</include>
+                        <include>**/*Suite*</include>
                     </includes>
                     <excludedGroups>
-                        org.group.projects.simple.gis.categories.OnRealUnitTest,
+                        org.group.projects.simple.gis.categories.OnRealTest,
                         org.group.projects.simple.gis.IntegrationTest
                     </excludedGroups>
                 </configuration>
