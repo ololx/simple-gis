@@ -11,7 +11,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
-public class TemplateConfig {
+public class ViewConfig {
 
     @Autowired
     private ApplicationContext applicationContext;
