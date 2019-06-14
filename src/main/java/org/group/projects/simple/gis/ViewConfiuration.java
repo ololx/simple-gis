@@ -32,6 +32,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setContentType("text/html");
         resolver.setCharacterEncoding("UTF-8");
         resolver.setViewNames(new String[] {"*.html"});
+
         return resolver;
     }
 
@@ -42,6 +43,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setContentType("application/javascript");
         resolver.setCharacterEncoding("UTF-8");
         resolver.setViewNames(new String[] {"*.js"});
+
         return resolver;
     }
 
@@ -52,6 +54,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setContentType("text/css");
         resolver.setCharacterEncoding("UTF-8");
         resolver.setViewNames(new String[] {"*.css"});
+
         return resolver;
     }
 
@@ -62,6 +65,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setContentType("text/plain");
         resolver.setCharacterEncoding("UTF-8");
         resolver.setViewNames(new String[] {"*.txt, *.md"});
+
         return resolver;
     }
 
@@ -71,6 +75,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         engine.setEnableSpringELCompiler(true);
         engine.setTemplateResolver(templateResolver);
         engine.setTemplateEngineMessageSource(messageSource());
+
         return engine;
     }
 
@@ -81,7 +86,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setPrefix("/WEB-INF/templates/");
         resolver.setCacheable(false);
         resolver.setTemplateMode(TemplateMode.HTML);
-        resolver.setOrder(1);
+
         return resolver;
     }
 
@@ -92,7 +97,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setPrefix("/WEB-INF/js/");
         resolver.setCacheable(false);
         resolver.setTemplateMode(TemplateMode.JAVASCRIPT);
-        resolver.setOrder(2);
+
         return resolver;
     }
 
@@ -103,7 +108,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setPrefix("/WEB-INF/css2/");
         resolver.setCacheable(false);
         resolver.setTemplateMode(TemplateMode.CSS);
-        resolver.setOrder(3);
+
         return resolver;
     }
 
@@ -114,7 +119,7 @@ public class ViewConfiuration implements WebMvcConfigurer {
         resolver.setPrefix("/WEB-INF/txt/");
         resolver.setCacheable(false);
         resolver.setTemplateMode(TemplateMode.TEXT);
-        resolver.setOrder(4);
+
         return resolver;
     }
 
@@ -143,11 +148,20 @@ public class ViewConfiuration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
-    }
+    }*/
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/templates/**", "/css/**", "/js/**", "/txt/**")
-            .addResourceLocations("/WEB-INF/templates/","/WEB-INF/css/", "/WEB-INF/js/", "/WEB-INF/txt");
-    }*/
+        registry.addResourceHandler(
+                "/templates/**",
+                "/css/**",
+                "/js/**",
+                "/txt/**"
+        ).addResourceLocations(
+                "/WEB-INF/templates/",
+                "/WEB-INF/css/",
+                "/WEB-INF/js/",
+                "/WEB-INF/txt"
+        );
+    }
 }
