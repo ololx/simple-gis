@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
-public class EncodingConfig {
+public class EncodingConfiguration {
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
