@@ -18,7 +18,7 @@ public class SearchViewFactory implements ViewFactory {
 
     @Override
     public ModelAndView getView() {
-        return new ModelAndView("main")
+        return new ModelAndView("main.html")
                 .addObject("middle", "search");
     }
 }

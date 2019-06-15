@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>SG</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/main.css}"/>
+        <script type="text/javascript" th:src="@{/js/jquery.1.10.2.min.js}"></script>
+    </head>
+    <body>
+        <div th:replace = "top.html :: top"></div>
+        <div th:replace = "__${middle}__.html :: middle">
+        </div>
+        <div th:replace = "bottom.html :: bottom"></div>
+    </body>
+</html>
