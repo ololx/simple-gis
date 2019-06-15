@@ -12,7 +12,7 @@
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <start-class>org.group.projects.simple.gis.Main</start-class>
+        <start-class>org.group.projects.simple.gis.Application</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.11</java.version>

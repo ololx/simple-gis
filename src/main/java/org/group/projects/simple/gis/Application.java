@@ -11,18 +11,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @EnableAsync
-@ComponentScan
-@EnableAutoConfiguration
 @SpringBootApplication
-public class Main extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Main.class);
+        return application.sources(Application.class);
     }
 
 }
