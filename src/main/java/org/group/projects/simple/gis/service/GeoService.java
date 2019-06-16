@@ -18,7 +18,7 @@ public class GeoService {
     private BuildingRepository buildingRepository;
 
     public List<Building> getBuildings(String address, int limit) {
-        String keywords = GeoInformationService.getKeywords(address);
+        String keywords = TextService.getKeywords(address);
         log.info(keywords);
 
         List<Building> result =  buildingRepository.findBuildingViaIndex(
@@ -26,8 +26,8 @@ public class GeoService {
                 new PageRequest(0, limit)).stream()
                 .distinct()
                 .sorted((currentBuilding, nextBuilding) -> Integer.compare(
-                        GeoInformationService.keyWordsComare(address, currentBuilding.getAddress()),
-                        GeoInformationService.keyWordsComare(address, nextBuilding.getAddress())
+                        TextService.keyWordsComare(address, currentBuilding.getAddress()),
+                        TextService.keyWordsComare(address, nextBuilding.getAddress())
                 )).limit(limit)
                 .collect(Collectors.toList());
 

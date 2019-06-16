@@ -1,3 +1,8 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+
 logging:
   file:
     max-size: 10MB
@@ -16,6 +21,14 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#  resources:
+#    add-mappings: false
+
 
   mandatory-file-encoding: UTF-8
 

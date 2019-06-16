@@ -14,34 +14,20 @@
             <h1>Oops</h1>
             <table>
                 <tr>
-                    <td>Date</td>
-                    <td th:text="${timestamp}"/>
+                    <td>Custom Message</td>
+                    <td th:text="${error.comment}"/>
                 </tr>
                 <tr>
-                    <td>Path</td>
-                    <td th:text="${path}"/>
+                    <td>Exception Message</td>
+                    <td th:text="${error.message}"/>
                 </tr>
                 <tr>
-                    <td>Error</td>
-                    <td th:text="${error}"/>
+                    <td>Time</td>
+                    <td th:text="${error.timestamp}"/>
                 </tr>
                 <tr>
-                    <td>Status</td>
-                    <td th:text="${status}"/>
-                </tr>
-                <tr>
-                    <td>Message</td>
-                    <td th:text="${message}"/>
-                </tr>
-                <tr>
-                    <td>Exception</td>
-                    <td th:text="${exception}"/>
-                </tr>
-                <tr>
-                    <td>Trace</td>
-                    <td>
-                        <pre th:text="${trace}"/>
-                    </td>
+                    <td>Details</td>
+                    <td th:text="${error.details}"/>
                 </tr>
             </table>
         </div>
