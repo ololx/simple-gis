@@ -9,8 +9,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableScheduling
+@EnableSwagger2
 @EnableAsync
 @SpringBootApplication/*(exclude = {ErrorMvcAutoConfiguration.class})*/
 public class Application extends SpringBootServletInitializer {

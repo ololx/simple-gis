@@ -34,18 +34,20 @@ public class ExceptionController {
         HttpStatus status = null;
         String comment = "Без комментариев";
 
-        if(e instanceof JsonProcessingException) {
+        if (e instanceof JsonProcessingException) {
             //HttpStatus status = HttpStatus.BAD_REQUEST;
             comment = "Ошибка при парсинге json - неверный формат.";
 
             //return handleException(e, comment, headers, status, webRequest);
-        } else if(e instanceof SQLException) {
+        } else if (e instanceof SQLException) {
             //HttpStatus status = HttpStatus.BAD_REQUEST;
             comment = "Ошибка при выполнении SQL-запроса - неверные данные.";
 
             //return handleException(e, comment, headers, status, webRequest);
-        } else if(e instanceof JDBCConnectionException) {
+        } else if (e instanceof JDBCConnectionException) {
             comment = "Ошибка при выполнении SQL-запроса - проверьте подключение.";
+        } else if (e instanceof NoHandlerFoundException) {
+            comment = "Не туда тыркнулся.";
         } else {
             //HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -59,7 +61,7 @@ public class ExceptionController {
 
     private ModelAndView getView(ErrorDetails details) {
         ModelAndView modelAndView = new ModelAndView("error.html");
-        modelAndView.addObject("error", details);
+        modelAndView.addObject("er", details);
 
         return modelAndView;
     }

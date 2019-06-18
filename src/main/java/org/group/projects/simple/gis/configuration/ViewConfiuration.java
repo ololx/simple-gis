@@ -99,6 +99,7 @@ public class ViewConfiuration implements WebMvcConfigurer, ApplicationContextAwa
         SpringResourceTemplateResolver htmlTemplateResolver = new SpringResourceTemplateResolver();
         htmlTemplateResolver.setApplicationContext(applicationContext);
         htmlTemplateResolver.setPrefix("/WEB-INF/templates/");
+        htmlTemplateResolver.setSuffix(".html");
         htmlTemplateResolver.setCacheable(false);
         htmlTemplateResolver.setTemplateMode(TemplateMode.HTML);
 

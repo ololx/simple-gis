@@ -1,37 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>SG</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all"th:href="@{/css/main.css}"/>
-    <script type="text/javascript" th:src="@{/js/jquery.1.10.2.min.js}"></script>
-</head>
-<body>
-    <div th:replace = "top.html :: top"></div>
-    <div id = "middle" class = "frame">
+    <head>
+        <title>SG</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all"th:href="@{/css/main.css}"/>
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/error.css}"/>
-        <div class = "container">
-            <h1>Oops</h1>
-            <table>
-                <tr>
-                    <td>Custom Message</td>
-                    <td th:text="${error.comment}"/>
-                </tr>
-                <tr>
-                    <td>Exception Message</td>
-                    <td th:text="${error.message}"/>
-                </tr>
-                <tr>
-                    <td>Time</td>
-                    <td th:text="${error.timestamp}"/>
-                </tr>
-                <tr>
-                    <td>Details</td>
-                    <td th:text="${error.details}"/>
-                </tr>
-            </table>
+    </head>
+    <body>
+        <div th:replace = "top :: top"></div>
+        <div id = "middle" class = "frame">
+            <div class = "container"  th:replace = "error-detail :: error-detail" th:if = "${er != null}"></div>
+            <div class = "container">
+                <pre><output>webpack: Compiled successfully.
+webpack: Compiling...
+Hash: 33d8c38093d5e8261eac
+Version: webpack 3.11.0
+Time: 1337ms
+                               Asset       Size  Chunks                    Chunk Names
+                          project.js    12.3 MB       0  [emitted]  [big]  project
+                        dashboard.js    6.36 MB       1  [emitted]  [big]  dashboard
+                         organize.js    5.29 MB       2  [emitted]  [big]  organize
+                          proPens.js    4.92 MB       3  [emitted]  [big]  proPens
+0.81c79b4db476a98d272f.hot-update.js    87.4 kB       0  [emitted]         project
+1.81c79b4db476a98d272f.hot-update.js    7.94 kB       1  [emitted]         dashboard
+81c79b4db476a98d272f.hot-update.json   52 bytes          [emitted]
+                       manifest.json  272 bytes          [emitted]
+[./app/javascript/common/components/Overlay.js] ./app/javascript/common/components/Overlay.js 2.42 kB {0} {1} [built]</output></pre>
+            </div>
         </div>
-    </div>
-    <div th:replace = "bottom.html :: bottom"></div>
+        <div th:replace = "bottom :: bottom"></div>
     </body>
 </html>

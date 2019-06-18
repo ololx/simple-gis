@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+            <div class = "container"  th:fragment="error-detail">
+                <h1>Oops</h1>
+                <table >
+                    <tr>
+                        <td>Custom Message</td>
+                        <td th:text="${er.comment}"/>
+                    </tr>
+                    <tr>
+                        <td>Exception Message</td>
+                        <td th:text="${er.message}"/>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td th:text="${er.timestamp}"/>
+                    </tr>
+                    <tr>
+                        <td>Details</td>
+                        <td th:text="${er.details}"/>
+                    </tr>
+                </table>
+            </div>
+    </body>
+</html>
