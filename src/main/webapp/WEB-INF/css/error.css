@@ -20,6 +20,12 @@ body {
     pointer-events: none;
 }
 
+.container {
+    flex: 0 0 45px;
+    align-self: center;
+    width: 400px;
+}
+
 /*.container::after {
   content: "";
   position: absolute;
