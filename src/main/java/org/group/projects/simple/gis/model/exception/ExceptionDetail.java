@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.model;
+package org.group.projects.simple.gis.model.exception;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ErrorDetails {
+public class ExceptionDetail {
 
     @ApiModelProperty(notes = "Дата возникновения")
     Date timestamp;
@@ -27,4 +27,7 @@ public class ErrorDetails {
 
     @ApiModelProperty(notes = "Детализация запроса")
     String details;
+
+    @ApiModelProperty(notes = "Статус")
+    String status;
 }

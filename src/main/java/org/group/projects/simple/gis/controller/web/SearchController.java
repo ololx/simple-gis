@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.controller;
+package org.group.projects.simple.gis.controller.web;
 
 import org.group.projects.simple.gis.model.transport.SearchRequest;
 import org.group.projects.simple.gis.model.transport.SearchResult;

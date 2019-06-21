@@ -9,23 +9,7 @@
     <body>
         <div th:replace = "top :: top"></div>
         <div id = "middle" class = "frame">
-            <div id = "status" class = "container">
-                <pre>
-                    <output>
-=============NOT=FOUND=============
-
-   //  ||    //|||||\\       //  ||
-  //   ||   ||    / /||     //   ||
- //    ||   ||   / / ||    //    ||
-////////|   ||  / /  ||   ////////|
-       \|   || / /   ||          \|
-       ||   ||/ /    ||          ||
-       ||    \\|||||//           ||
-
-=============         =============
-                    </output>
-                </pre>
-            </div>
+            <div class = "container"  th:replace = "error-detail :: ${vw}"></div>
             <div class = "container"  th:replace = "error-detail :: error-detail" th:if = "${er != null}"></div>
         </div>
         <div th:replace = "bottom :: bottom"></div>
