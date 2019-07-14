@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
-            <div class = "container"  th:fragment="error-detail">
-                <h1>Oops</h1>
-                <table >
-                    <tr>
-                        <td>Custom Message</td>
-                        <td th:text="${er.comment}"/>
-                    </tr>
-                    <tr>
-                        <td>Exception Message</td>
-                        <td th:text="${er.message}"/>
-                    </tr>
-                    <tr>
-                        <td>Time</td>
-                        <td th:text="${er.timestamp}"/>
-                    </tr>
-                    <tr>
-                        <td>Details</td>
-                        <td th:text="${er.details}"/>
-                    </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td th:text="${er.status}"/>
-                    </tr>
-                </table>
-            </div>
-            <div id = "status" class = "container" th:fragment="error-404">
-                <pre>
-                    <output>
-==============NOT====FOUND==============
+        <div id = "detail" class = "container"  th:fragment="error-detail">
+            <th:block th:unless="${detail}">
+                <p class="output">Last login: <span class="attention" th:text = "${#dates.createNow()}"></span></p>
+                <p class="output"><span class="login"></span>status: <span class="attention">404 NOT_FOUND</span></p>
+                <p class="output"><span class="login"></span>comment: The page you are looking for might have been removed, had its name changed, its temporarily unavailable or you are lost your way</p>
+            </th:block>
+            <th:block th:if = "${detail}">
+                <p class="output">Last login: <span class="attention" th:text = "${detail.timestamp}"></span></p>
+                <p class="output"><span class="login"></span>status: <span class="attention" th:text = "${detail.status}"></span></p>
+                <p class="output"><span class="login"></span>comment: <span class="attention" th:text = "${detail.comment}"></span></p>
+                <p class="output"><span class="login"></span>message: <span class="attention" th:text = "${detail.message}"></span></p>
+            </th:block>
+            <p class="output"><span class="login"></span>say: Please try go to the main page</p>
+            <p class="output"><span class="login"></span>say: Good luck</p>
+        </div>
+        <div id = "code" class = "container" th:fragment="error-code">
+            <th:block th:switch = "${detail != null ? #strings.substringBefore(detail.status, ' ') : '404'}">
+                <th:block th:case = "404">
+                    <pre>
+                        <output>
+========================================
 
    //   ||     //|||||\\       //   ||
   //    ||    ||    / /||     //    ||
@@ -39,14 +31,14 @@
         ||    ||/ /    ||           ||
         ||     \\|||||//            ||
 
-===============          ===============
-                    </output>
-                </pre>
-            </div>
-            <div id = "status" class = "container" th:fragment="error-400">
-                <pre>
-                    <output>
-==============BAD===REQUEST=============
+==============           ===============
+                        </output>
+                    </pre>
+                </th:block>
+                <th:block th:case = "400">
+                    <pre>
+                        <output>
+========================================
 
    //   ||     //|||||\\     //|||||\\
   //    ||    ||    / /||   ||    / /||
@@ -56,9 +48,11 @@
         ||    ||/ /    ||   ||/ /    ||
         ||     \\|||||//     \\|||||//
 
-===============          ===============
-                    </output>
-                </pre>
-            </div>
+==============           ===============
+                        </output>
+                    </pre>
+                </th:block>
+            </th:block>
+        </div>
     </body>
 </html>

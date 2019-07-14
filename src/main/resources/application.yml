@@ -1,5 +1,6 @@
 server:
   error:
+    path: =/error
     whitelabel:
       enabled: false
 
@@ -26,8 +27,8 @@ spring:
 #    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
   mvc:
     throw-exception-if-no-handler-found: true
-  resources:
-    add-mappings: false
+#  resources:
+#    add-mappings: false
 
 
   mandatory-file-encoding: UTF-8
@@ -35,7 +36,7 @@ spring:
   datasource:
     platform: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/gis2_novosib?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3307/gis2_novosib?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf-8&useSSL=false
     username: root
     password: root
 
