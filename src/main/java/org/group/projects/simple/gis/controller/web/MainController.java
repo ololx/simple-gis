@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis.controller;
+package org.group.projects.simple.gis.controller.web;
 
 import org.group.projects.simple.gis.service.view.SearchViewBuilder;
 import org.springframework.beans.factory.annotation.Autowired;

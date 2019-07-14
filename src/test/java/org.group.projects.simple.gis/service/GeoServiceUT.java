@@ -71,8 +71,8 @@ public class GeoServiceUT {
     public void getResult() {
         List<Building> buildingsTemplates = utils.getBuildingTemplates();
 
-        log.info("Calling getBuildings method with request: \n content - {} \n count - {}", "", 0);
-        List<Building> buildingsFromService = geoService.getBuildings("", 0);
+        log.info("Calling getBuildings method with request: \n content - {} \n count - {}", "", 1);
+        List<Building> buildingsFromService = geoService.getBuildings("", 1);
         assertNotNull("Failure! - buildings list is null", buildingsFromService);
         assertNotEquals("Failure! - buildings list is empty", buildingsFromService);
         assertEquals("Failure! - buildings lists are different", buildingsTemplates, buildingsFromService);

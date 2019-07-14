@@ -1,6 +1,7 @@
 package org.group.projects.simple.gis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.group.projects.simple.gis.categories.EmbededTest;
 import org.group.projects.simple.gis.categories.IntegrationTest;
 import org.group.projects.simple.gis.categories.OnRealTest;
 import org.group.projects.simple.gis.categories.UnitTest;

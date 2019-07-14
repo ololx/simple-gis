@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface GeoInformationService {
+public interface TextService {
 
     static int getLevenstainDistance(final String word, final String wordOther) {
         int[] Di_1 = new int[wordOther.length() + 1];

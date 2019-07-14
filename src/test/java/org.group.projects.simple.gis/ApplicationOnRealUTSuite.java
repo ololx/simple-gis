@@ -1,8 +1,9 @@
 package org.group.projects.simple.gis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.group.projects.simple.gis.categories.EmbededlTest;
+import org.group.projects.simple.gis.categories.EmbededTest;
 import org.group.projects.simple.gis.categories.IntegrationTest;
+import org.group.projects.simple.gis.categories.OnRealTest;
 import org.group.projects.simple.gis.categories.UnitTest;
 import org.group.projects.simple.gis.repository.BuildingRepositoryOnRealUT;
 import org.group.projects.simple.gis.service.GeoServiceUT;
@@ -17,7 +18,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @IncludeCategory(UnitTest.class)
 @ExcludeCategory({
         IntegrationTest.class,
-        EmbededlTest.class
+        EmbededTest.class
 })
 @SuiteClasses({
         ApplicationUT.class,

@@ -32,98 +32,70 @@ import java.util.List;
         "id1", "id2"
     }
 )
+@Getter
+@Setter
 public class Building implements GeoEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,
             name = "id")
-    @Getter
-    @Setter
     private int id;
 
     @Column(nullable = false,
             name = "lon")
-    @Getter
-    @Setter
     private String lon;
 
     @Column(nullable = false,
             name = "lat")
-    @Getter
-    @Setter
     private String lat;
 
     @Column(nullable = false,
             name = "postcode")
-    @Getter
-    @Setter
     private String postCode;
 
     @Column(nullable = false,
             name = "city")
-    @Getter
-    @Setter
     private String city;
 
     @Column(nullable = false,
             name = "district")
-    @Getter
-    @Setter
     private String district;
 
     @Column(nullable = false,
             name = "street")
-    @Getter
-    @Setter
     private String street;
 
     @Column(nullable = false,
             name = "number")
-    @Getter
-    @Setter
     private String number;
 
     @Column(nullable = false,
             name = "street2")
-    @Getter
-    @Setter
     private String streetOther;
 
     @Column(nullable = false,
             name = "number2")
-    @Getter
-    @Setter
     private String numberOther;
 
     @Column(nullable = false,
             name = "buildingname")
-    @Getter
-    @Setter
     private String name;
 
     @Column(nullable = false,
             name = "purpose")
-    @Getter
-    @Setter
     private String purpose;
 
     @Column(nullable = false,
             name = "elevation")
-    @Getter
-    @Setter
     private String elevation;
 
     @Column(nullable = false,
             name = "firmcount")
-    @Getter
-    @Setter
     private String firmCount;
 
     @Column(nullable = false,
             name = "external_id")
-    @Getter
-    @Setter
     private Long externalId;
 
     @ManyToMany(
@@ -143,8 +115,6 @@ public class Building implements GeoEntity, Serializable {
             }
     )
     @JsonIgnore
-    @Getter
-    @Setter
     private List<Firm> firms;
 
     {
