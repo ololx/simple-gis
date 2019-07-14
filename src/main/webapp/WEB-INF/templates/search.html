@@ -4,8 +4,8 @@
         <div id = "middle" class = "frame" th:fragment = "middle">
             <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/search.css}"/>
             <script type = "text/javascript" th:src="@{/js/search.js}"></script>
-            <div id = "search-form" class = "container" th:include = "search-form.html :: search-form"></div>
-            <div id = "search-map" class = "container" th:include = "search-map.html :: search-map" th:if = "${map}"></div>
+            <div id = "search-form" class = "container" th:include = "search-form :: search-form"></div>
+            <div id = "search-map" class = "container" th:include = "search-map :: search-map" th:if = "${map}"></div>
         </div>
     </body>
 </html>

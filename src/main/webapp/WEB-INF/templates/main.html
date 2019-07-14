@@ -7,9 +7,9 @@
         <script type="text/javascript" th:src="@{/js/jquery.1.10.2.min.js}"></script>
     </head>
     <body>
-        <div th:replace = "top.html :: top"></div>
-        <div th:replace = "__${middle}__.html :: middle">
+        <div th:replace = "top :: top"></div>
+        <div th:replace = "__${middle}__ :: middle">
         </div>
-        <div th:replace = "bottom.html :: bottom"></div>
+        <div th:replace = "bottom :: bottom"></div>
     </body>
 </html>

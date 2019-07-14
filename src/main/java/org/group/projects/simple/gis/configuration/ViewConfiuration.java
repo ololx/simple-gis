@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis;
+package org.group.projects.simple.gis.configuration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +99,7 @@ public class ViewConfiuration implements WebMvcConfigurer, ApplicationContextAwa
         SpringResourceTemplateResolver htmlTemplateResolver = new SpringResourceTemplateResolver();
         htmlTemplateResolver.setApplicationContext(applicationContext);
         htmlTemplateResolver.setPrefix("/WEB-INF/templates/");
+        htmlTemplateResolver.setSuffix(".html");
         htmlTemplateResolver.setCacheable(false);
         htmlTemplateResolver.setTemplateMode(TemplateMode.HTML);
 
@@ -141,61 +142,48 @@ public class ViewConfiuration implements WebMvcConfigurer, ApplicationContextAwa
         return plainTemplateResolver;
     }
 
-    @Description("Spring Message Resolver")
-    @Bean(name = "messageSource")
-    public ResourceBundleMessageSource getMessageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
-
-        return messageSource;
-    }
-
     @Description("Thymeleaf HTML Template Engine")
     @Qualifier("HtmlTemplateEngine")
     @Bean(name = "htmlTemplateEngine")
     public ISpringTemplateEngine getHtmlTemplateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(templateResolver);
-        templateEngine.setTemplateEngineMessageSource(getMessageSource());
+        SpringTemplateEngine htmlTemplateEngine = new SpringTemplateEngine();
+        htmlTemplateEngine.setEnableSpringELCompiler(true);
+        htmlTemplateEngine.setTemplateResolver(templateResolver);
 
-        return templateEngine;
+        return htmlTemplateEngine;
     }
 
     @Description("Thymeleaf JS Template Engine")
     @Qualifier("JsTemplateEngine")
     @Bean(name = "jsTemplateEngine")
     public ISpringTemplateEngine getJsTemplateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(templateResolver);
-        templateEngine.setTemplateEngineMessageSource(getMessageSource());
+        SpringTemplateEngine jsTemplateEngine = new SpringTemplateEngine();
+        jsTemplateEngine.setEnableSpringELCompiler(true);
+        jsTemplateEngine.setTemplateResolver(templateResolver);
 
-        return templateEngine;
+        return jsTemplateEngine;
     }
 
     @Description("Thymeleaf CSS Template Engine")
     @Qualifier("CssTemplateEngine")
     @Bean(name = "cssTemplateEngine")
     public ISpringTemplateEngine getCssTemplateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(templateResolver);
-        templateEngine.setTemplateEngineMessageSource(getMessageSource());
+        SpringTemplateEngine cssTemplateEngine = new SpringTemplateEngine();
+        cssTemplateEngine.setEnableSpringELCompiler(true);
+        cssTemplateEngine.setTemplateResolver(templateResolver);
 
-        return templateEngine;
+        return cssTemplateEngine;
     }
 
     @Description("Thymeleaf TXT Template Engine")
     @Qualifier("TxtTemplateEngine")
     @Bean(name = "txtTemplateEngine")
     public ISpringTemplateEngine getTxtTemplateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(templateResolver);
-        templateEngine.setTemplateEngineMessageSource(getMessageSource());
+        SpringTemplateEngine txtTemplateEngine = new SpringTemplateEngine();
+        txtTemplateEngine.setEnableSpringELCompiler(true);
+        txtTemplateEngine.setTemplateResolver(templateResolver);
 
-        return templateEngine;
+        return txtTemplateEngine;
     }
 
     /*@Bean

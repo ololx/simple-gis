@@ -1,4 +1,4 @@
-package org.group.projects.simple.gis;
+package org.group.projects.simple.gis.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

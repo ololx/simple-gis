@@ -1,51 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>SG</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all"th:href="@{/css/main.css}"/>
-    <script type="text/javascript" th:src="@{/js/jquery.1.10.2.min.js}"></script>
-</head>
-<body>
-    <div th:replace = "top.html :: top"></div>
-    <div id = "middle" class = "frame">
+    <head>
+        <title>SG</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all"th:href="@{/css/main.css}"/>
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/error.css}"/>
-        <div class = "container">
-            <h1>Oops</h1>
-            <table>
-                <tr>
-                    <td>Date</td>
-                    <td th:text="${timestamp}"/>
-                </tr>
-                <tr>
-                    <td>Path</td>
-                    <td th:text="${path}"/>
-                </tr>
-                <tr>
-                    <td>Error</td>
-                    <td th:text="${error}"/>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td th:text="${status}"/>
-                </tr>
-                <tr>
-                    <td>Message</td>
-                    <td th:text="${message}"/>
-                </tr>
-                <tr>
-                    <td>Exception</td>
-                    <td th:text="${exception}"/>
-                </tr>
-                <tr>
-                    <td>Trace</td>
-                    <td>
-                        <pre th:text="${trace}"/>
-                    </td>
-                </tr>
-            </table>
+    </head>
+    <body>
+        <div th:replace = "top :: top"></div>
+        <div id = "middle" class = "frame">
+            <div th:replace = "error-detail :: error-code"></div>
+            <div th:replace = "error-detail :: error-detail"></div>
         </div>
-    </div>
-    <div th:replace = "bottom.html :: bottom"></div>
+        <div th:replace = "bottom :: bottom"></div>
     </body>
 </html>
