@@ -1,10 +1,23 @@
-# Java Class Files
-*.class
+# Operating System Files
+*.DS_Store
+Thumbs.db
+*~
+.#*
+#*
+*#
 
-# Package Files #
+# Build && Package Files
+bin/
+target/
+build/
+*.class
 *.jar
 *.war
 *.ear
+
+#IntelliJ IDEA Files
+.idea/*
+*.iml
 
 # Circuit Diagram Files
 *.png
@@ -22,13 +35,6 @@
 
 # Virtual machine crash logs
 hs_err_pid*
-
-# Builds
-/target/*
-
-#IntelliJ IDEA Files
-/.idea/*
-*.iml
 
 # Exclusions FIiles
 !.gitignore
