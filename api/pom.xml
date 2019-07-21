@@ -7,7 +7,7 @@
     <groupId>org.group.projects.simple</groupId>
     <artifactId>org.group.projects.simple.gis.api</artifactId>
     <version>0.0.0-SNAPSHOT</version>
-	<name>gis-api</name>
+	<name>api</name>
     <packaging>war</packaging>
 
     <properties>
@@ -26,11 +26,13 @@
     </parent>
 
     <dependencies>
-        <!--API Documentation<-->
+        <!--Rest<-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
+        <!-->Rest-->
+        <!--API Documentation<-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -39,6 +41,11 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
             <version>2.9.2</version>
         </dependency>
         <!-->API Documentation-->
@@ -173,8 +180,7 @@
                 <version>2.2</version>
                 <configuration>
                     <uriEncoding>utf-8</uriEncoding>
-                    <port>8080</port>
-                    <path>/${project.name}</path>
+                   <path>/simple-gis/${project.name}</path>
                 </configuration>
             </plugin>
             <plugin>

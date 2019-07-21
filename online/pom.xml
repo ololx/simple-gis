@@ -7,7 +7,7 @@
     <groupId>org.group.projects.simple</groupId>
     <artifactId>org.group.projects.simple.gis.online</artifactId>
     <version>0.0.0-SNAPSHOT</version>
-	<name>gis-online</name>
+	<name>online</name>
     <packaging>war</packaging>
 
     <properties>
@@ -182,7 +182,7 @@
                 <configuration>
                     <uriEncoding>utf-8</uriEncoding>
                     <port>8080</port>
-                    <path>/${project.name}</path>
+                    <path>/simple-gis/${project.name}</path>
                 </configuration>
             </plugin>
             <plugin>

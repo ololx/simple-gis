@@ -17,12 +17,12 @@ public class WebApplicationConfiguration {
 
     @Bean(name = "webServerFactoryCustomizer")
     public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getWebServerFactoryCustomizer() {
-        return factory -> factory.setContextPath("/simple-gis");
+        return factory -> factory.setContextPath("/simple-gis/online");
     }
 
     @Bean(name = "urlService")
     public UrlService getUrlService() {
-        return () -> "/simple-gis";
+        return () -> "/simple-gis/online";
     }
 
     @Bean(name = "filterRegistrationBean")

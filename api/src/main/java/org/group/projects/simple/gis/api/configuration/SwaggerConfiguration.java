@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
         Docket apiDocket = new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.controller.api"))
+                .apis(RequestHandlerSelectors.basePackage("org.group.projects.simple.gis.api.controller"))
                 .paths(regex("/.*"))
                 .build()
                 .apiInfo(metaData());
