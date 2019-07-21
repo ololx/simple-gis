@@ -30,7 +30,6 @@ spring:
 #  resources:
 #    add-mappings: false
 
-
   mandatory-file-encoding: UTF-8
 
   datasource:
@@ -55,3 +54,7 @@ spring:
   liquibase:
     change-log: classpath:db/db.changelog.xml
     enabled: false
+
+simple-gis-api:
+  service: http://localhost:8081/simple-gis/api
+  search: search

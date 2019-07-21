@@ -9,8 +9,10 @@
     <body>
         <div th:replace = "top :: top"></div>
         <div id = "middle" class = "frame">
-            <div th:replace = "error-detail :: error-code"></div>
-            <div th:replace = "error-detail :: error-detail"></div>
+            <div class = "container">
+                <div th:replace = "error-detail :: error-code"></div>
+                <div th:replace = "error-detail :: error-detail"></div>
+            </div>
         </div>
         <div th:replace = "bottom :: bottom"></div>
     </body>
