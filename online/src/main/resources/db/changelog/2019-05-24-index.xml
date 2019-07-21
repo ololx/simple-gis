@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<changeSet
+        id="2019-05-21-index-firm_to_building"
+        author="ol_lx"
+        logicalFilePath="2019-05-24-index.xml">
+
+    <createIndex indexName="FK5q7dd3x92qy2x72yvaw2i35ef" tableName="firm_to_building">
+        <column name="firm_id"/>
+    </createIndex>
+    <createIndex indexName="FKr9jxipp9o9slkw6afcm7jxyhf" tableName="firm_to_building">
+        <column name="building_id"/>
+    </createIndex>
+
+</changeSet>
+
+    <changeSet
+            id="2019-05-21-index-firm_to_subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="c_firm_to_subcategory_id" tableName="firm_to_subcategory">
+            <column name="subcategory_id"/>
+        </createIndex>
+        <createIndex indexName="firm_id" tableName="firm_to_subcategory">
+            <column name="firm_id"/>
+            <column name="subcategory_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="category_id" tableName="subcategory">
+            <column name="category_id"/>
+        </createIndex>
+        <createIndex indexName="external_id" tableName="subcategory">
+            <column name="external_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-building"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="external_id" tableName="building">
+            <column name="external_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-building-full_address"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="full_address" tableName="building" >
+            <column name="city"/>
+            <column name="district"/>
+            <column name="street"/>
+            <column name="street2"/>
+            <column name="number"/>
+            <column name="number2"/>
+            <column name="postcode"/>
+        </createIndex>
+
+        <modifySql>
+            <replace replace="INDEX" with="FULLTEXT INDEX"/>
+        </modifySql>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-category"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="external_id" tableName="category">
+            <column name="external_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-firm"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="external_id" tableName="firm">
+            <column name="external_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-index-contacts"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-index.xml">
+
+        <createIndex indexName="firm_id" tableName="contacts">
+            <column name="firm_id"/>
+        </createIndex>
+
+    </changeSet>
+
+</databaseChangeLog>

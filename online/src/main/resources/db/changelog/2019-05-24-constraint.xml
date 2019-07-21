@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet
+            id="2019-05-21-constraint-firm_to_building"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-constraint.xml">
+
+        <addForeignKeyConstraint baseColumnNames="firm_id" baseTableName="firm_to_building" constraintName="FK5q7dd3x92qy2x72yvaw2i35ef" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="firm" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="building_id" baseTableName="firm_to_building" constraintName="FKr9jxipp9o9slkw6afcm7jxyhf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="building" validate="true"/>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-constraint-contacts"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-constraint.xml">
+
+        <addForeignKeyConstraint baseColumnNames="firm_id" baseTableName="contacts" constraintName="c_contacts_to_firm_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="firm" validate="true"/>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-constraint-firm_to_subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-constraint.xml">
+
+        <addForeignKeyConstraint baseColumnNames="subcategory_id" baseTableName="firm_to_subcategory" constraintName="c_firm_to_subcategory_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="subcategory" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="firm_id" baseTableName="firm_to_subcategory" constraintName="c_subcategory_to_firm_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="firm" validate="true"/>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-constraint-subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-constraint.xml">
+
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="subcategory" constraintName="c_subcategory_to_category_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+
+    </changeSet>
+    
+</databaseChangeLog>

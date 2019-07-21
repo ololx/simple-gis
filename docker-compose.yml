@@ -24,7 +24,7 @@ services:
     image: tomcat:9.0
     restart: always
     volumes:
-      - ./target/org.group.projects.simple.gis-0.0.0-SNAPSHOT.war:/usr/local/tomcat/webapps/simple-gis.war
+      - ./target/org.group.projects.simple.gis.api-0.0.0-SNAPSHOT.war:/usr/local/tomcat/webapps/simple-gis-api.war
     ports:
       - "80:8080"
 #    networks:
