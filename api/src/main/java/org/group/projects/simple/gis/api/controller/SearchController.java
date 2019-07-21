@@ -8,12 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.api.model.entity.Building;
 import org.group.projects.simple.gis.api.model.exception.ExceptionDetail;
-import org.group.projects.simple.gis.api.service.GeoService;
+import org.group.projects.simple.gis.api.model.transport.SearchRequest;
+import org.group.projects.simple.gis.api.model.transport.SearchResult;
+import org.group.projects.simple.gis.api.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(
         value="SearchController",
@@ -28,7 +28,7 @@ import java.util.List;
 public class SearchController {
 
     @Autowired
-    private GeoService service;
+    private SearchService service;
 
     @ApiOperation(
             value = "Найти",
@@ -38,7 +38,7 @@ public class SearchController {
             @ApiResponse(
                     code = 200,
                     message = "Запрос был успешно обработан",
-                    response = Building[].class
+                    response = SearchResult.class
             ),
             @ApiResponse(
                     code = 400,
@@ -52,9 +52,9 @@ public class SearchController {
             produces = "application/json"
     )
     @ResponseBody
-    public List<Building> find(@RequestBody String street) {
+    public SearchResult find(@RequestBody SearchRequest request) {
 
-        return service.getBuildings(street, 5);
+        return service.getResult(request, 5);
     }
 }
 
