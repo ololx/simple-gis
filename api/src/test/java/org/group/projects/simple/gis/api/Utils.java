@@ -61,14 +61,9 @@ public class Utils {
         Building buildingTemplate = getBuildingTemplate();
 
         return new SearchResult(
-                new ArrayList<SearchResult.Result>(){{
-                    add(new SearchResult.Result(
-                            buildingTemplate.getLon(),
-                            buildingTemplate.getLat(),
-                            buildingTemplate.getAddress())
-                    );
-                }},
-                ""
+                new ArrayList<Building>(){{
+                    add(buildingTemplate);
+                }}
         );
     }
 

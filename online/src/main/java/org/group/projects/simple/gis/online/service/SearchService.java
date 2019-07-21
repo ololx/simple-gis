@@ -18,19 +18,17 @@ import java.util.stream.Collectors;
 public class SearchService {
 
     @Autowired
-    private final GeoService geoService;
-
-    @Autowired
     private final SimpleGisApiClient simpleGisApiClient;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        log.info("Send request to simple-gis/api controller {}", request);
-        SearchResult sr = simpleGisApiClient.findBuildings(request);
-        log.info("SResponse {}", sr.toString());
+        log.warn("Send request to simple-gis/api controller {}", request);
+        SearchResult searchResult = simpleGisApiClient.findBuildings(request);
+        log.warn("Response {}", searchResult.toString());
 
-        return new SearchResult(geoService.getBuildings(request.getContent(), limit)
+        return new SearchResult(searchResult.getResults()
                 .stream()
-                .map(eachBuilding ->  new SearchResult.Result(eachBuilding.getLon(),
+                .map(eachBuilding ->  new SearchResult.Result(
+                        eachBuilding.getLon(),
                         eachBuilding.getLat(),
                         eachBuilding.getAddress()))
                 .collect(Collectors.toList()),

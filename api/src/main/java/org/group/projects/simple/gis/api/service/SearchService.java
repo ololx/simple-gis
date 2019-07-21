@@ -16,12 +16,6 @@ public class SearchService {
     private GeoService geoService;
 
     public SearchResult getResult(SearchRequest request, int limit) {
-        return new SearchResult(geoService.getBuildings(request.getContent(), limit)
-                .stream()
-                .map(eachBuilding ->  new SearchResult.Result(eachBuilding.getLon(),
-                        eachBuilding.getLat(),
-                        eachBuilding.getAddress()))
-                .collect(Collectors.toList()),
-                request.getContent());
+        return new SearchResult(geoService.getBuildings(request.getContent(), limit));
     }
 }

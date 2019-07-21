@@ -1,6 +1,7 @@
 package org.group.projects.simple.gis.api.model.transport;
 
 import lombok.*;
+import org.group.projects.simple.gis.api.model.entity.Building;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,42 +9,10 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(includeFieldNames = true)
-public class SearchResult extends AbstractSearchEntity implements Serializable {
+@ToString
+@Data
+public class SearchResult implements Serializable {
 
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @ToString(includeFieldNames = true)
-    public static class Result implements Serializable {
+    private List<Building> results;
 
-        @Getter
-        @Setter
-        private String lon;
-
-        @Getter
-        @Setter
-        private String lat;
-
-        @Getter
-        @Setter
-        private String address;
-
-    }
-
-    @Getter
-    @Setter
-    private List<Result> results;
-
-    {
-        this.results = new ArrayList<>();
-    }
-
-    public SearchResult(List<Result> results, String content) {
-        super(content);
-        this.results = results;
-    }
-
-    public void addResult(Result result) {
-        this.results.add(result);
-    }
 }

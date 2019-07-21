@@ -4,9 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.group.projects.simple.gis.online.categories.IntegrationTest;
 import org.group.projects.simple.gis.online.categories.OnRealTest;
 import org.group.projects.simple.gis.online.categories.UnitTest;
-import org.group.projects.simple.gis.online.repository.BuildingRepositoryEmbededUT;
-import org.group.projects.simple.gis.online.service.GeoServiceUT;
-import org.group.projects.simple.gis.online.service.SearchServiceUT;
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.experimental.categories.Categories.IncludeCategory;
@@ -20,10 +17,7 @@ import org.junit.runners.Suite.SuiteClasses;
         OnRealTest.class
 })
 @SuiteClasses({
-        ApplicationUT.class,
-        BuildingRepositoryEmbededUT.class,
-        SearchServiceUT.class,
-        GeoServiceUT.class
+        ApplicationUT.class
 })
 @Slf4j
 public class ApplicationUTSuite {
