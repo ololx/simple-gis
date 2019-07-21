@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet
+            id="2019-05-21-init-building"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="building">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lon" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lat" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="district" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street2" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number2" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="buildingname" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purpose" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="elevation" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="firmcount" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postcode" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="external_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-category"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="category">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="external_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-contacts"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="contacts">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rawdata" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="firm_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-firm"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="firm">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="alias" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geometry_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="office" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geometry" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lon" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lat" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="external_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-firm_to_building"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="firm_to_building">
+            <column name="firm_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="building_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="subcategory">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="external_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet
+            id="2019-05-21-init-firm_to_subcategory"
+            author="ol_lx"
+            logicalFilePath="2019-05-24-init.xml">
+
+        <createTable tableName="firm_to_subcategory">
+            <column name="firm_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subcategory_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
