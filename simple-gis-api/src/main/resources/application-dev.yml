@@ -8,3 +8,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3307/gis2_novosib?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf-8&useSSL=false
     username: root
     password: root
+
+keycloak:
+  auth-server-url: http://localhost:8080/auth

@@ -9,11 +9,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@ApiModel(value = "ErrorDetails", description = "Детализация ошибки")
-@Data
+@ApiModel(
+        value = "ErrorDetails",
+        description = "Детализация ошибки"
+)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 public class ExceptionDetail {
 
     @ApiModelProperty(notes = "Дата возникновения")
@@ -28,6 +31,6 @@ public class ExceptionDetail {
     @ApiModelProperty(notes = "Детализация запроса")
     String details;
 
-    @ApiModelProperty(notes = "Статус")
+    @ApiModelProperty(notes = "Статус респонса")
     String status;
 }

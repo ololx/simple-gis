@@ -8,22 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
-public class WebApplicationConfiguration {
-
-
-    public interface UrlService {
-        String getApplicationUrl();
-    }
-
-    @Bean(name = "webServerFactoryCustomizer")
-    public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getWebServerFactoryCustomizer() {
-        return factory -> factory.setContextPath("/simple-gis/api");
-    }
-
-    @Bean(name = "urlService")
-    public UrlService getUrlService() {
-        return () -> "/simple-gis/api";
-    }
+public class FilterConfiguration {
 
     @Bean(name = "filterRegistrationBean")
     public FilterRegistrationBean getFilterRegistrationBean() {
@@ -35,6 +20,5 @@ public class WebApplicationConfiguration {
 
         return registrationBean;
     }
-
 }
 

@@ -1,4 +1,6 @@
 server:
+  port: 8081
+
   error:
     path: =/error
     whitelabel:
@@ -25,6 +27,9 @@ spring:
 
   mandatory-file-encoding: UTF-8
 
+  main:
+    allow-bean-definition-overriding: true
+
   datasource:
     platform: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -47,3 +52,17 @@ spring:
   liquibase:
     change-log: classpath:db/db.changelog.xml
     enabled: false
+
+keycloak:
+  enabled: false
+
+  realm: simple-gis
+  auth-server-url: http://sso:8090/auth
+  resource: simple-gis-api
+  credentials:
+    secret: 97edad04-49ca-4770-8e4a-3bc97c1714ce
+
+  ssl-required: external
+  principal-attribute: preferred_username
+  use-resource-role-mappings: true
+  token-minimum-time-to-live: 30
