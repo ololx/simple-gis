@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  mysql:
+    container_name: geo_entities
+    image: mysql:5.7
+    command: mysqld --user=root
+    restart: always
+    environment:
+      MYSQL_DATABASE: gis2_novosib
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./doc/gis2_novosib:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
