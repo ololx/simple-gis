@@ -1,6 +1,7 @@
 package org.group.projects.simple.gis.api.configuration;
 
 import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.OAuth2Constants;
@@ -34,9 +35,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.security.Principal;
 
+@Slf4j
 @KeycloakConfiguration
 @EnableConfigurationProperties(KeycloakSpringBootProperties.class)
-class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
+class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 
     @Bean
     public HttpHeadersProvider keycloakBearerAuthHeaderProvider(Keycloak keycloak) {
@@ -67,9 +69,11 @@ class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").hasAnyRole(
+                .antMatchers("/search/**").hasAnyRole(
                         "ADMIN",
-                        "USER").anyRequest().authenticated();
+                        "USER")
+                .anyRequest()
+                .permitAll();
     }
 
     @Bean
@@ -106,6 +110,9 @@ class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         Principal principal = attributes.getRequest().getUserPrincipal();
+
+        log.info(principal.toString());
+
         if (principal == null) {
             return null;
         }

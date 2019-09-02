@@ -8,11 +8,11 @@
     <artifactId>org.group.projects.simple.gis.api</artifactId>
     <version>0.0.0-SNAPSHOT</version>
 	<name>api</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <start-class>org.group.projects.simple.gis.api.Application</start-class>
+        <start-class>org.group.projects.simple.gis.api.SimpleGisApi</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>

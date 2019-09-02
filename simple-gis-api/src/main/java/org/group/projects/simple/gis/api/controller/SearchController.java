@@ -14,6 +14,9 @@ import org.group.projects.simple.gis.api.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
+import org.thymeleaf.context.IContext;
+import springfox.documentation.service.OAuth;
 
 @Api(
         value="SearchController",
@@ -31,8 +34,8 @@ public class SearchController {
     private SearchService service;
 
     @ApiOperation(
-            value = "Найти",
-            notes = "Метод принимает GET запросы на выборку гео информации по строке запроса"
+            value = "Найти адрес",
+            notes = "Метод принимает POST запросы на выборку гео информации по строке запроса"
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -51,7 +54,6 @@ public class SearchController {
             consumes = "application/json",
             produces = "application/json"
     )
-    @ResponseBody
     public SearchResult find(@RequestBody SearchRequest request) {
 
         return service.getResult(request, 5);
