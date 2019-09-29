@@ -38,7 +38,7 @@ import java.security.Principal;
 @Slf4j
 @KeycloakConfiguration
 @EnableConfigurationProperties(KeycloakSpringBootProperties.class)
-class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
+class AuthentificationConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 
     @Bean
     public HttpHeadersProvider keycloakBearerAuthHeaderProvider(Keycloak keycloak) {
