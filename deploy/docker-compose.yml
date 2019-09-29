@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: gis2_novosib
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./doc/gis2_novosib:/docker-entrypoint-initdb.d
+      - ./database/gis2_novosib:/docker-entrypoint-initdb.d
     ports:
       - "3307:3306"
 #    networks:
@@ -18,7 +18,7 @@ services:
       test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 2s
       timeout: 20s
-      retries: 10   
+      retries: 10
   tomcat:
     container_name: gis_app
     image: tomcat:9.0

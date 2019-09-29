@@ -1,0 +1,47 @@
+version: '2.1'
+services:
+  sso_db:
+    container_name: mysql
+    image: mysql:5.7
+    command: mysqld --user=root
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+    ports:
+      - "3301:3306"
+    expose:
+      - 8080  
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 50s
+      retries: 10
+  sso_server:
+    container_name: keycloak
+    image: jboss/keycloak:6.0.1
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: MYSQL
+      DB_ADDR: sso_db
+      DB_DATABASE: keycloak
+      DB_USER: root
+      DB_PASSWORD: root
+      JDBC_PARAMS: "characterEncoding=UTF-8&createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true"
+    command:
+      - "-b 0.0.0.0"
+      - "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/opt/jboss/keycloak/2019-09-29-data-all-realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+    volumes:
+      - ./resources/keycloak/2019-09-29-data-all-realm.json:/opt/jboss/keycloak/2019-09-29-data-all-realm.json
+    ports:
+      - "8080:8080"  
+    expose:
+      - 8080
+    depends_on:
+      sso_db:
+        condition: service_healthy
+    links:
+      - sso_db
